@@ -1,4 +1,3 @@
-// EmployeeService.java
 // 사원 정보의 CRUD 로직을 처리하는 서비스 클래스
 package com.example.hr_master.employee.service;
 
@@ -36,6 +35,8 @@ public class EmployeeService {
             employee.setEmpName(updatedEmployee.getEmpName());
             employee.setPhone(updatedEmployee.getPhone());
             employee.setDepartment(updatedEmployee.getDepartment());
+            employee.setPosition(updatedEmployee.getPosition());
+            employee.setCompanyEmail(updatedEmployee.getCompanyEmail());
             return employeeRepository.save(employee);
         }).orElseThrow(() -> new RuntimeException("Employee not found"));
     }

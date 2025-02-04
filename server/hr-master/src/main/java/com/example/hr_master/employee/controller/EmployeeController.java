@@ -1,7 +1,10 @@
+// EmployeeController.java
+// 사원 정보의 CRUD API를 제공하는 컨트롤러
 package com.example.hr_master.employee.controller;
 
 import com.example.hr_master.employee.entity.Employee;
 import com.example.hr_master.employee.service.EmployeeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +13,9 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/employees")
+@RequiredArgsConstructor
 public class EmployeeController {
     private final EmployeeService employeeService;
-
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
     @GetMapping
     public List<Employee> getAllEmployees() {
