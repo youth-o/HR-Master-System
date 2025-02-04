@@ -1,38 +1,36 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Navigate, useNavigate, Route } from 'react-router-dom';
 import './App.css';
-import { useEffect, useState } from 'react';
+import Login from './pages/Login';
+import Main from './pages/Main';
+
+// 로그인 여부 확인 함수
+const isAuthenticated = () => {
+	return !!localStorage.getItem('token'); // 로컬스토리지에서 로그인 상태 확인
+};
+
+// 로그인 체크 컴포넌트
+const PrivateRoute = ({ element }) => {
+	return isAuthenticated() ? element : <Navigate to="/" replace />;
+};
 
 function App() {
-	const [data, setData] = useState([]);
-
-	useEffect(() => {
-		fetch('/showMe')
-			.then((res) => {
-				return res.json();
-			})
-			.then(function (result) {
-				setData(result);
-			});
-	}, []);
-
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					Edit <code>src/App.js</code> and save to reload.
-				</p>
-				<a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-					Learn React
-				</a>
-				<ul>
-					{data.map((v, idx) => (
-						<li key={`${idx}-${v}`}>{v}</li>
-					))}
-				</ul>
-			</header>
-		</div>
+		<BrowserRouter>
+			<Routes>
+				{/* 첫 화면을 로그인 페이지로 설정 */}
+				<Route path="/" element={<Login />} />
+
+				{/* 로그인된 사용자만 접근 가능 */}
+				<Route path="/main" element={<PrivateRoute element={<Main />} />} />
+				{/* <Route path="/employee">
+					<Route index element={<PrivateRoute element={<Employee />} />} />
+					<Route path=":id">
+						<Route index element={<PrivateRoute element={<Attendance />} />} /> // 근태 관리
+            <Route index element={<PrivateRoute element={<Leave />} />} /> // 연차 관리
+            <Route index element={<PrivateRoute element={<Performance />} />} /> // 성과 관리
+					</Route>
+				</Route> */}
+			</Routes>
+		</BrowserRouter>
 	);
 }
-
-export default App;
