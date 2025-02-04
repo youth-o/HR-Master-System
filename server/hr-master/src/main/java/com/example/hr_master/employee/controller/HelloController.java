@@ -1,4 +1,4 @@
-package com.example.hr_master.controller;
+package com.example.hr_master.employee.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
