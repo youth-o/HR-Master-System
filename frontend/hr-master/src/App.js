@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Navigate, useNavigate, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import Main from './pages/Main';
@@ -34,3 +34,5 @@ function App() {
 		</BrowserRouter>
 	);
 }
+
+export default App;
