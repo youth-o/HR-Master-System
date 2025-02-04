@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDateTime;
 
-
-import java.time.LocalDate;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,7 +14,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "HR_ACCOUNT")
 
-public class HR_ACCOUNT {
+public class HrAccount {
     @Id
     private Long employeeId;
 
