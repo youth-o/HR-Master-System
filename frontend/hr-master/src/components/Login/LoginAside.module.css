@@ -10,7 +10,7 @@
 	overflow: hidden;
 }
 
-.left-content {
+.leftContent {
 	width: 82rem;
 	height: 90rem;
 	position: absolute;
@@ -32,7 +32,7 @@
 	top: -0.17%;
 }
 
-.ellipse-1 {
+.ellipse1 {
 	border-radius: 50%;
 	border-style: solid;
 	border-color: #0575e6;
@@ -46,7 +46,7 @@
 	top: 30.7%;
 }
 
-.ellipse-2 {
+.ellipse2 {
 	border-radius: 50%;
 	border-style: solid;
 	border-color: #0575e6;
@@ -69,14 +69,13 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 10px;
+	gap: 20px;
 	width: 40.8rem;
-	height: 8.1rem;
 	position: absolute;
 	right: 47.65%;
 	left: 44.11%;
-	bottom: 20.43%;
-	top: 20.84%;
+	bottom: 25.43%;
+	top: 18.84%;
 }
 
 .title {
@@ -85,12 +84,9 @@
 	font-family: 'Pretendard-Bold', sans-serif;
 	font-size: 40px;
 	font-weight: 700;
-	position: absolute;
-	left: 0px;
-	top: 0px;
 }
 
-.title-eng {
+.titleEng {
 	color: var(--white, #ffffff);
 	text-align: left;
 	font-family: 'Pretendard-SemiBold', sans-serif;
@@ -101,7 +97,7 @@
 	top: 60px;
 }
 
-.frame-3 {
+.frame {
 	background: #0575e6;
 	border-radius: 30px;
 	padding: 8px 30px 8px 30px;
@@ -115,7 +111,7 @@
 	cursor: pointer;
 }
 
-.read-more {
+.readMore {
 	color: #ffffff;
 	text-align: left;
 	font-family: 'Pretendard-Regular', sans-serif;
