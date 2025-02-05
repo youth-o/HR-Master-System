@@ -4,8 +4,8 @@ export function LoginForm() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.textBox}>
-				<h2>Hello Again!</h2>
-				<p>Welcome back.</p>
+				<h2 className={styles.hello}>Hello Again!</h2>
+				<p className={styles.welcome}>Welcome back.</p>
 			</div>
 			<div className={styles.form}>
 				<div className={styles.inputContainer}>
@@ -13,9 +13,12 @@ export function LoginForm() {
 						<input placeholder="Email Address" />
 					</div>
 					<div className={styles.inputBox}>
-						<input placeholder="Password" />
+						<input type="password" placeholder="Password" />
 					</div>
 				</div>
+				<button type="submit" className={styles.loginBtn}>
+					Login
+				</button>
 			</div>
 		</div>
 	);

@@ -5,8 +5,12 @@ import styles from './Login.module.css';
 function Login() {
 	return (
 		<div className={styles.layout}>
-			<LoginAside />
-			<LoginForm />
+			<div className={styles.aside}>
+				<LoginAside />
+			</div>
+			<div className={styles.form}>
+				<LoginForm />
+			</div>
 		</div>
 	);
 }

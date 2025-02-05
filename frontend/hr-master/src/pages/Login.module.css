@@ -1,6 +1,18 @@
 .layout {
 	height: 100vh;
+	width: 100vw; /* 전체 화면 너비 사용 */
 	display: flex;
-	flex-direction: row;
+}
+
+.aside {
+	flex: 6; /* 6:4 비율 적용 */
+	display: flex;
+}
+
+.form {
+	flex: 4;
+	min-width: 40%;
+	display: flex;
+	justify-content: center;
 	align-items: center;
 }
