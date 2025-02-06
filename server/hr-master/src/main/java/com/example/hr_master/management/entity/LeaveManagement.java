@@ -40,11 +40,11 @@ public class LeaveManagement {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "leave_type", nullable = false)
-    private String leaveType;
+    private leaveType leaveType;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "approval_status", nullable = false)
-    private String approvalStatus;
+    private approvalStatus approvalStatus;
 
     // 비고 (개인 사유 등) - TEXT 타입
     @Lob
