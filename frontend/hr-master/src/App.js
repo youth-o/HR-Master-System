@@ -21,7 +21,9 @@ function App() {
 				<Route path="/" element={<Login />} />
 
 				{/* 로그인된 사용자만 접근 가능 */}
-				<Route path="/main" element={<PrivateRoute element={<Main />} />} />
+				{/* 
+        <Route path="/main" element={<PrivateRoute element={<Main />} />} /> */}
+				<Route path="/main" element={<Main />} />
 				{/* <Route path="/employee">
 					<Route index element={<PrivateRoute element={<Employee />} />} />
 					<Route path=":id">
