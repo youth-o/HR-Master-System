@@ -1,6 +1,9 @@
 header {
 	width: 100%;
 	height: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 	border-bottom: 1px solid rgba(2, 41, 138, 0.7);
 }
 
@@ -10,6 +13,7 @@ header {
 	flex-direction: row;
 	gap: 1rem;
 	padding-left: 3rem;
+	padding-right: 3rem;
 	border-right: 1px solid rgba(2, 41, 138, 0.7);
 }
 
@@ -20,4 +24,34 @@ header {
 	font-style: normal;
 	font-weight: 700;
 	line-height: 125%; /* 2.9115rem */
+	white-space: nowrap;
+}
+
+.searchBox {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 3rem;
+	padding-right: 3rem;
+}
+
+button {
+	padding: 1.3rem 4rem;
+	border-radius: 1rem;
+	background: #015eaa;
+	border: none;
+	cursor: pointer;
+
+	color: #fff;
+	font-family: Nunito;
+	font-size: 1.4rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 2.4rem;
+}
+
+button:hover {
+	background: #757575;
 }
