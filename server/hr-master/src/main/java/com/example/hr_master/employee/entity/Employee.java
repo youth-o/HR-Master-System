@@ -47,15 +47,15 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private HireType hireType;
+    public HireType hireType;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private WorkLocation workLocation;
+    public WorkLocation workLocation;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Department department;
+    public Department department;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
