@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom';
 import './App.css';
-import Login from './pages/Login';
-import Main from './pages/Main';
+import Login from './pages/login/Login';
+import Main from './pages/main/Main';
 
 // 로그인 여부 확인 함수
 const isAuthenticated = () => {

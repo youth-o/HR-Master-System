@@ -1,5 +1,5 @@
-import LoginAside from '../components/Login/LoginAside/LoginAside.jsx';
-import LoginForm from '../components/Login/LoginForm/LoginForm.jsx';
+import LoginAside from '../../components/Login/LoginAside/LoginAside.jsx';
+import LoginForm from '../../components/Login/LoginForm/LoginForm.jsx';
 import styles from './Login.module.css';
 
 function Login() {
