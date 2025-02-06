@@ -1,6 +1,6 @@
 import styles from './LoginForm.module.css';
 
-export function LoginForm() {
+export default function LoginForm() {
 	return (
 		<div className={styles.container}>
 			<div className={styles.textBox}>
