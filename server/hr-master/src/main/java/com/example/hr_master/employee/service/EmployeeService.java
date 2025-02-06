@@ -5,7 +5,6 @@ import com.example.hr_master.employee.entity.Employee;
 import com.example.hr_master.employee.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +25,6 @@ public class EmployeeService {
     }
 
     // 사원 등록
-    @Transactional
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);
     }

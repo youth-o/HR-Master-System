@@ -22,16 +22,22 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web-services'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.projectlombok:lombok'
-
+  
+  // MySQL 커넥터 (dev 브랜치)
   implementation 'mysql:mysql-connector-java:8.0.33'
-	annotationProcessor 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    
+  // Lombok 관련 (양쪽에서 공통)
+  annotationProcessor 'org.projectlombok:lombok'
+  developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    
+  // 테스트 관련 의존성 (main 브랜치)
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'org.projectlombok:lombok'
   testAnnotationProcessor 'org.projectlombok:lombok'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+

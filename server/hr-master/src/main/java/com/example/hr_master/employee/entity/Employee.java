@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import com.example.hr_master.companyCareer.entity.CompanyCareer;
-import java.util.List;
-import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -85,8 +82,8 @@ public class Employee {
 //    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private HrAccount hrAccount;
 //
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CompanyCareer> companyCareers = new ArrayList<>();
+//    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<CompanyCareer> companyCareers;
 //
 //    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<ExternalCareer> externalCareers;
