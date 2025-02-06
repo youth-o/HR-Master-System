@@ -1,12 +1,12 @@
 package com.example.hr_master.management.entity;
 
 import com.example.hr_master.employee.entity.Employee;
+import com.example.hr_master.enumList.GoalStatus;
 
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 
 @Entity
 @Getter
@@ -51,4 +51,3 @@ public class GoalManagement {
         this.updatedAt = LocalDateTime.now();
     }
 }
-enum GoalStatus { 진행, 완료, 지연 }
