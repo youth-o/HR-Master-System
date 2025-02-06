@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom';
 import './App.css';
 import Login from './pages/Login';
 import Main from './pages/Main';
+import Register from './pages/Register'
 
 // 로그인 여부 확인 함수
 const isAuthenticated = () => {
@@ -18,11 +19,12 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				{/* 첫 화면을 로그인 페이지로 설정 */}
-				<Route path="/" element={<Login />} />
+				{/* <Route path="/" element={<Login />} /> */}
+				<Route path="/" element={<Register />} />
 
 				{/* 로그인된 사용자만 접근 가능 */}
 				<Route path="/main" element={<PrivateRoute element={<Main />} />} />
-				{/* <Route path="/employee"> // 사워등록
+				{/* <Route path="/employee"> // 사원등록
 					<Route index element={<PrivateRoute element={<Employee />} />} />
 					<Route path=":id">
 						<Route index element={<PrivateRoute element={<Attendance />} />} /> // 근태 관리
