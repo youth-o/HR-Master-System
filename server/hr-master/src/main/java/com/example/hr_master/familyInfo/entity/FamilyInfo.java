@@ -1,5 +1,6 @@
-package com.example.hr_master.employee.entity;
+package com.example.hr_master.familyInfo.entity;
 
+import com.example.hr_master.employee.entity.Employee;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "FAMILY_INFO")
+@Table(name = "family_info")
 public class FamilyInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
