@@ -1,0 +1,8 @@
+.layout {
+	display: flex;
+}
+
+.employee {
+	flex: 6.925;
+	min-width: 69.25%;
+}
