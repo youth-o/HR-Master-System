@@ -1,4 +1,4 @@
-import EmployeeMenu from '../../components/common/EmployeeMenu/EmployeeMenu';
+import EmployeeMenu from '../../components/EmployeeEdit/EmployeeMenu';
 import styles from './EmployeeEdit.module.css';
 import Header from '../../components/common/Header/Header';
 import Nav from '../../components/common/Nav/Nav';

@@ -1,4 +1,10 @@
-.menuContainer {
+.editContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.menu {
 	box-sizing: border-box;
 	margin: 2.2rem 3rem;
 	width: 100%;
@@ -9,7 +15,7 @@
 	gap: 1.6rem;
 }
 
-.menuContainer p {
+.menu p {
 	color: var(--Neutral-70, #757575);
 	font-family: Inter;
 	font-size: 1.6rem;
@@ -20,12 +26,12 @@
 	cursor: pointer;
 }
 
-.menuContainer p:hover {
+.menu p:hover {
 	color: var(--Primary-Main, #212143);
 	border-bottom: 1px solid #146adc;
 }
 
-.menuContainer p.active {
+.menu p.active {
 	color: var(--Primary-Main, #212143);
 	border-bottom: 1px solid #146adc;
 	font-weight: 600;

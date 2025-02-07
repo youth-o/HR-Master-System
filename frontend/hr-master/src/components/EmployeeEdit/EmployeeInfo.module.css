@@ -1,0 +1,18 @@
+.infoContainer {
+	width: 100%;
+	margin-left: 3rem;
+	margin-right: 3rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.infoContainer h3 {
+	margin: 0;
+	color: var(--Neutral-100, #0a0a0a);
+	font-family: Inter;
+	font-size: 1.6rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 2.4rem; /* 150% */
+	letter-spacing: -0.0176rem;
+}
