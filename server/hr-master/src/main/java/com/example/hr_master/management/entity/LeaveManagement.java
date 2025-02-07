@@ -1,6 +1,8 @@
 package com.example.hr_master.management.entity;
 
 import com.example.hr_master.employee.entity.Employee;
+import com.example.hr_master.enumList.LeaveType;
+import com.example.hr_master.enumList.ApprovalStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -40,16 +42,14 @@ public class LeaveManagement {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "leave_type", nullable = false)
-    private String leaveType;
+    private LeaveType leaveType;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "approval_status", nullable = false)
-    private String approvalStatus;
+    private ApprovalStatus approvalStatus;
 
     // 비고 (개인 사유 등) - TEXT 타입
     @Lob
     @Column(name = "notes")
     private String notes;
 }
-enum leaveType {연차, 오전반차, 오후반차, 경조휴가, 병가, 기타}
-enum approvalStatus {대기, 승인, 반려, 거절}

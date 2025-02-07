@@ -3,6 +3,7 @@ package com.example.hr_master.pay.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import com.example.hr_master.enumList.Position;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -51,4 +52,3 @@ public class PayCommon {
         this.updatedAt = LocalDateTime.now();
     }
 }
-enum Position { 인턴, 사원, 주임, 대리, 과장, 차장, 부장, 이사, 사장 }

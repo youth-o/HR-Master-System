@@ -1,0 +1,94 @@
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 3rem;
+}
+
+.textBox {
+	display: flex;
+	flex-direction: column;
+	margin-left: 7rem;
+	gap: 0.5rem;
+}
+
+.hello {
+	margin: 0;
+	color: #333;
+	font-family: Pretendard;
+	font-size: 2rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	text-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+}
+
+.welcome {
+	margin: 0;
+	color: #333;
+	font-family: Pretendard;
+	font-size: 1.2rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+}
+
+.form {
+	width: 30.7rem;
+	margin-left: 7rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.6rem;
+}
+
+.inputContainer {
+	width: 30.7rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1.2rem;
+}
+
+.inputBox {
+	width: 100%;
+}
+
+.inputBox input {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1.8rem 2.6rem;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 1rem;
+	border-radius: 3rem;
+	border: 1px solid #eee;
+	background: #fff;
+	box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+}
+
+.loginBtn {
+	width: 30.7rem;
+	padding: 1.8rem 2.6rem;
+	border: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	border-radius: 3rem;
+	background: #757575;
+	box-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
+	cursor: pointer;
+
+	color: #fff;
+	font-family: Pretendard;
+	font-size: 1.4rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+}
+
+.loginBtn:hover {
+	background: #0575e6;
+}
