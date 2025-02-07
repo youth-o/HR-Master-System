@@ -3,7 +3,7 @@ import './App.css';
 import Login from './pages/login/Login';
 import Main from './pages/main/Main';
 import EmployeesList from './pages/employeesList/EmployeesList';
-import EmployeeDetail from './pages/employeeDetail/EmployeeDetail';
+import EmployeeEdit from './pages/employeeEdit/EmployeeEdit';
 
 // 로그인 여부 확인 함수
 const isAuthenticated = () => {
@@ -27,7 +27,7 @@ function App() {
         <Route path="/main" element={<PrivateRoute element={<Main />} />} /> */}
 				<Route path="/main" element={<Main />} />
 				<Route path="/employees" element={<EmployeesList />} />
-				<Route path="/employees/:employeeId" element={<EmployeeDetail />} />
+				<Route path="/employees/:employeeId" element={<EmployeeEdit />} />
 				{/* <Route path="/employee">
 					<Route index element={<PrivateRoute element={<Employee />} />} />
 					<Route path=":id">
