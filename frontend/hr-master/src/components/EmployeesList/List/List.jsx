@@ -1,8 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import useEmployees from '../../../apis/useEmployees';
 import styles from './List.module.css';
 
 export default function List() {
+	const navigate = useNavigate();
 	const { employees, loading, error } = useEmployees();
+
+	const handleEmployeeClick = (employeeId) => {
+		navigate(`/employees/${employeeId}`);
+	};
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error fetching employees: {error.message}</p>;
@@ -18,7 +24,11 @@ export default function List() {
 			</div>
 			{employees.length > 0 ? (
 				employees.map((employee) => (
-					<div className={styles.listBox} key={employee.employeeId}>
+					<div
+						className={styles.listBox}
+						key={employee.employeeId}
+						onClick={() => handleEmployeeClick(employee.employeeId)}
+					>
 						<p>{employee.employeeId}</p>
 						<p>{employee.empName}</p>
 						<p>{employee.department}</p>
