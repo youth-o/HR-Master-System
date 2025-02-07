@@ -69,5 +69,3 @@ public class CompanyCareerService {
         }).orElseThrow(() -> new RuntimeException("Company Career not found"));
     }
 }
-
-

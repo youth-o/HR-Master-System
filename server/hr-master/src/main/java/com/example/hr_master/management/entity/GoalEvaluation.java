@@ -1,6 +1,8 @@
 package com.example.hr_master.management.entity;
 
 import com.example.hr_master.employee.entity.Employee;
+import com.example.hr_master.enumList.EvaluationType;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -38,4 +40,3 @@ public class GoalEvaluation {
     @Column(name = "kpi", nullable = false, precision = 5, scale = 2)
     private BigDecimal kpi;
 }
-enum EvaluationType { 연봉평가, 성과평가, 프로젝트평가 }

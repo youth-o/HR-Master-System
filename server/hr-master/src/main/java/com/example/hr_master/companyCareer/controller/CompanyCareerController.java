@@ -56,7 +56,7 @@ public class CompanyCareerController {
     public ResponseEntity<?> updateCompanyCareer(
             @PathVariable Long id,
             @PathVariable Long careerId,
-            @RequestBody  CompanyCareer updatedCompanyCareer) {
+            @RequestBody CompanyCareer updatedCompanyCareer) {
         try {
             CompanyCareer updatedCareer = companyCareerService.updateCompanyCareer(careerId, updatedCompanyCareer);
             return ResponseEntity.ok(updatedCareer);
