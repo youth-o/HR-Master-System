@@ -1,0 +1,10 @@
+.listContainer {
+	box-sizing: border-box;
+	width: 100wh;
+	height: 100%;
+	margin-left: 5.3rem;
+	margin-right: 5.3rem;
+	border-top-right-radius: 1.5528rem;
+	border-top-left-radius: 1.5528rem;
+	background: #4e69ad;
+}
