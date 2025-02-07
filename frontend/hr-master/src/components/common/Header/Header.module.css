@@ -15,6 +15,7 @@ header {
 	padding-left: 3rem;
 	padding-right: 3rem;
 	border-right: 1px dotted rgba(2, 41, 138, 0.7);
+	cursor: pointer;
 }
 
 .logoText {
