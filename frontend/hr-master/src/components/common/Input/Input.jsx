@@ -8,12 +8,14 @@ export default function Input({
 	placeholder = '',
 	searchTrue = false,
 	readOnly = false,
+	onSearch = () => {},
+	onChange = () => {},
 }) {
 	return (
 		<div className={styles.inputContainer} style={style}>
 			<label for={id}>{label}</label>
-			<input type="text" id={id} placeholder={placeholder} readOnly={readOnly} />
-			{searchTrue && <img src={search} alt="검색 아이콘" />}
+			<input type="text" id={id} placeholder={placeholder} readOnly={readOnly} onChange={onChange} />
+			{searchTrue && <img src={search} alt="검색 아이콘" onClick={onSearch} />}
 		</div>
 	);
 }
