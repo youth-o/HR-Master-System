@@ -7,9 +7,7 @@
 	padding-left: 3.35rem;
 	padding-right: 3.35rem;
 	gap: 1.3rem;
-	border-right: 1px dotted rgba(2, 41, 138, 0.7);
-	overflow-y: auto;
-	overflow-x: hidden;
+	border-right: 1px solid rgba(2, 41, 138, 0.7);
 }
 
 .navContainer p {
