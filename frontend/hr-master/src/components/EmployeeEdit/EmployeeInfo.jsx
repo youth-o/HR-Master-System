@@ -8,23 +8,23 @@ export default function EmployeeInfo() {
 			<form className={styles.infoForm}>
 				<div className={styles.row}>
 					<Input id="employeeId" label="사번(ID)" searchTrue />
-					<Input id="ssn" label="주민번호" searchTrue={false} />
-					<Input id="phone" label="연락처" searchTrue={false} />
+					<Input id="ssn" label="주민번호" readOnly />
+					<Input id="phone" label="연락처" />
 				</div>
 				<div className={styles.row}>
-					<Input id="empName" label="이름" searchTrue={false} />
-					<Input id="empEngName" label="영문 이름" searchTrue={false} />
-					<Input id="." label="??" searchTrue={false} />
+					<Input id="empName" label="이름" />
+					<Input id="empEngName" label="영문 이름" />
+					<Input id="." label="??" />
 				</div>
 				<div className={styles.row}>
-					<Input id="companyEmail" label="사내 메일" searchTrue={false} />
-					<Input id="companyPhone" label="사내 전화" searchTrue={false} />
-					<Input id="hireDate" label="입사일" searchTrue={false} />
+					<Input id="companyEmail" label="사내 메일" />
+					<Input id="companyPhone" label="사내 전화" />
+					<Input id="hireDate" label="입사일" readOnly />
 				</div>
 				<div className={styles.row}>
-					<Input id="nationality" label="국적" searchTrue={false} />
-					<Input id="militaryService" label="군필 여부" searchTrue={false} />
-					<Input id="address" label="주소" searchTrue={false} />
+					<Input id="nationality" label="국적" />
+					<Input id="militaryService" label="군필 여부" />
+					<Input id="address" label="주소" />
 				</div>
 				<button type="submit">Save</button>
 			</form>
