@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './EmployeeMenu.module.css';
 import EmployeeInfo from './EmployeeInfo';
+import EmployeeWorkInfo from './EmployeeWorkInfo';
 
 export default function EmployeeMenu() {
 	const [activeMenu, setActiveMenu] = useState('개인 정보');
@@ -11,7 +12,7 @@ export default function EmployeeMenu() {
 
 	const menuComponents = {
 		'개인 정보': <EmployeeInfo />,
-		// '근무 정보': <EmployeeWorkInfo />,
+		'근무 정보': <EmployeeWorkInfo />,
 		// '가족 정보': <FamilyInfo />,
 		// '자격 인증 사항': <CertificationInfo />,
 		// '경력': <CareerInfo />,

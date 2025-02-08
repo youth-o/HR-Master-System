@@ -2,7 +2,7 @@ import Search from '../../common/Search/Search';
 import styles from './CurrentInfo.module.css';
 import profile from '../../../assets/Bg.svg';
 
-export default function CurrentInfo() {
+export default function CurrentInfo({ setSearchTerm, onSearch }) {
 	const style = {
 		width: '20rem',
 		backgroundColor: '#3981F7',
@@ -18,7 +18,11 @@ export default function CurrentInfo() {
 	};
 
 	const today = new Date();
-	const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDay()}`;
+	const formattedDate = `${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`;
+
+	const handleSearchChange = (e) => {
+		setSearchTerm(e.target.value);
+	};
 
 	return (
 		<div className={styles.infoContainer}>
@@ -29,6 +33,8 @@ export default function CurrentInfo() {
 					style={style}
 					placeholderColor="#ffffff80"
 					containerStyle={{ width: '20rem' }}
+					onChange={handleSearchChange}
+					onSearch={onSearch}
 				/>
 			</div>
 			<div className={styles.info}>

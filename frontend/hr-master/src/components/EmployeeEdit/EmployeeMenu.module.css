@@ -1,12 +1,12 @@
 .editContainer {
-	width: 100%;
+	width: 108rem;
 	display: flex;
 	flex-direction: column;
 }
 
 .menu {
 	box-sizing: border-box;
-	margin: 2.2rem 3rem;
+	margin: 2.2rem 3rem 1rem 3rem;
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -35,4 +35,8 @@
 	color: var(--Primary-Main, #212143);
 	border-bottom: 1px solid #146adc;
 	font-weight: 600;
+}
+
+.contentContainer {
+	width: 100%;
 }
