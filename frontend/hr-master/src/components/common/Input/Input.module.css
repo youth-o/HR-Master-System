@@ -37,6 +37,17 @@
 	letter-spacing: -0.0084rem;
 }
 
+.inputContainer input::placeholder {
+	color: var(--Neutral-100, #0a0a0a);
+	font-family: Inter;
+	font-size: 1.4rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 2.1rem;
+	letter-spacing: -0.0084rem;
+	opacity: 1;
+}
+
 .inputContainer img {
 	width: 2rem;
 	height: 2rem;
