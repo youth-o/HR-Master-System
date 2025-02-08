@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import useEmployees from '../../../apis/useEmployees';
+import { useEmployees } from '../../../apis/useEmployees';
 import styles from './List.module.css';
 
 export default function List() {
