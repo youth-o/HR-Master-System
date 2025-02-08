@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './Nav.module.css';
 import dashboard from '../../../assets/category.svg';
 import message from '../../../assets/message-text.svg';
@@ -14,9 +15,20 @@ import money from '../../../assets/money.svg';
 
 export default function Nav() {
 	const [activeCategory, setActiveCategory] = useState(null);
+	const navigate = useNavigate();
+	const location = useLocation();
 
-	const handleCategoryClick = (category) => {
+	useEffect(() => {
+		if (location.pathname.startsWith('/employees')) {
+			setActiveCategory('employee');
+		}
+	}, [location.pathname]);
+
+	const handleCategoryClick = (category, path) => {
 		setActiveCategory(category);
+		if (path) {
+			navigate(path);
+		}
 	};
 
 	return (
@@ -56,7 +68,7 @@ export default function Nav() {
 				</div>
 				<div
 					className={`${styles.category} ${activeCategory === 'employee' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('employee')}
+					onClick={() => handleCategoryClick('employee', '/employees')}
 				>
 					<img src={employee} alt="사원수정 아이콘" />
 					<p>사원 조회 및 수정</p>

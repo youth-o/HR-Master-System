@@ -1,5 +1,6 @@
-package com.example.hr_master.employee.entity;
+package com.example.hr_master.educationInfo.entity;
 
+import com.example.hr_master.employee.entity.Employee;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
