@@ -48,6 +48,12 @@
 	opacity: 1;
 }
 
+.inputContainer input:read-only {
+	background: var(--Neutral-30, #e0e0e0);
+	color: var(--Neutral-80, #757575);
+	cursor: not-allowed;
+}
+
 .inputContainer img {
 	width: 2rem;
 	height: 2rem;
