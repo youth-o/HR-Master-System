@@ -1,12 +1,15 @@
 .infoContainer {
+	box-sizing: border-box;
 	width: 100%;
 	margin-left: 3rem;
-	margin-right: 3rem;
+	margin-right: 2.3rem;
 	display: flex;
 	flex-direction: column;
+	gap: 2rem;
 }
 
 .infoContainer h3 {
+	width: 100%;
 	margin: 0;
 	color: var(--Neutral-100, #0a0a0a);
 	font-family: Inter;
@@ -15,4 +18,38 @@
 	font-weight: 700;
 	line-height: 2.4rem; /* 150% */
 	letter-spacing: -0.0176rem;
+}
+
+.infoForm {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.row {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.infoForm button {
+	width: 31rem;
+	margin-left: 35rem;
+	margin-top: 12rem;
+	padding: 1rem;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1rem;
+	background: #015eaa;
+	border: none;
+	cursor: pointer;
+
+	color: #fff;
+	font-family: Nunito;
+	font-size: 1.4rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 2.4rem; /* 171.429% */
 }
