@@ -33,7 +33,7 @@
 	flex-direction: column;
 	gap: 2rem;
 	padding-bottom: 3rem;
-	border-bottom: 1px dotted #5168ae;
+	border-bottom: 1px solid #c4c4c4;
 }
 
 .row {
