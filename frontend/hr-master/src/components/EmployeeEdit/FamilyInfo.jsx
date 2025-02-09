@@ -27,7 +27,7 @@ export default function FamilyInfo() {
 					</div>
 				))}
 				<div className={styles.row}>
-					<img src={plus} alt="추가 버튼" onClick={handleAddFamilyMember} style={{ cursor: 'pointer' }} />
+					<img src={plus} alt="추가 버튼" onClick={handleAddFamilyMember} />
 				</div>
 				<button type="submit">Save</button>
 			</form>
