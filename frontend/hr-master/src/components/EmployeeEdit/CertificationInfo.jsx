@@ -21,12 +21,12 @@ export default function CertificationInfo() {
 		<div className={styles.infoContainer}>
 			<h3>자격 인증 사항</h3>
 			<form className={styles.infoForm}>
-				{certificationList.map((member, index) => (
-					<div className={styles.row} key={member.id}>
-						<Input id={`licenseName-${member.id}`} label="자격 면허명" style={style} />
-						<Input id={`acquisitionDate-${member.id}`} label="취득일자" style={style} />
-						<Input id={`score-${member.id}`} label="성적" style={style} />
-						<Input id={`issuingAgency-${member.id}`} label="주관처" style={style} />
+				{certificationList.map((certification, index) => (
+					<div className={styles.row} key={certification.id}>
+						<Input id={`licenseName-${certification.id}`} label="자격 면허명" style={style} />
+						<Input id={`acquisitionDate-${certification.id}`} label="취득일자" style={style} />
+						<Input id={`score-${certification.id}`} label="성적" style={style} />
+						<Input id={`issuingAgency-${certification.id}`} label="주관처" style={style} />
 					</div>
 				))}
 				<div className={styles.row}>
