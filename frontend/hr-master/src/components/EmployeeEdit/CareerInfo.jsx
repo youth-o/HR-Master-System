@@ -6,7 +6,7 @@ import plus from '../../assets/btn_add.svg';
 export default function CareerInfo() {
 	const [careerList, setCareerList] = useState([]);
 
-	const handleAddCertification = () => {
+	const handleAddCareer = () => {
 		setCareerList([
 			...careerList,
 			{
@@ -50,7 +50,7 @@ export default function CareerInfo() {
 					</div>
 				))}
 				<div className={styles.row}>
-					<img src={plus} alt="추가 버튼" onClick={handleAddCertification} />
+					<img src={plus} alt="추가 버튼" onClick={handleAddCareer} />
 				</div>
 				<button type="submit">Save</button>
 			</form>

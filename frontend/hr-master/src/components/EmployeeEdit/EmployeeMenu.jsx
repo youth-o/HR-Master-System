@@ -5,6 +5,7 @@ import EmployeeWorkInfo from './EmployeeWorkInfo';
 import FamilyInfo from './FamilyInfo';
 import CertificationInfo from './CertificationInfo';
 import CareerInfo from './CareerInfo';
+import EducationInfo from './EducationInfo';
 
 export default function EmployeeMenu() {
 	const [activeMenu, setActiveMenu] = useState('개인 정보');
@@ -19,7 +20,7 @@ export default function EmployeeMenu() {
 		'가족 정보': <FamilyInfo />,
 		'자격 인증 사항': <CertificationInfo />,
 		경력: <CareerInfo />,
-		// '교육 이력': <EducationInfo />,
+		'교육 이력': <EducationInfo />,
 	};
 
 	return (
