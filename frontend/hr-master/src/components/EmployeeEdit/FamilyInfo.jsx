@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import Input from '../common/Input/Input';
 import styles from './FamilyInfo.module.css';
 import plus from '../../assets/btn_add.svg';
-import { useFamilyInfo } from '../../apis/useFamilyInfo';
+import { useGetFamilyInfo } from '../../apis/useFamilyInfo';
 
 export default function FamilyInfo() {
 	const { employeeId } = useParams(); // ✅ URL에서 employeeId 가져오기
-	const { familyInfo, loading, error } = useFamilyInfo(employeeId);
+	const { familyInfo, loading, error } = useGetFamilyInfo(employeeId);
 
 	const [familyMembers, setFamilyMembers] = useState([]);
 

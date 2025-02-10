@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { useEmployees } from '../../../apis/useEmployees';
+import { useGetEmployees } from '../../../apis/useEmployees';
 import styles from './List.module.css';
 
 export default function List({ searchTerm }) {
 	const navigate = useNavigate();
-	const { employees, loading, error } = useEmployees();
+	const { employees, loading, error } = useGetEmployees();
 
 	const handleEmployeeClick = (employeeId) => {
 		navigate(`/employees/${employeeId}`);

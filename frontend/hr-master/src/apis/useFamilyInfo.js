@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export function useFamilyInfo(employeeId) {
+export function useGetFamilyInfo(employeeId) {
 	const [familyInfo, setFamilyInfo] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);

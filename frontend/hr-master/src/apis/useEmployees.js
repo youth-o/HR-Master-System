@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // 전체 Employees 불러오는 API
-export function useEmployees() {
+export function useGetEmployees() {
 	const [employees, setEmployees] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -26,7 +26,7 @@ export function useEmployees() {
 }
 
 // 사원 한 명을 불러오는 API
-export function useEmployee(employeeId) {
+export function useGetEmployee(employeeId) {
 	const [employee, setEmployee] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);

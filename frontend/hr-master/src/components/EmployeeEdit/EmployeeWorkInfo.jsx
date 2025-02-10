@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import Input from '../common/Input/Input';
 import styles from './EmployeeWorkInfo.module.css';
-import { useEmployee } from '../../apis/useEmployees';
+import { useGetEmployee } from '../../apis/useEmployees';
 
 export default function EmployeeWorkInfo() {
 	const { employeeId } = useParams();
-	const { employee, loading, error } = useEmployee(employeeId);
+	const { employee, loading, error } = useGetEmployee(employeeId);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error fetching employee data: {error.message}</p>;

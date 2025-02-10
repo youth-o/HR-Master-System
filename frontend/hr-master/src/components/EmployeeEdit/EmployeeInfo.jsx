@@ -2,11 +2,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Input from '../common/Input/Input';
 import styles from './EmployeeInfo.module.css';
-import { useEmployee } from '../../apis/useEmployees';
+import { useGetEmployee } from '../../apis/useEmployees';
 
 export default function EmployeeInfo() {
 	const { employeeId } = useParams();
-	const { employee, loading, error } = useEmployee(employeeId);
+	const { employee, loading, error } = useGetEmployee(employeeId);
 	const navigate = useNavigate();
 	const [inputEmployeeId, setInputEmployeeId] = useState('');
 
