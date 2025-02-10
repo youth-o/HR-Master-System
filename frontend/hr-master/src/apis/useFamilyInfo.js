@@ -9,7 +9,7 @@ export function useGetFamilyInfo(employeeId) {
 	useEffect(() => {
 		if (!employeeId) return;
 
-		const fetchEmployee = async () => {
+		const fetchFamily = async () => {
 			try {
 				const response = await axios.get(`/employees/${employeeId}/familyInfo`);
 				setFamilyInfo(response.data);
@@ -20,7 +20,7 @@ export function useGetFamilyInfo(employeeId) {
 			}
 		};
 
-		fetchEmployee();
+		fetchFamily();
 	}, [employeeId]);
 
 	return { familyInfo, loading, error };

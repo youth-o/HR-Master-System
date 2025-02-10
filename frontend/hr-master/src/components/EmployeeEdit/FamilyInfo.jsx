@@ -6,9 +6,8 @@ import plus from '../../assets/btn_add.svg';
 import { useGetFamilyInfo } from '../../apis/useFamilyInfo';
 
 export default function FamilyInfo() {
-	const { employeeId } = useParams(); // ✅ URL에서 employeeId 가져오기
+	const { employeeId } = useParams();
 	const { familyInfo, loading, error } = useGetFamilyInfo(employeeId);
-
 	const [familyMembers, setFamilyMembers] = useState([]);
 
 	useEffect(() => {
