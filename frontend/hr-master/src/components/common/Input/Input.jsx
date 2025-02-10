@@ -13,7 +13,7 @@ export default function Input({
 }) {
 	return (
 		<div className={styles.inputContainer} style={style}>
-			<label for={id}>{label}</label>
+			<label htmlFor={id}>{label}</label>
 			<input type="text" id={id} placeholder={placeholder} readOnly={readOnly} onChange={onChange} />
 			{searchTrue && <img src={search} alt="검색 아이콘" onClick={onSearch} />}
 		</div>

@@ -20,8 +20,6 @@ export default function EmployeeInfo() {
 		}
 	};
 
-	console.log(inputEmployeeId);
-
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error fetching employee data: {error.message}</p>;
 	if (!employee) return <p>No employee found.</p>;

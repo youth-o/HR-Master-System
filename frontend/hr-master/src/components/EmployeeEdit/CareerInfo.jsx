@@ -32,7 +32,7 @@ export default function CareerInfo() {
 			<h3>사내 경력</h3>
 			<form className={styles.infoForm}>
 				{careerList.map((career, index) => (
-					<div className={styles.rowContainer} key={career.id}>
+					<div className={styles.rowContainer} key={career.historyId}>
 						<div className={styles.row}>
 							<Input id={`changeDate-${career.id}`} label="변경일" style={style} />
 							<Input id={`changeType-${career.id}`} label="변경 구분" style={style} />

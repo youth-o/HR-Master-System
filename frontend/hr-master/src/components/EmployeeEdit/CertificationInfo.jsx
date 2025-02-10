@@ -28,14 +28,14 @@ export default function CertificationInfo() {
 	};
 
 	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error fetching family info: {error.message}</p>;
+	if (error) return <p>Error fetching certification info: {error.message}</p>;
 
 	return (
 		<div className={styles.infoContainer}>
 			<h3>자격 인증 사항</h3>
 			<form className={styles.infoForm}>
 				{certificationList.map((certification, index) => (
-					<div className={styles.row} key={certification.id}>
+					<div className={styles.row} key={certification.qualificationId}>
 						<Input
 							id={`licenseName-${certification.id}`}
 							label="자격 면허명"

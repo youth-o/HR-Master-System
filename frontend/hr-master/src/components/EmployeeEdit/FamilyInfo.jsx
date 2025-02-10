@@ -32,7 +32,7 @@ export default function FamilyInfo() {
 			<h3>가족 정보</h3>
 			<form className={styles.infoForm}>
 				{familyMembers.map((member, index) => (
-					<div className={styles.row} key={member.id}>
+					<div className={styles.row} key={member.familyId}>
 						<Input id={`familyName-${member.id}`} label="이름" placeholder={member.familyName} style={style} />
 						<Input id={`birthDate-${member.id}`} label="생년월일" placeholder={member.birthDate} style={style} />
 						<Input id={`contact-${member.id}`} label="연락처" placeholder={member.contact} style={style} />
