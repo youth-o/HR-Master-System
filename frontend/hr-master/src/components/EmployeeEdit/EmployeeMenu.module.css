@@ -1,6 +1,7 @@
 .editContainer {
 	width: 108rem;
 	display: flex;
+	flex: 6.925;
 	flex-direction: column;
 }
 

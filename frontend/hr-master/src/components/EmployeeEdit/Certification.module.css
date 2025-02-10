@@ -45,6 +45,7 @@
 	width: 31rem;
 	margin-left: 35rem;
 	margin-top: 12rem;
+	margin-bottom: 5rem;
 	padding: 1rem;
 	justify-content: center;
 	align-items: center;
@@ -59,4 +60,8 @@
 	font-style: normal;
 	font-weight: 400;
 	line-height: 2.4rem; /* 171.429% */
+}
+
+.infoForm button:hover {
+	background-color: #004a87;
 }
