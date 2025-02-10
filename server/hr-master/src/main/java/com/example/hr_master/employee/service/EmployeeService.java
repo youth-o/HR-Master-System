@@ -1,4 +1,3 @@
-// 사원 정보의 CRUD 로직을 처리하는 서비스 클래스
 package com.example.hr_master.employee.service;
 
 import com.example.hr_master.employee.entity.Employee;
@@ -7,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -31,7 +32,8 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    // 사원 정보 수정
+    // 사원 정보 수정 (전체 업데이트)
+    @Transactional
     public Employee updateEmployee(Long id, Employee updatedEmployee) {
         return employeeRepository.findById(id).map(employee -> {
             employee.setEmpName(updatedEmployee.getEmpName());
@@ -43,7 +45,46 @@ public class EmployeeService {
         }).orElseThrow(() -> new RuntimeException("Employee not found"));
     }
 
+    // 사원 정보 부분 업데이트 (PATCH)
+    @Transactional
+    public Employee patchEmployee(Long id, Map<String, Object> updates) {
+        return employeeRepository.findById(id)
+                .map(employee -> {
+                    updates.forEach((key, value) -> {
+                        try {
+                            Field field = Employee.class.getDeclaredField(key);
+                            field.setAccessible(true);
+                            Object convertedValue = convertValue(field.getType(), value);
+                            field.set(employee, convertedValue);
+                        } catch (NoSuchFieldException | IllegalAccessException e) {
+                            throw new RuntimeException("Invalid field: " + key, e);
+                        }
+                    });
+                    return employeeRepository.save(employee);
+                })
+                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
+    }
+
+    // 데이터 타입 변환 메서드
+    private Object convertValue(Class<?> fieldType, Object value) {
+        if (value == null) return null;
+
+        if (fieldType == String.class) {
+            return value.toString();
+        } else if (fieldType == Integer.class || fieldType == int.class) {
+            return Integer.parseInt(value.toString());
+        } else if (fieldType == Long.class || fieldType == long.class) {
+            return Long.parseLong(value.toString());
+        } else if (fieldType == Double.class || fieldType == double.class) {
+            return Double.parseDouble(value.toString());
+        } else if (fieldType == Boolean.class || fieldType == boolean.class) {
+            return Boolean.parseBoolean(value.toString());
+        }
+        return value; // 기본적으로 변환 없이 그대로 저장
+    }
+
     // 사원 삭제
+    @Transactional
     public void deleteEmployee(Long id) {
         employeeRepository.deleteById(id);
     }

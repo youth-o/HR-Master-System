@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -37,6 +38,18 @@ public class EmployeeController {
     public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
         try {
             return ResponseEntity.ok(employeeService.updateEmployee(id, employee));
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Employee> patchEmployee(
+            @PathVariable Long id,
+            @RequestBody Map<String, Object> updates) {
+        try {
+            Employee updatedEmployee = employeeService.patchEmployee(id, updates);
+            return ResponseEntity.ok(updatedEmployee);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
