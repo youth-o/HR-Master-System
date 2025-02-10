@@ -50,3 +50,25 @@ export function useGetEmployee(employeeId) {
 
 	return { employee, loading, error };
 }
+
+// 사원 정보 업데이트 API
+export function useUpdateEmployee() {
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+
+	const updateEmployee = async (employeeId, updatedData) => {
+		setLoading(true);
+		setError(null);
+		try {
+			const response = await axios.patch(`/employees/${employeeId}`, updatedData);
+			return response.data;
+		} catch (err) {
+			setError(err);
+			console.error('Error updating employee:', err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	return { updateEmployee, loading, error };
+}
