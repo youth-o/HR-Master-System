@@ -54,16 +54,23 @@ public class EmployeeService {
                         try {
                             Field field = Employee.class.getDeclaredField(key);
                             field.setAccessible(true);
-                            Object convertedValue = convertValue(field.getType(), value);
-                            field.set(employee, convertedValue);
-                        } catch (NoSuchFieldException | IllegalAccessException e) {
-                            throw new RuntimeException("Invalid field: " + key, e);
+
+                            // Enum 타입 필드인 경우 변환 필요
+                            if (field.getType().isEnum()) {
+                                Object enumValue = Enum.valueOf((Class<Enum>) field.getType(), value.toString());
+                                field.set(employee, enumValue);
+                            } else {
+                                field.set(employee, value);
+                            }
+                        } catch (NoSuchFieldException | IllegalAccessException | IllegalArgumentException e) {
+                            throw new RuntimeException("Invalid field: " + key + " or invalid value: " + value);
                         }
                     });
                     return employeeRepository.save(employee);
                 })
                 .orElseThrow(() -> new RuntimeException("Employee not found with id: " + id));
     }
+
 
     // 데이터 타입 변환 메서드
     private Object convertValue(Class<?> fieldType, Object value) {
