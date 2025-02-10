@@ -15,9 +15,8 @@ export function useGetFamilyInfo(employeeId) {
 				const response = await axios.get(`/employees/${employeeId}/familyInfo`);
 				setFamilyInfo(response.data);
 			} catch (err) {
-				// ✅ 404 에러 발생 시 빈 배열 반환 (가족 정보 없음)
 				if (err.response && err.response.status === 404) {
-					setFamilyInfo([]); // 빈 배열로 설정하여 기본 입력 필드 표시
+					setFamilyInfo([]);
 				} else {
 					setError(err);
 				}
