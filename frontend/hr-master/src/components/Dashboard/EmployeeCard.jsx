@@ -1,21 +1,21 @@
 import React from "react";
-import "./EmployeeCard.css"
-
+import "./EmployeeCard.css";
 import employeesIcon from "../../assets/Dashboardimgs/TotalEmployees.svg";
 
-const EmployeesCard = () => {
+const EmployeeCard = () => {
   return (
-    <div className="employees-card">
-      <div className="employees-header">
-        <span className="employees-number">452</span>
-        <div className="employees-icon">
+    <div className="card-container">
+      <div className="card-content">
+        <div className="card-left">
+          <span className="card-number">452</span>
+          <span className="card-title">Total Employees</span>
+        </div>
+        <div className="card-icon">
           <img src={employeesIcon} alt="Employees" />
         </div>
       </div>
-      <span className="employees-text">Total Employees</span>
-      <span className="employees-subtext">+ 2 new employees added!</span>
     </div>
   );
 };
 
-export default EmployeesCard;
+export default EmployeeCard;

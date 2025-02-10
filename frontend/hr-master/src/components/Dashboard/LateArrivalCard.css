@@ -1,53 +1,41 @@
-.late-arrival-card {
-    width: 250px;
-    height: 134px;
-    background: #ffffff;
-    border-radius: 5px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .late-arrival-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .late-arrival-count {
-    font-size: 38px;
-    font-weight: 700;
-    color: #252C58;
-  }
-  
-  .late-arrival-icon {
-    width: 42px;
-    height: 42px;
-  }
-  
-  .late-arrival-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #252C58;
-  }
-  
-  .late-arrival-footer {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    opacity: 0.8;
-  }
-  
-  .increase-icon {
-    width: 15px;
-    height: 15px;
-  }
-  
-  .late-arrival-percentage {
-    font-size: 12px;
-    font-weight: 400;
-    color: #CE1717;
-  }
-  
+.card-container {
+  width: 220px;
+  height: 100px;
+  background: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-number {
+  font-size: 28px;
+  font-weight: bold;
+  color: #252c58;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #252c58;
+}
+
+.card-icon img {
+  width: 35px;
+  height: 35px;
+  background: #f5f7fd;
+  border-radius: 50%;
+  padding: 5px;
+}

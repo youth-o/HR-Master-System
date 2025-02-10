@@ -43,7 +43,7 @@ const AttendanceChart = () => {
             <h3>Attendance Comparison Chart</h3>
             <div className="chart-controls">
             <div className="chart-filters">
-                <span className="active">Daily</span>
+                <span className="active"></span>
                 <span>Weekly</span>
                 <span>Monthly</span>
             </div>

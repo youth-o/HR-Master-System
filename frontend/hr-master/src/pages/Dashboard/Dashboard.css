@@ -3,80 +3,78 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-}
-
-/* ✅ 헤더 (고정) */
-.header-container {
-  width: 100%;
-  background-color: white;
-  padding: 10px 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  background-color: #f9fafb;
 }
 
 /* ✅ 대시보드 컨테이너 */
 .dashboard-container {
   display: flex;
   flex: 1;
-  margin-top: 60px; /* 헤더 높이만큼 내려줌 */
   height: calc(100vh - 60px);
 }
 
-/* ✅ 네비게이션 (왼쪽 고정) */
+/* ✅ 네비게이션 (사이드바 너비 줄이기) */
 nav {
-  width: 250px;
+  width: 200px;
   height: 100%;
-  background-color: #f8f9fa;
-  padding: 20px;
+  background-color: #ffffff;
+  padding: 15px;
   position: fixed;
   left: 0;
-  top: 60px; /* 헤더 높이 고려 */
+  top: 60px;
   bottom: 0;
+  border-right: 1px solid #e0e0e0;
 }
 
-/* ✅ 메인 콘텐츠 */
 .main-content {
-  margin-left: 250px;
+  padding-left: 200px; /* ✅ 기존 margin-left 제거 */
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   align-items: center;
   padding: 20px;
+  max-width: 1200px;
+  width: calc(100% - 200px);
+  overflow-y: auto;
 }
 
-/* ✅ Realtime Insight */
+
+/* ✅ 실시간 인사이트 */
 .realtime-insight {
   width: 90%;
   max-width: 900px;
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* ✅ 여백 줄이기 */
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* ✅ 카드 컨테이너 */
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* ✅ 3개씩 고정 */
   gap: 10px;
-  width: 90%;
+  width: 100%;
   max-width: 900px;
+  justify-content: center; /* ✅ 카드 중앙 정렬 */
+  align-items: start; /* ✅ 카드 위쪽 정렬 */
 }
 
-/* ✅ 카드 */
+
+/* ✅ 카드 개별 스타일 */
 .card {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   background: white;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 12px;
+  border-radius: 8px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   width: 220px;
   height: 100px;
+  text-align: center;
 }
 
 /* ✅ 하단 그래프 */
@@ -85,20 +83,76 @@ nav {
   justify-content: space-between;
   width: 90%;
   max-width: 900px;
-  gap: 10px;
+  gap: 15px; /* ✅ 기존 20px → 15px */
+  margin-top: 15px; /* ✅ 여백 줄이기 */
 }
 
-/* ✅ 그래프 크기 */
-.attendance-chart, .weekly-attendance {
-  transform: scale(0.85);
-  transform-origin: top;
+/* ✅ 그래프 크기 제한 */
+.attendance-chart,
+.weekly-attendance {
+  flex: 1;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  overflow: hidden;
 }
 
-/* ✅ 그래프 개별 스타일 */
 .attendance-chart {
   flex: 2;
 }
 
-.weekly-attendance {
-  flex: 1;
+/* ✅ 반응형 조정 */
+@media (max-width: 1024px) {
+  .dashboard-container {
+    display: flex;
+    flex: 1;
+    height: calc(100vh - 60px);
+    align-items: flex-start; /* ✅ 위쪽 정렬 */
+  }
+  
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  nav {
+    width: 100%;
+    position: relative;
+    height: auto;
+    top: 0;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+  }
+
+  .card {
+    width: 180px;
+    height: 90px;
+  }
+
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;  /* ✅ 기존 90% → 95% */
+  max-width: 1000px;  /* ✅ 최대 너비 확장 */
+  gap: 10px;  /* ✅ 기존 15px → 10px */
+  margin-top: 10px; /* ✅ 기존 15px → 10px */
+  padding: 10px; /* ✅ 패딩 추가 */
+}
+
+  
+  
 }

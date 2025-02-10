@@ -1,47 +1,41 @@
-.employees-card {
+.card-container {
+  width: 220px;
+  height: 100px;
+  background: #fff;
+  border-radius: 5px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  width: 250px; /* 카드 크기 고정 */
-  min-height: 130px; /* 최소 높이 설정 */
+  align-items: center;
+  padding: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.employees-header {
+.card-content {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 100%; /* 전체 너비 사용 */
+  width: 100%;
 }
 
-.employees-number {
-  font-size: 32px;
-  font-weight: bold;
-  color: #252C58;
-}
-
-.employees-icon {
-  width: 42px;
-  height: 42px;
-  background: #F2F4FF;
-  border-radius: 50%;
+.card-left {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
-.employees-text {
-  font-size: 16px;
+.card-number {
+  font-size: 28px;
   font-weight: bold;
-  color: #252C58;
+  color: #252c58;
 }
 
-.employees-subtext {
+.card-title {
   font-size: 14px;
-  color: #666;
-  margin-top: 5px;
+  font-weight: bold;
+  color: #252c58;
+}
+
+.card-icon img {
+  width: 35px;
+  height: 35px;
+  background: #f5f7fd;
+  border-radius: 50%;
+  padding: 5px;
 }

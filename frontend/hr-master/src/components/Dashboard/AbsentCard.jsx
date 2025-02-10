@@ -10,10 +10,6 @@ const AbsentCard = () => {
         <div className="card-left">
           <span className="card-number">30</span>
           <span className="card-title">Absent</span>
-          <span className="card-subtext">
-            <img src={increaseIcon} alt="Increase Icon" className="increase-icon" />
-            +3% Increase than yesterday
-          </span>
         </div>
         <div className="card-icon">
           <img src={absentIcon} alt="Absent Icon" />

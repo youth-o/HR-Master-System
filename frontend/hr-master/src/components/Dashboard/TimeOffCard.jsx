@@ -10,10 +10,6 @@ const TimeOffCard = () => {
         <div className="card-left">
           <span className="card-number">42</span>
           <span className="card-title">Time-off</span>
-          <span className="card-subtext">
-            <img src={increaseIcon} alt="Increase Icon" className="increase-icon" />
-            2% Increase than yesterday
-          </span>
         </div>
         <div className="card-icon">
           <img src={timeOffIcon} alt="Time-off Icon" />
@@ -24,3 +20,4 @@ const TimeOffCard = () => {
 };
 
 export default TimeOffCard;
+

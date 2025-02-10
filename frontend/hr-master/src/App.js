@@ -4,8 +4,8 @@ import './App.css';
 // import Main from './pages/main/Main';
 // import EmployeesList from './pages/employeesList/EmployeesList';
 // import EmployeeEdit from './pages/employeeEdit/EmployeeEdit';
-// import Dashboard from './pages/Dashboard/Dashboard';
-// import Message from './pages/Message/Message'
+import Dashboard from './pages/Dashboard/Dashboard';
+import Message from './pages/Message/Message'
 import Calendar from'./pages/Calendar/Calendar'
 
 
@@ -24,7 +24,7 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				{/* 첫 화면을 로그인 페이지로 설정 */}
-				<Route path="/" element={<Calendar />} />
+				<Route path="/" element={<Dashboard />} />
 
 				{/* 로그인된 사용자만 접근 가능 */}
 				{/* 

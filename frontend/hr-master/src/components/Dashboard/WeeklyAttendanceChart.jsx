@@ -4,11 +4,11 @@ import adjustSettingsIcon from "../../assets/Dashboardimgs/Adjustsettings.svg";
 import "./WeeklyAttendanceChart.css";
 
 const initialData = [
-  { name: "Sales", value: 40 },
-  { name: "IT", value: 60 },
-  { name: "Marketing", value: 85 },
-  { name: "Legal", value: 55 },
-  { name: "API", value: 40 },
+  { name: "IT", value: 40 },
+  { name: "Sales", value: 60 },
+  { name: "QA", value: 85 },
+  { name: "UI", value: 55 },
+  { name: "UX", value: 40 },
 ];
 
 const WeeklyAttendanceChart = () => {
@@ -20,7 +20,7 @@ const WeeklyAttendanceChart = () => {
         <span className="chart-title">Weekly Attendance</span>
         <img src={adjustSettingsIcon} alt="Settings" className="settings-icon" />
       </div>
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width="100%" height={250}> 
         <BarChart data={initialData} margin={{ top: 20, right: 20, left: 10, bottom: 40 }}>
           <XAxis 
             dataKey="name" 
@@ -29,7 +29,12 @@ const WeeklyAttendanceChart = () => {
             interval={0} 
             dy={10} // 
           />
-          <YAxis tick={{ fontSize: 12 }} />
+          <YAxis
+            tick={{ fontSize: 14, fontWeight: "bold", textAnchor: "end" }}
+            tickMargin={15}  // ✅ 기존보다 margin을 늘려서 간격 확보
+            interval={0} // ✅ 모든 tick 표시
+          />
+
           <Tooltip />
           <Bar dataKey="value" radius={[5, 5, 0, 0]}>
             {initialData.map((entry, index) => (

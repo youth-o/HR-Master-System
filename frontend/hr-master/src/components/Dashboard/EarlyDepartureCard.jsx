@@ -11,8 +11,7 @@ const EarlyDepartureCard = () => {
           <span className="card-number">6</span>
           <span className="card-title">Early Departures</span>
           <span className="card-subtext">
-            <img src={decreaseIcon} alt="Decrease Icon" className="increase-icon" />
-            -10% Less than yesterday
+            
           </span>
         </div>
         <div className="card-icon">
