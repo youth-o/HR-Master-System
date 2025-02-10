@@ -79,8 +79,8 @@ export default function EmployeeWorkInfo() {
 				</div>
 				<div className={styles.row}>
 					<Input id="position" label="직급" placeholder={employee.position} onChange={handleChange} />
-					<Input id="empEngName" label="회사 근무 사항" />
-					<Input id="." label="고과 여부" />
+					<Input id="companyWork" label="회사 근무 사항" />
+					<Input id="evaluationFlag" label="고과 여부" />
 				</div>
 				<div className={styles.row}>
 					<Input

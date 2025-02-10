@@ -6,7 +6,7 @@ export default function Input({
 	type = 'text',
 	label = '',
 	style = {},
-	value = '',
+	value = undefined,
 	placeholder = '',
 	searchTrue = false,
 	readOnly = false,

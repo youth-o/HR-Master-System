@@ -52,6 +52,8 @@
 .infoForm button {
 	width: 31rem;
 	margin-left: 35rem;
+	margin-top: 12rem;
+	margin-bottom: 5rem;
 	padding: 1rem;
 	justify-content: center;
 	align-items: center;
