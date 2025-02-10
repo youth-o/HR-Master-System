@@ -8,15 +8,15 @@ import CareerInfo from './CareerInfo';
 import EducationInfo from './EducationInfo';
 
 export default function EmployeeMenu() {
-	const [activeMenu, setActiveMenu] = useState('개인 정보');
+	const [activeMenu, setActiveMenu] = useState('근무 정보');
 
 	const handleMenuClick = (menu) => {
 		setActiveMenu(menu);
 	};
 
 	const menuComponents = {
-		'개인 정보': <EmployeeInfo />,
 		'근무 정보': <EmployeeWorkInfo />,
+		'개인 정보': <EmployeeInfo />,
 		'가족 정보': <FamilyInfo />,
 		'자격 인증 사항': <CertificationInfo />,
 		경력: <CareerInfo />,
@@ -26,7 +26,7 @@ export default function EmployeeMenu() {
 	return (
 		<div className={styles.editContainer}>
 			<div className={styles.menu}>
-				{['개인 정보', '근무 정보', '가족 정보', '자격 인증 사항', '경력', '교육 이력'].map((menu) => (
+				{['근무 정보', '개인 정보', '가족 정보', '자격 인증 사항', '경력', '교육 이력'].map((menu) => (
 					<p key={menu} className={activeMenu === menu ? styles.active : ''} onClick={() => handleMenuClick(menu)}>
 						{menu}
 					</p>

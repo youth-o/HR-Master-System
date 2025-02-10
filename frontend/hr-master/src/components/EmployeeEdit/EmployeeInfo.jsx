@@ -45,11 +45,6 @@ export default function EmployeeInfo() {
 				<div className={styles.row}>
 					<Input id="empName" label="이름" placeholder={employee.empName} />
 					<Input id="empEngName" label="영문 이름" placeholder={employee.empEngName} />
-					<Input id="." label="??" />
-				</div>
-				<div className={styles.row}>
-					<Input id="companyEmail" label="사내 메일" placeholder={employee.companyEmail} />
-					<Input id="companyPhone" label="사내 전화" placeholder={employee.companyPhone} />
 					<Input id="hireDate" label="입사일" readOnly placeholder={employee.hireDate} />
 				</div>
 				<div className={styles.row}>
