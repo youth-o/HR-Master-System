@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Input from '../common/Input/Input';
 import styles from './EmployeeWorkInfo.module.css';
 import { useGetEmployee, useUpdateEmployee } from '../../apis/useEmployees';
@@ -19,7 +19,7 @@ export default function EmployeeWorkInfo() {
 		retireDate: '',
 	});
 
-	useState(() => {
+	useEffect(() => {
 		if (employee) {
 			setFormData({
 				hireType: employee.hireType || '',
@@ -35,6 +35,7 @@ export default function EmployeeWorkInfo() {
 
 	const handleChange = (e) => {
 		const { id, value } = e.target;
+		if (id === 'retireDate') return;
 		setFormData((prevData) => ({
 			...prevData,
 			[id]: value,
@@ -43,8 +44,18 @@ export default function EmployeeWorkInfo() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await updateEmployee(employeeId, formData);
-		alert('사원 정보가 업데이트되었습니다.');
+
+		const updatedFields = {};
+		Object.keys(formData).forEach((key) => {
+			if (key !== 'retireDate' && formData[key] !== employee[key]) {
+				updatedFields[key] = formData[key];
+			}
+		});
+
+		if (Object.keys(updatedFields).length > 0) {
+			await updateEmployee(employeeId, updatedFields);
+			alert('사원 정보가 수정되었습니다.');
+		}
 	};
 
 	if (loading) return <p>Loading...</p>;

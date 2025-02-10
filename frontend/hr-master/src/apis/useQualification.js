@@ -14,7 +14,11 @@ export function useGetQualifications(employeeId) {
 				const response = await axios.get(`/employees/${employeeId}/qualifications`);
 				setQualification(response.data);
 			} catch (err) {
-				setError(err);
+				if (err.response && err.response.status === 404) {
+					setQualification([]);
+				} else {
+					setError(err);
+				}
 			} finally {
 				setLoading(false);
 			}
