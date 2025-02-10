@@ -17,10 +17,7 @@ export default function EmployeeMenu() {
 	const menuComponents = {
 		'개인 정보': <EmployeeInfo />,
 		'근무 정보': <EmployeeWorkInfo />,
-		// '가족 정보': <FamilyInfo />,
-		// '자격 인증 사항': <CertificationInfo />,
-		// '경력': <CareerInfo />,
-		// '교육 이력': <EducationInfo />,
+  dev
 		'가족 정보': <FamilyInfo />,
 		'자격 인증 사항': <CertificationInfo />,
 		경력: <CareerInfo />,
