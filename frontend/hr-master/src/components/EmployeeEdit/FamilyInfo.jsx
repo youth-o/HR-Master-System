@@ -52,11 +52,10 @@ export default function FamilyInfo() {
 			}
 		}
 
-		// ✅ 알림 메시지 다르게 표시
 		if (newFamilyAdded) {
 			alert('가족 정보가 추가되었습니다.');
 		} else {
-			alert('가족 정보가 업데이트되었습니다.');
+			alert('가족 정보가 수정되었습니다.');
 		}
 	};
 
@@ -80,8 +79,9 @@ export default function FamilyInfo() {
 						/>
 						<Input
 							id={`birthDate-${index}`}
+							type="date"
 							label="생년월일"
-							placeholder={member.birthDate}
+							value={member.birthDate}
 							style={style}
 							onChange={(e) => handleChange(index, 'birthDate', e.target.value)}
 						/>

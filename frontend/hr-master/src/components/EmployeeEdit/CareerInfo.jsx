@@ -16,6 +16,10 @@ export default function CareerInfo() {
 		}
 	}, [companyCareer]);
 
+	const handleCareerChange = (index, field, value) => {
+		setCareerList((prevList) => prevList.map((career, i) => (i === index ? { ...career, [field]: value } : career)));
+	};
+
 	const handleAddCareer = () => {
 		setCareerList([
 			...careerList,
@@ -49,21 +53,61 @@ export default function CareerInfo() {
 						<div className={styles.row}>
 							<Input
 								id={`changeDate-${career.id}`}
+								type="date"
 								label="변경일"
-								placeholder={career.changeDate ? career.changeDate.split('T')[0] : ''}
+								value={career.changeDate ? career.changeDate.split('T')[0] : ''}
 								style={style}
+								onChange={(e) => handleCareerChange(index, 'changeDate', e.target.value)}
 							/>
-							<Input id={`changeType-${career.id}`} label="변경 구분" placeholder={career.changeType} style={style} />
+							<Input
+								id={`changeType-${career.id}`}
+								label="변경 구분"
+								placeholder={career.changeType}
+								style={style}
+								onChange={(e) => handleCareerChange(index, 'changeType', e.target.value)}
+							/>
 						</div>
 						<div className={styles.row}>
-							<Input id={`workLocation-${career.id}`} label="근무지" placeholder={career.division} />
-							<Input id={`department-${career.id}`} label="부서" placeholder={career.department} />
-							<Input id={`position-${career.id}`} label="직급" placeholder={career.position} />
+							<Input
+								id={`workLocation-${career.id}`}
+								label="근무지"
+								placeholder={career.division}
+								onChange={(e) => handleCareerChange(index, 'workLocation', e.target.value)}
+							/>
+							<Input
+								id={`department-${career.id}`}
+								label="부서"
+								placeholder={career.department}
+								onChange={(e) => handleCareerChange(index, 'department', e.target.value)}
+							/>
+							<Input
+								id={`position-${career.id}`}
+								label="직급"
+								placeholder={career.position}
+								onChange={(e) => handleCareerChange(index, 'position', e.target.value)}
+							/>
 						</div>
 						<div className={styles.row}>
-							<Input id={`startDate-${career.id}`} label="근무 시작일" placeholder={career.startDate} />
-							<Input id={`endDate-${career.id}`} label="근무 종료일" placeholder={career.endDate} />
-							<Input id={`notes-${career.id}`} label="비고" placeholder={career.notes} />
+							<Input
+								id={`startDate-${career.id}`}
+								type="date"
+								label="근무 시작일"
+								value={career.startDate}
+								onChange={(e) => handleCareerChange(index, 'startDate', e.target.value)}
+							/>
+							<Input
+								id={`endDate-${career.id}`}
+								type="date"
+								label="근무 종료일"
+								value={career.endDate}
+								onChange={(e) => handleCareerChange(index, 'endDate', e.target.value)}
+							/>
+							<Input
+								id={`notes-${career.id}`}
+								label="비고"
+								placeholder={career.notes}
+								onChange={(e) => handleCareerChange(index, 'notes', e.target.value)}
+							/>
 						</div>
 					</div>
 				))}

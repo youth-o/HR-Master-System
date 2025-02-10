@@ -83,7 +83,13 @@ export default function EmployeeWorkInfo() {
 					<Input id="." label="고과 여부" />
 				</div>
 				<div className={styles.row}>
-					<Input id="companyEmail" label="사내 메일" placeholder={employee.companyEmail} onChange={handleChange} />
+					<Input
+						id="companyEmail"
+						type="email"
+						label="사내 메일"
+						placeholder={employee.companyEmail}
+						onChange={handleChange}
+					/>
 					<Input id="companyPhone" label="사내 전화" placeholder={employee.companyPhone} onChange={handleChange} />
 					<Input id="retireDate" label="퇴사 일자" readOnly placeholder={employee.retireDate} />
 				</div>

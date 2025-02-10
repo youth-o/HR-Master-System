@@ -16,6 +16,12 @@ export default function CertificationInfo() {
 		}
 	}, [qualification]);
 
+	const handleCertificationChange = (index, field, value) => {
+		setCertificationList((prevList) =>
+			prevList.map((certification, i) => (i === index ? { ...certification, [field]: value } : certification))
+		);
+	};
+
 	const handleAddCertification = () => {
 		setCertificationList([
 			...certificationList,
@@ -41,19 +47,29 @@ export default function CertificationInfo() {
 							label="자격 면허명"
 							placeholder={certification.licenseName}
 							style={style}
+							onChange={(e) => handleCertificationChange(index, 'licenseName', e.target.value)}
 						/>
 						<Input
 							id={`acquisitionDate-${certification.id}`}
+							type="date"
 							label="취득일자"
-							placeholder={certification.acquisitionDate}
+							value={certification.acquisitionDate}
 							style={style}
+							onChange={(e) => handleCertificationChange(index, 'acquisitionDate', e.target.value)}
 						/>
-						<Input id={`score-${certification.id}`} label="성적" placeholder={certification.score} style={style} />
+						<Input
+							id={`score-${certification.id}`}
+							label="성적"
+							placeholder={certification.score}
+							style={style}
+							onChange={(e) => handleCertificationChange(index, 'score', e.target.value)}
+						/>
 						<Input
 							id={`issuingAgency-${certification.id}`}
 							label="주관처"
 							placeholder={certification.issuingAgency}
 							style={style}
+							onChange={(e) => handleCertificationChange(index, 'issuingAgency', e.target.value)}
 						/>
 					</div>
 				))}

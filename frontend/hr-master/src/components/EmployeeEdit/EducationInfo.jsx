@@ -16,6 +16,12 @@ export default function EducationInfo() {
 		}
 	}, [education]);
 
+	const handleEducationChange = (index, field, value) => {
+		setEducationList((prevList) =>
+			prevList.map((education, i) => (i === index ? { ...education, [field]: value } : education))
+		);
+	};
+
 	const handleAddEducation = () => {
 		setEducationList([
 			...educationList,
@@ -47,9 +53,26 @@ export default function EducationInfo() {
 				{educationList.map((education, index) => (
 					<div className={styles.rowContainer} key={education.educationId}>
 						<div className={styles.row}>
-							<Input id={`educationType-${education.id}`} label="교육 구분" placeholder={education.educationType} />
-							<Input id={`startDate-${education.id}`} label="교육 시작일" placeholder={education.startDate} />
-							<Input id={`endDate-${education.id}`} label="교육 종료일" placeholder={education.endDate} />
+							<Input
+								id={`educationType-${education.id}`}
+								label="교육 구분"
+								placeholder={education.educationType}
+								onChange={(e) => handleEducationChange(index, 'educationType', e.target.value)}
+							/>
+							<Input
+								id={`startDate-${education.id}`}
+								type="date"
+								label="교육 시작일"
+								value={education.startDate}
+								onChange={(e) => handleEducationChange(index, 'startDate', e.target.value)}
+							/>
+							<Input
+								id={`endDate-${education.id}`}
+								type="date"
+								label="교육 종료일"
+								value={education.endDate}
+								onChange={(e) => handleEducationChange(index, 'endDate', e.target.value)}
+							/>
 						</div>
 						<div className={styles.row}>
 							<Input
@@ -57,8 +80,15 @@ export default function EducationInfo() {
 								label="교육명"
 								placeholder={education.courseName}
 								style={style}
+								onChange={(e) => handleEducationChange(index, 'courseName', e.target.value)}
 							/>
-							<Input id={`organizer-${education.id}`} label="주관처" placeholder={education.organizer} style={style} />
+							<Input
+								id={`organizer-${education.id}`}
+								label="주관처"
+								placeholder={education.organizer}
+								style={style}
+								onChange={(e) => handleEducationChange(index, 'organizer', e.target.value)}
+							/>
 						</div>
 					</div>
 				))}
