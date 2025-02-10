@@ -1,10 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '../common/Input/Input';
 import styles from './CareerInfo.module.css';
 import plus from '../../assets/btn_add.svg';
+import { useGetCompanyCareers } from '../../apis/useCareer';
+import { useParams } from 'react-router-dom';
 
 export default function CareerInfo() {
+	const { employeeId } = useParams();
+	const { companyCareer, loading, error } = useGetCompanyCareers(employeeId);
 	const [careerList, setCareerList] = useState([]);
+
+	useEffect(() => {
+		if (companyCareer) {
+			setCareerList(companyCareer);
+		}
+	}, [companyCareer]);
 
 	const handleAddCareer = () => {
 		setCareerList([
@@ -27,6 +37,9 @@ export default function CareerInfo() {
 		width: '50rem',
 	};
 
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error fetching career info: {error.message}</p>;
+
 	return (
 		<div className={styles.infoContainer}>
 			<h3>사내 경력</h3>
@@ -34,18 +47,23 @@ export default function CareerInfo() {
 				{careerList.map((career, index) => (
 					<div className={styles.rowContainer} key={career.historyId}>
 						<div className={styles.row}>
-							<Input id={`changeDate-${career.id}`} label="변경일" style={style} />
-							<Input id={`changeType-${career.id}`} label="변경 구분" style={style} />
+							<Input
+								id={`changeDate-${career.id}`}
+								label="변경일"
+								placeholder={career.changeDate ? career.changeDate.split('T')[0] : ''}
+								style={style}
+							/>
+							<Input id={`changeType-${career.id}`} label="변경 구분" placeholder={career.changeType} style={style} />
 						</div>
 						<div className={styles.row}>
-							<Input id={`workLocation-${career.id}`} label="근무지" />
-							<Input id={`department-${career.id}`} label="부서" />
-							<Input id={`position-${career.id}`} label="직급" />
+							<Input id={`workLocation-${career.id}`} label="근무지" placeholder={career.division} />
+							<Input id={`department-${career.id}`} label="부서" placeholder={career.department} />
+							<Input id={`position-${career.id}`} label="직급" placeholder={career.position} />
 						</div>
 						<div className={styles.row}>
-							<Input id={`startDate-${career.id}`} label="근무 시작일" />
-							<Input id={`endDate-${career.id}`} label="근무 종료일" />
-							<Input id={`notes-${career.id}`} label="비고" />
+							<Input id={`startDate-${career.id}`} label="근무 시작일" placeholder={career.startDate} />
+							<Input id={`endDate-${career.id}`} label="근무 종료일" placeholder={career.endDate} />
+							<Input id={`notes-${career.id}`} label="비고" placeholder={career.notes} />
 						</div>
 					</div>
 				))}

@@ -8,7 +8,7 @@ import CareerInfo from './CareerInfo';
 import EducationInfo from './EducationInfo';
 
 export default function EmployeeMenu() {
-	const [activeMenu, setActiveMenu] = useState('근무 정보');
+	const [activeMenu, setActiveMenu] = useState('개인 정보');
 
 	const handleMenuClick = (menu) => {
 		setActiveMenu(menu);
