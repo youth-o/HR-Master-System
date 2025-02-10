@@ -1,0 +1,42 @@
+.chart-container {
+    width: 725px; /* 변경된 너비 */
+    height: 303px; /* 변경된 높이 */
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .chart-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .chart-filters span {
+    margin-left: 15px;
+    cursor: pointer;
+    color: gray;
+  }
+  
+  .chart-filters .active {
+    color: #0043ff;
+    font-weight: bold;
+  }
+  
+  .settings-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    cursor: pointer;
+  }
+  
+  .chart-wrapper {
+    height: 250px; /* 차트가 너무 크지 않도록 조정 */
+  }
+  

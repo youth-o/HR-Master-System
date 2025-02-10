@@ -1,4 +1,6 @@
 .realtime-insight {
+  height: 315px;
+  width: 1050px;
   display: flex;
   flex-direction: column;
   align-items: center;
