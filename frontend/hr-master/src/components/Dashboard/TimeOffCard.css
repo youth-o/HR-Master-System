@@ -1,0 +1,45 @@
+.card-container {
+  width: 220px; /* ✅ 기존 250px → 220px으로 조정 */
+  height: 100px; /* ✅ 높이 통일 */
+  background: #fff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ 카드 내부 정렬 */
+.card-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* ✅ 왼쪽 텍스트 */
+.card-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-number {
+  font-size: 28px;
+  font-weight: bold;
+  color: #252c58;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #252c58;
+}
+
+/* ✅ 아이콘 정렬 */
+.card-icon img {
+  width: 35px;
+  height: 35px;
+  background: #f5f7fd;
+  border-radius: 50%;
+  padding: 5px;
+}
