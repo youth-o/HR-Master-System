@@ -54,7 +54,7 @@ export default function EmployeeWorkInfo() {
 
 		if (Object.keys(updatedFields).length > 0) {
 			await updateEmployee(employeeId, updatedFields);
-			alert('사원 정보가 수정되었습니다.');
+			alert('근무 정보가 수정되었습니다.');
 		}
 	};
 
@@ -74,7 +74,7 @@ export default function EmployeeWorkInfo() {
 						placeholder={employee.hireType}
 						onChange={handleChange}
 					/>
-					<Input id="workLocation" label="근무지" placeholder={employee.workLocation} onChange={handleChange} />
+					<Input id="workLocation" label="근무지" placeholder={employee.workLocation} />
 					<Input id="department" label="부서" placeholder={employee.department} onChange={handleChange} />
 				</div>
 				<div className={styles.row}>
@@ -85,7 +85,7 @@ export default function EmployeeWorkInfo() {
 				<div className={styles.row}>
 					<Input id="companyEmail" label="사내 메일" placeholder={employee.companyEmail} onChange={handleChange} />
 					<Input id="companyPhone" label="사내 전화" placeholder={employee.companyPhone} onChange={handleChange} />
-					<Input id="retireDate" label="퇴사 일자" readOnly placeholder={employee.retireDate} onChange={handleChange} />
+					<Input id="retireDate" label="퇴사 일자" readOnly placeholder={employee.retireDate} />
 				</div>
 				<button type="submit">Save</button>
 			</form>

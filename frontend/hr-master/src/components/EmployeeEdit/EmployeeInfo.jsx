@@ -1,14 +1,68 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Input from '../common/Input/Input';
 import styles from './EmployeeInfo.module.css';
-import { useGetEmployee } from '../../apis/useEmployees';
+import { useGetEmployee, useUpdateEmployee } from '../../apis/useEmployees';
 
 export default function EmployeeInfo() {
 	const { employeeId } = useParams();
 	const { employee, loading, error } = useGetEmployee(employeeId);
+	const { updateEmployee } = useUpdateEmployee();
 	const navigate = useNavigate();
 	const [inputEmployeeId, setInputEmployeeId] = useState('');
+
+	const [formData, setFormData] = useState({
+		employeeId: '',
+		ssn: '',
+		phone: '',
+		empName: '',
+		empEngName: '',
+		hireDate: '',
+		nationality: '',
+		militaryService: '',
+		address: '',
+	});
+
+	useEffect(() => {
+		if (employee) {
+			setFormData({
+				employeeId: employee.employeeId || '',
+				ssn: employee.ssn || '',
+				phone: employee.phone || '',
+				empName: employee.empName || '',
+				empEngName: employee.empEngName || '',
+				hireDate: employee.hireDate || '',
+				nationality: employee.nationality || '',
+				militaryService: employee.militaryService || '',
+				address: employee.address || '',
+			});
+		}
+	}, [employee]);
+
+	const handleChange = (e) => {
+		const { id, value } = e.target;
+		if (id === 'ssn' || id === 'hireDate') return;
+		setFormData((prevData) => ({
+			...prevData,
+			[id]: value,
+		}));
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		const updatedFields = {};
+		Object.keys(formData).forEach((key) => {
+			if (key !== 'hireDate' && key !== 'ssn' && formData[key] !== employee[key]) {
+				updatedFields[key] = formData[key];
+			}
+		});
+
+		if (Object.keys(updatedFields).length > 0) {
+			await updateEmployee(employeeId, updatedFields);
+			alert('개인 정보가 수정되었습니다.');
+		}
+	};
 
 	const handleInputChange = (e) => {
 		setInputEmployeeId(e.target.value);
@@ -27,7 +81,7 @@ export default function EmployeeInfo() {
 	return (
 		<div className={styles.infoContainer}>
 			<h3>개인 정보</h3>
-			<form className={styles.infoForm}>
+			<form className={styles.infoForm} onSubmit={handleSubmit}>
 				<div className={styles.row}>
 					<Input
 						id="employeeId"
@@ -38,17 +92,22 @@ export default function EmployeeInfo() {
 						onSearch={handleSearch}
 					/>
 					<Input id="ssn" label="주민번호" readOnly placeholder={employee.ssn} />
-					<Input id="phone" label="연락처" placeholder={employee.phone} />
+					<Input id="phone" label="연락처" placeholder={employee.phone} onChange={handleChange} />
 				</div>
 				<div className={styles.row}>
-					<Input id="empName" label="이름" placeholder={employee.empName} />
-					<Input id="empEngName" label="영문 이름" placeholder={employee.empEngName} />
+					<Input id="empName" label="이름" placeholder={employee.empName} onChange={handleChange} />
+					<Input id="empEngName" label="영문 이름" placeholder={employee.empEngName} onChange={handleChange} />
 					<Input id="hireDate" label="입사일" readOnly placeholder={employee.hireDate} />
 				</div>
 				<div className={styles.row}>
-					<Input id="nationality" label="국적" placeholder={employee.nationality} />
-					<Input id="militaryService" label="군필 여부" placeholder={employee.militaryService} />
-					<Input id="address" label="주소" placeholder={employee.address} />
+					<Input id="nationality" label="국적" placeholder={employee.nationality} onChange={handleChange} />
+					<Input
+						id="militaryService"
+						label="군필 여부"
+						placeholder={employee.militaryService}
+						onChange={handleChange}
+					/>
+					<Input id="address" label="주소" placeholder={employee.address} onChange={handleChange} />
 				</div>
 				<button type="submit">Save</button>
 			</form>
