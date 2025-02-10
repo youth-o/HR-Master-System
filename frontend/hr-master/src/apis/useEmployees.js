@@ -46,7 +46,7 @@ export function useEmployee(employeeId) {
 		};
 
 		fetchEmployee();
-	}, [employeeId]); // ✅ employeeId가 변경될 때마다 실행
+	}, [employeeId]);
 
 	return { employee, loading, error };
 }
