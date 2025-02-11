@@ -1,4 +1,4 @@
-package com.example.hr_master.career.entity;
+package com.example.hr_master.externalCareer.entity;
 
 import com.example.hr_master.employee.entity.Employee;
 
