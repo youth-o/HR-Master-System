@@ -41,7 +41,7 @@ public class ExternalCareerController {
         return ResponseEntity.ok(createdCareer);
     }
 
-    // 사외 경력 수정
+    // 특정 employeeId의 사외 경력 수정
     @PutMapping("/{employeeId}/external_career/{careerId}")
     public ResponseEntity<ExternalCareer> updateExternalCareer(@PathVariable Long careerId,
                                                                @RequestBody ExternalCareer externalCareer) {
@@ -49,7 +49,7 @@ public class ExternalCareerController {
         return ResponseEntity.ok(updatedCareer);
     }
 
-    // 사외 경력 삭제
+    // 특정 employeeId의 사외 경력 삭제
     @DeleteMapping("/{employeeId}/external_career/{careerId}/delete")
     public ResponseEntity<Void> deleteExternalCareer(@PathVariable Long careerId) {
         externalCareerService.deleteExternalCareer(careerId);

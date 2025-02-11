@@ -1,4 +1,4 @@
-package com.example.hr_master.management.entity;
+package com.example.hr_master.attendance.entity;
 
 import com.example.hr_master.employee.entity.Employee;
 import jakarta.persistence.*;
@@ -38,4 +38,3 @@ public class Attendance {
     @Column(name = "attendance_status", nullable = false)
     private AttendanceStatus attendanceStatus;
 }
-enum AttendanceStatus { 정상, 지각, 조퇴, 결근 }
