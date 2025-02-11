@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Input from '../common/Input/Input';
+import Dropdown from '../common/Dropdown/Dropdown';
+import { militaryOptions } from '../../constants/options';
 import styles from './EmployeeInfo.module.css';
 import { useGetEmployee, useUpdateEmployee } from '../../apis/useEmployees';
 
@@ -45,6 +47,13 @@ export default function EmployeeInfo() {
 		setFormData((prevData) => ({
 			...prevData,
 			[id]: value,
+		}));
+	};
+
+	const handleDropdownChange = (field, selected) => {
+		setFormData((prev) => ({
+			...prev,
+			[field]: selected,
 		}));
 	};
 
@@ -101,11 +110,11 @@ export default function EmployeeInfo() {
 				</div>
 				<div className={styles.row}>
 					<Input id="nationality" label="국적" placeholder={employee.nationality} onChange={handleChange} />
-					<Input
-						id="militaryService"
+					<Dropdown
 						label="군필 여부"
-						placeholder={employee.militaryService}
-						onChange={handleChange}
+						menuItems={militaryOptions}
+						defaultValue={employee.militaryService}
+						onSelect={(val) => handleDropdownChange('militaryService', val)}
 					/>
 					<Input id="address" label="주소" placeholder={employee.address} onChange={handleChange} />
 				</div>

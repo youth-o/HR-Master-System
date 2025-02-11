@@ -1,0 +1,98 @@
+/* 전체 레이아웃 */
+.employee-pay-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+/* 상단 사원번호 및 검색 */
+.employee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.employee-search input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* 직원 정보와 현재 시각을 가깝게 정렬 */
+.employee-details {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    gap: 140px; /* 기존보다 간격 줄임 */
+    padding-top: 12px;
+    font-weight: bold;
+}
+
+/* 직원 사진 */
+.employee-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* 직원 이름 및 부서 */
+.employee-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* 이름과 부서 간격 줄이기 */
+    font-weight: bold;
+}
+
+.employee-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.employee-department {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 현재 날짜 & 시각을 직원 정보와 가깝게 */
+.employee-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+    gap: 2px; /* 날짜와 시간 간격 줄이기 */
+}
+
+/* 급여 */
+.employee-salary {
+    font-size: 14px;
+    color: #333;
+}
+
+/* 송장 버튼 */
+.invoice-btn {
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: bold;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.invoice-btn:hover {
+    background: #f8f8f8;
+}

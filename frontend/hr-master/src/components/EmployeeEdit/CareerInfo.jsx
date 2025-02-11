@@ -4,6 +4,8 @@ import styles from './CareerInfo.module.css';
 import plus from '../../assets/btn_add.svg';
 import { useGetCompanyCareers } from '../../apis/useCareer';
 import { useParams } from 'react-router-dom';
+import Dropdown from '../common/Dropdown/Dropdown';
+import { changeTypeOpntions, departmentOptions, positionOptions, workLocationOptions } from '../../constants/options';
 
 export default function CareerInfo() {
 	const { employeeId } = useParams();
@@ -18,6 +20,10 @@ export default function CareerInfo() {
 
 	const handleCareerChange = (index, field, value) => {
 		setCareerList((prevList) => prevList.map((career, i) => (i === index ? { ...career, [field]: value } : career)));
+	};
+
+	const handleDropdownChange = (index, field, selected) => {
+		setCareerList((prevList) => prevList.map((career, i) => (i === index ? { ...career, [field]: selected } : career)));
 	};
 
 	const handleAddCareer = () => {
@@ -59,32 +65,32 @@ export default function CareerInfo() {
 								style={style}
 								onChange={(e) => handleCareerChange(index, 'changeDate', e.target.value)}
 							/>
-							<Input
-								id={`changeType-${career.id}`}
+							<Dropdown
 								label="변경 구분"
-								placeholder={career.changeType}
+								menuItems={changeTypeOpntions}
+								defaultValue={career.changeType}
+								onSelect={(val) => handleDropdownChange('workLocation', val)}
 								style={style}
-								onChange={(e) => handleCareerChange(index, 'changeType', e.target.value)}
 							/>
 						</div>
 						<div className={styles.row}>
-							<Input
-								id={`workLocation-${career.id}`}
+							<Dropdown
 								label="근무지"
-								placeholder={career.division}
-								onChange={(e) => handleCareerChange(index, 'workLocation', e.target.value)}
+								menuItems={workLocationOptions}
+								defaultValue={career.division}
+								onSelect={(val) => handleDropdownChange('division', val)}
 							/>
-							<Input
-								id={`department-${career.id}`}
+							<Dropdown
 								label="부서"
-								placeholder={career.department}
-								onChange={(e) => handleCareerChange(index, 'department', e.target.value)}
+								menuItems={departmentOptions}
+								defaultValue={career.department}
+								onSelect={(val) => handleDropdownChange('department', val)}
 							/>
-							<Input
-								id={`position-${career.id}`}
+							<Dropdown
 								label="직급"
-								placeholder={career.position}
-								onChange={(e) => handleCareerChange(index, 'position', e.target.value)}
+								menuItems={positionOptions}
+								defaultValue={career.position}
+								onSelect={(val) => handleDropdownChange('position', val)}
 							/>
 						</div>
 						<div className={styles.row}>

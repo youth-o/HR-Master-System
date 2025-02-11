@@ -51,6 +51,33 @@ export function useGetEmployee(employeeId) {
 	return { employee, loading, error };
 }
 
+// 사원 등록 API
+export function useRegisterEmployee() {
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+
+	const registerEmployee = async (employeeData) => {
+		setLoading(true);
+		setError(null);
+
+		try {
+			const response = await axios.post('/employees', employeeData, {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+			return response.data;
+		} catch (err) {
+			setError(err);
+			console.error('Error registering employee:', err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	return { registerEmployee, loading, error };
+}
+
 // 사원 정보 업데이트 API
 export function useUpdateEmployee() {
 	const [loading, setLoading] = useState(false);

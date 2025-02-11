@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import Input from '../common/Input/Input';
 import styles from './EmployeeWorkInfo.module.css';
 import { useGetEmployee, useUpdateEmployee } from '../../apis/useEmployees';
+import Dropdown from '../common/Dropdown/Dropdown';
+import { workLocationOptions, positionOptions, departmentOptions } from '../../constants/options';
 
 export default function EmployeeWorkInfo() {
 	const { employeeId } = useParams();
@@ -42,6 +44,13 @@ export default function EmployeeWorkInfo() {
 		}));
 	};
 
+	const handleDropdownChange = (field, selected) => {
+		setFormData((prev) => ({
+			...prev,
+			[field]: selected,
+		}));
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -74,11 +83,26 @@ export default function EmployeeWorkInfo() {
 						placeholder={employee.hireType}
 						onChange={handleChange}
 					/>
-					<Input id="workLocation" label="근무지" placeholder={employee.workLocation} />
-					<Input id="department" label="부서" placeholder={employee.department} onChange={handleChange} />
+					<Dropdown
+						label="근무지"
+						menuItems={workLocationOptions}
+						defaultValue={employee.workLocation}
+						onSelect={(val) => handleDropdownChange('workLocation', val)}
+					/>
+					<Dropdown
+						label="부서"
+						menuItems={departmentOptions}
+						defaultValue={employee.department}
+						onSelect={(val) => handleDropdownChange('department', val)}
+					/>
 				</div>
 				<div className={styles.row}>
-					<Input id="position" label="직급" placeholder={employee.position} onChange={handleChange} />
+					<Dropdown
+						label="직급"
+						menuItems={positionOptions}
+						defaultValue={employee.position}
+						onSelect={(val) => handleDropdownChange('position', val)}
+					/>
 					<Input id="companyWork" label="회사 근무 사항" />
 					<Input id="evaluationFlag" label="고과 여부" />
 				</div>

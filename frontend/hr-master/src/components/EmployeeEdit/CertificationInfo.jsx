@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import Input from '../common/Input/Input';
 import styles from './Certification.module.css';
 import plus from '../../assets/btn_add.svg';
-import { useGetQualifications } from '../../apis/useQualification';
+import { useAddQualification, useGetQualifications, useUpdateQualification } from '../../apis/useQualification';
 
 export default function CertificationInfo() {
 	const { employeeId } = useParams();
 	const { qualification, loading, error } = useGetQualifications(employeeId);
+	const { addQualification } = useAddQualification();
+	const { updateQualification } = useUpdateQualification();
 	const [certificationList, setCertificationList] = useState([]);
 
 	useEffect(() => {
@@ -25,8 +27,52 @@ export default function CertificationInfo() {
 	const handleAddCertification = () => {
 		setCertificationList([
 			...certificationList,
-			{ id: Date.now(), licenseName: '', acquisitionDate: '', score: '', issuingAgency: '' },
+			{ qualificationId: null, licenseName: '', acquisitionDate: '', score: '', issuingAgency: '' },
 		]);
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		let newCertifications = [];
+		let updatedCertifications = [];
+
+		for (const certification of certificationList) {
+			if (certification.qualificationId) {
+				updatedCertifications.push(certification);
+			} else {
+				newCertifications.push(certification);
+			}
+		}
+
+		try {
+			for (const certification of updatedCertifications) {
+				await updateQualification(employeeId, certification.qualificationId, {
+					licenseName: certification.licenseName || null,
+					acquisitionDate: certification.acquisitionDate || null,
+					score: certification.score || null,
+					issuingAgency: certification.issuingAgency || null,
+				});
+			}
+
+			let addedQualifications = [];
+			for (const certification of newCertifications) {
+				const addedCertification = await addQualification(employeeId, {
+					licenseName: certification.licenseName || null,
+					acquisitionDate: certification.acquisitionDate || null,
+					score: certification.score || null,
+					issuingAgency: certification.issuingAgency || null,
+				});
+
+				addedQualifications.push({ ...certification, qualificationId: addedCertification.qualificationId });
+			}
+			setCertificationList([...updatedCertifications, ...addedQualifications]);
+
+			alert(newCertifications.length > 0 ? '새로운 자격이 추가되었습니다.' : '자격 이력이 수정되었습니다.');
+		} catch (error) {
+			alert('자격 이력 저장 중 오류가 발생했습니다.');
+			console.error(error);
+		}
 	};
 
 	const style = {
@@ -39,33 +85,33 @@ export default function CertificationInfo() {
 	return (
 		<div className={styles.infoContainer}>
 			<h3>자격 인증 사항</h3>
-			<form className={styles.infoForm}>
+			<form className={styles.infoForm} onSubmit={handleSubmit}>
 				{certificationList.map((certification, index) => (
-					<div className={styles.row} key={certification.qualificationId}>
+					<div className={styles.row} key={certification.qualificationId || index}>
 						<Input
-							id={`licenseName-${certification.id}`}
+							id={`licenseName-${index}`}
 							label="자격 면허명"
 							placeholder={certification.licenseName}
 							style={style}
 							onChange={(e) => handleCertificationChange(index, 'licenseName', e.target.value)}
 						/>
 						<Input
-							id={`acquisitionDate-${certification.id}`}
+							id={`acquisitionDate-${index}`}
 							type="date"
 							label="취득일자"
-							value={certification.acquisitionDate}
+							value={certification.acquisitionDate || ''}
 							style={style}
 							onChange={(e) => handleCertificationChange(index, 'acquisitionDate', e.target.value)}
 						/>
 						<Input
-							id={`score-${certification.id}`}
+							id={`score-${index}`}
 							label="성적"
 							placeholder={certification.score}
 							style={style}
 							onChange={(e) => handleCertificationChange(index, 'score', e.target.value)}
 						/>
 						<Input
-							id={`issuingAgency-${certification.id}`}
+							id={`issuingAgency-${index}`}
 							label="주관처"
 							placeholder={certification.issuingAgency}
 							style={style}
