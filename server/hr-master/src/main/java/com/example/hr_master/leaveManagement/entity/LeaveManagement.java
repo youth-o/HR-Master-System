@@ -1,4 +1,4 @@
-package com.example.hr_master.management.entity;
+package com.example.hr_master.leaveManagement.entity;
 
 import com.example.hr_master.employee.entity.Employee;
 import com.example.hr_master.enumList.LeaveType;
