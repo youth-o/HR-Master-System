@@ -26,9 +26,9 @@ public class EmployeeService {
         return employeeRepository.findById(id);
     }
 
-    // 사원 등록
-    @Transactional
-    public Employee saveEmployee(Employee employee) {
+    // 사원 추가 기능
+    public Employee addEmployee(Employee employee) {
+        // 필요에 따라 추가적인 검증 로직을 구현할 수 있습니다.
         return employeeRepository.save(employee);
     }
 
