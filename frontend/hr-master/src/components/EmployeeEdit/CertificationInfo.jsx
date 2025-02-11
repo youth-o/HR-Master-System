@@ -33,28 +33,46 @@ export default function CertificationInfo() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		let newCertificationAdded = false;
+
+		let newCertifications = [];
+		let updatedCertifications = [];
 
 		for (const certification of certificationList) {
 			if (certification.qualificationId) {
-				await updateQualification(employeeId, certification.qualificationId, {
-					licenseName: certification.licenseName,
-					acquisitionDate: certification.acquisitionDate,
-					score: certification.score,
-					issuingAgency: certification.issuingAgency,
-				});
+				updatedCertifications.push(certification);
 			} else {
-				await addQualification(employeeId, {
-					licenseName: certification.licenseName,
-					acquisitionDate: certification.acquisitionDate,
-					score: certification.score,
-					issuingAgency: certification.issuingAgency,
-				});
-				newCertificationAdded = true;
+				newCertifications.push(certification);
 			}
 		}
 
-		alert(newCertificationAdded ? '자격 이력 정보가 추가되었습니다.' : '자격 이력 정보가 수정되었습니다.');
+		try {
+			for (const certification of updatedCertifications) {
+				await updateQualification(employeeId, certification.qualificationId, {
+					licenseName: certification.licenseName || null,
+					acquisitionDate: certification.acquisitionDate || null,
+					score: certification.score || null,
+					issuingAgency: certification.issuingAgency || null,
+				});
+			}
+
+			let addedQualifications = [];
+			for (const certification of newCertifications) {
+				const addedCertification = await addQualification(employeeId, {
+					licenseName: certification.licenseName || null,
+					acquisitionDate: certification.acquisitionDate || null,
+					score: certification.score || null,
+					issuingAgency: certification.issuingAgency || null,
+				});
+
+				addedQualifications.push({ ...certification, qualificationId: addedCertification.qualificationId });
+			}
+			setCertificationList([...updatedCertifications, ...addedQualifications]);
+
+			alert(newCertifications.length > 0 ? '새로운 자격이 추가되었습니다.' : '자격 이력이 수정되었습니다.');
+		} catch (error) {
+			alert('자격 이력 저장 중 오류가 발생했습니다.');
+			console.error(error);
+		}
 	};
 
 	const style = {

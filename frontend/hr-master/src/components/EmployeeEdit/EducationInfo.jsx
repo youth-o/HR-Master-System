@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react';
 import styles from './EducationInfo.module.css';
 import plus from '../../assets/btn_add.svg';
 import Input from '../common/Input/Input';
-import { useGetEducations } from '../../apis/useEducation';
+import { useAddEducation, useGetEducations, useUpdateEducation } from '../../apis/useEducation';
 import { useParams } from 'react-router-dom';
 
 export default function EducationInfo() {
 	const { employeeId } = useParams();
 	const { education, loading, error } = useGetEducations(employeeId);
+	const { addEducation } = useAddEducation();
+	const { updateEducation } = useUpdateEducation();
 	const [educationList, setEducationList] = useState([]);
 
 	useEffect(() => {
@@ -39,6 +41,50 @@ export default function EducationInfo() {
 		]);
 	};
 
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		let newEducations = [];
+		let updatedEducations = [];
+
+		for (const education of educationList) {
+			if (education.educationId) {
+				updatedEducations.push(education);
+			} else {
+				newEducations.push(education);
+			}
+		}
+
+		try {
+			for (const education of updatedEducations) {
+				await updateEducation(employeeId, education.educationId, {
+					educationType: education.educationType || null,
+					startDate: education.startDate || null,
+					endDate: education.endDate || null,
+					courseName: education.courseName || null,
+					organizer: education.organizer || null,
+				});
+			}
+
+			for (const education of newEducations) {
+				const addedEducation = await addEducation(employeeId, {
+					educationType: education.educationType || null,
+					startDate: education.startDate || null,
+					endDate: education.endDate || null,
+					courseName: education.courseName || null,
+					organizer: education.organizer || null,
+				});
+				education.educationId = addedEducation.educationId;
+			}
+			setEducationList([...updatedEducations, ...newEducations]);
+
+			alert(newEducations.length > 0 ? '새로운 교육이 추가되었습니다.' : '교육 이력이 수정되었습니다.');
+		} catch (error) {
+			alert('교육 이력 저장 중 오류가 발생했습니다.');
+			console.error(error);
+		}
+	};
+
 	const style = {
 		width: '50rem',
 	};
@@ -49,7 +95,7 @@ export default function EducationInfo() {
 	return (
 		<div className={styles.infoContainer}>
 			<h3>교육 이력</h3>
-			<form className={styles.infoForm}>
+			<form className={styles.infoForm} onSubmit={handleSubmit}>
 				{educationList.map((education, index) => (
 					<div className={styles.rowContainer} key={education.educationId}>
 						<div className={styles.row}>
