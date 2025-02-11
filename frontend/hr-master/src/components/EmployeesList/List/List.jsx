@@ -1,18 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-import { useEmployees } from '../../../apis/useEmployees';
+import { useGetEmployees } from '../../../apis/useEmployees';
 import styles from './List.module.css';
 
 export default function List({ searchTerm }) {
 	const navigate = useNavigate();
-	const { employees, loading, error } = useEmployees();
+	const { employees, loading, error } = useGetEmployees();
 
 	const handleEmployeeClick = (employeeId) => {
 		navigate(`/employees/${employeeId}`);
 	};
 
 	const filteredEmployees = searchTerm
-		? employees.filter((employee) => employee.employeeId && employee.employeeId.toString().includes(searchTerm))
-		: employees;
+		? (employees || []).filter((employee) => employee?.employeeId?.toString().includes(searchTerm))
+		: employees || [];
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error fetching employees: {error.message}</p>;
@@ -26,7 +26,7 @@ export default function List({ searchTerm }) {
 				<p>부서</p>
 				<p>사내 메일</p>
 			</div>
-			{filteredEmployees.length > 0 ? (
+			{Array.isArray(filteredEmployees) && filteredEmployees.length > 0 ? (
 				filteredEmployees.map((employee) => (
 					<div
 						className={styles.listBox}

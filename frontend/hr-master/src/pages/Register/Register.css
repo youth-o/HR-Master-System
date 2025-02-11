@@ -1,96 +1,11 @@
 .register-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+	display: flex;
+	flex: 1;
 }
 
 /* 🔹 전체 컨텐츠 레이아웃 (헤더 아래) */
 .content {
-  display: flex;
-  flex: 1;
-}
-
-/* 🔹 왼쪽 네비게이션 바 */
-nav {
-  width: 250px;
-  background-color: #f8f9fa;
-  padding: 20px;
-  height: 100%;
-}
-
-/* 🔹 오른쪽 컨텐츠 영역 */
-.container {
-  flex: 1;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* 🔹 제목 스타일 */
-.title {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-.heading {
-  font-size: 24px;
-  font-weight: bold;
-  color: #0a0a0a;
-}
-
-/* 🔹 폼 그룹 (개인정보, 근무정보 등) */
-.form-group {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  gap: 24px;
-}
-
-/* 🔹 입력 필드 */
-.input-label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1;
-  min-width: 343px;
-}
-
-.input-label label {
-  font-size: 14px;
-  font-weight: 400;
-  color: #0a0a0a;
-}
-
-.input-label input {
-  height: 44px;
-  padding: 8px;
-  border: 1px solid #c2c2c2;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-/* 🔹 버튼 스타일 */
-.button-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.add-staff-btn {
-  width: 330px;
-  height: 51px;
-  background-color: #015eaa;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-}
-
-.add-staff-btn:hover {
-  background-color: #004a87;
+	flex: 6.925;
+	min-width: 69.25%;
+	padding: 2.5rem 2.3rem 0 3rem;
 }

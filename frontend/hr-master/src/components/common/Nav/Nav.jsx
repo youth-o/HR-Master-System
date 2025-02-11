@@ -14,18 +14,40 @@ import list from '../../../assets/document-text.svg';
 import money from '../../../assets/money.svg';
 
 export default function Nav() {
-	const [activeCategory, setActiveCategory] = useState(null);
+	const [activeCategory, setActiveCategory] = useState('dashboard');
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	useEffect(() => {
 		if (location.pathname.startsWith('/employees')) {
 			setActiveCategory('employee');
+		} else if (location.pathname.startsWith('/message')) {
+			setActiveCategory('message');
+		} else if (location.pathname.startsWith('/calendar')) {
+			setActiveCategory('calendar');
+		} else if (location.pathname.startsWith('/register')) {
+			setActiveCategory('register');
+		} else if (location.pathname.startsWith('/attendance')) {
+			setActiveCategory('attendance');
+		} else if (location.pathname.startsWith('/leave')) {
+			setActiveCategory('leave');
+		} else if (location.pathname.startsWith('/performance')) {
+			setActiveCategory('performance');
+		} else if (location.pathname.startsWith('/sound')) {
+			setActiveCategory('sound');
+		} else if (location.pathname.startsWith('/list')) {
+			setActiveCategory('list');
+		} else if (location.pathname.startsWith('/money')) {
+			setActiveCategory('money');
+		} else {
+			setActiveCategory('dashboard');
 		}
 	}, [location.pathname]);
 
 	const handleCategoryClick = (category, path) => {
-		setActiveCategory(category);
+		if (activeCategory !== category) {
+			setActiveCategory(category);
+		}
 		if (path) {
 			navigate(path);
 		}
@@ -36,14 +58,14 @@ export default function Nav() {
 			<div className={styles.mainBox}>
 				<div
 					className={`${styles.category} ${activeCategory === 'dashboard' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('dashboard')}
+					onClick={() => handleCategoryClick('dashboard', '/main')}
 				>
 					<img src={dashboard} alt="대쉬보드 아이콘" />
 					<p>대쉬보드</p>
 				</div>
 				<div
 					className={`${styles.category} ${activeCategory === 'message' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('message')}
+					onClick={() => handleCategoryClick('message', '/message')}
 				>
 					<img src={message} alt="메세지 아이콘" />
 					<p>메세지</p>
@@ -61,7 +83,7 @@ export default function Nav() {
 			<div className={styles.mainBox}>
 				<div
 					className={`${styles.category} ${activeCategory === 'register' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('register')}
+					onClick={() => handleCategoryClick('register', '/register')}
 				>
 					<img src={register} alt="사원등록 아이콘" />
 					<p>사원 등록</p>

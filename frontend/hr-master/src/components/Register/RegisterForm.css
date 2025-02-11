@@ -1,15 +1,18 @@
 .infoContainer {
 	box-sizing: border-box;
 	width: 100%;
-	margin-left: 3rem;
-	margin-right: 2.3rem;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	gap: 2rem;
 }
 
-.infoContainer h3 {
+.infoContainer form {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+form h3 {
 	width: 100%;
 	margin: 0;
 	color: var(--Neutral-100, #0a0a0a);
@@ -28,14 +31,6 @@
 	gap: 2rem;
 }
 
-.rowContainer {
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-	padding-bottom: 3rem;
-	border-bottom: 1px solid #c4c4c4;
-}
-
 .row {
 	width: 100%;
 	display: flex;
@@ -43,15 +38,11 @@
 	justify-content: space-between;
 }
 
-.row img {
-	width: 4.5rem;
-	height: 4.5rem;
-	cursor: pointer;
-}
-
 .infoForm button {
 	width: 31rem;
 	margin-left: 35rem;
+	margin-top: 12rem;
+	margin-bottom: 5rem;
 	padding: 1rem;
 	justify-content: center;
 	align-items: center;
