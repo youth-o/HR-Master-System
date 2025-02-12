@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../components/common/Header/Header';
 import Nav from '../../components/common/Nav/Nav';
-import EmployeeInfo from '../../components/PayManagement/EmployeePayInfo';
+import EmployeePayInfo from '../../components/PayManagement/EmployeePayInfo';
 import AttendanceTable from '../../components/Table/AttendanceTable/AttendanceTable';
 
 import './AttendanceManage.css';
@@ -13,7 +13,7 @@ const PayManagement = () => {
 			<div className="layout">
 				<Nav />
 				<div className="content">
-					<EmployeeInfo />
+					<EmployeePayInfo />
 					<AttendanceTable />
 				</div>
 			</div>
