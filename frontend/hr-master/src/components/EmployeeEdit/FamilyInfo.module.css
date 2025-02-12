@@ -65,3 +65,25 @@
 .infoForm button:hover {
 	background-color: #004a87;
 }
+
+.familyRow {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.deleteButton {
+	display: none;
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	margin-left: 10px;
+}
+
+.familyRow:hover .deleteButton {
+	display: inline-block;
+	position: absolute;
+	right: -1rem;
+	top: -2rem;
+}

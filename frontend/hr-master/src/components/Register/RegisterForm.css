@@ -38,6 +38,12 @@ form h3 {
 	justify-content: space-between;
 }
 
+.row img {
+	width: 4.5rem;
+	height: 4.5rem;
+	cursor: pointer;
+}
+
 .infoForm button {
 	width: 31rem;
 	margin-left: 35rem;
@@ -61,4 +67,16 @@ form h3 {
 
 .infoForm button:hover {
 	background-color: #004a87;
+}
+
+.externalCareer {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 2.5rem;
+}
+
+.externalCareer:last-child {
+	border-bottom: none;
 }
