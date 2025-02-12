@@ -1,0 +1,105 @@
+.attendance-container {
+    background: rgba(2, 41, 138, 0.70);
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 1030px;
+    margin: auto;
+}
+
+/* 필터 탭 스타일 */
+.filter-tabs {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.filter-tabs button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.filter-tabs .active {
+    color: #ff9800;
+    border-bottom: 2px solid #ff9800;
+}
+
+/* 테이블 스타일 */
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    color: white;
+    margin-top: 15px;
+}
+
+/* 테이블 헤더 스타일 */
+.attendance-table thead tr {
+    background: rgba(2, 27, 121, 0.20);
+}
+
+.attendance-table th {
+    padding: 12px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/* 테이블 셀 스타일 */
+.attendance-table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 직원 정보 스타일 */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 출근시간 아이콘 강조 */
+.attendance-table td:nth-child(2) {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* 근태 상태 컬러 스타일 */
+.attendance-table td:nth-child(6) {
+    font-weight: bold;
+}
+
+.attendance-table td:nth-child(6):contains("정상 출근") {
+    color: #4CAF50; /* 초록색 */
+}
+
+.attendance-table td:nth-child(6):contains("지각") {
+    color: #FFC107; /* 노란색 */
+}
+
+.attendance-table td:nth-child(6):contains("결근") {
+    color: #F44336; /* 빨간색 */
+}
+
+/* 첨부 파일 아이콘 */
+.attendance-table td:last-child {
+    font-size: 14px;
+}
+
+/* 테이블 행 hover 효과 */
+.attendance-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
