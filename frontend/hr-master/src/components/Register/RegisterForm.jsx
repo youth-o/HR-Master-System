@@ -89,6 +89,37 @@ export default function RegisterForm() {
 			}
 
 			alert('사원이 등록되었습니다.');
+			setFormData({
+				employeeId: '',
+				ssn: '',
+				gender: '',
+				phone: '',
+				empName: '',
+				empEngName: '',
+				hireDate: '',
+				nationality: '',
+				militaryService: '',
+				address: '',
+				detailAddress: '',
+				hireType: '',
+				workLocation: '',
+				department: '',
+				position: '',
+				companyWork: '',
+				evaluationFlag: '',
+				companyEmail: '',
+				companyPhone: '',
+				retireCls: '',
+			});
+
+			setExternalCareer({
+				companyName: '',
+				jobTitle: '',
+				position: '',
+				hireDate: '',
+				resignationDate: '',
+				annualSalary: '',
+			});
 		} catch (error) {
 			alert('사원 등록 중 오류가 발생했습니다.');
 		}
@@ -103,9 +134,13 @@ export default function RegisterForm() {
 			<form className="infoForm" onSubmit={handleSubmit}>
 				<h3>개인정보</h3>
 				<div className="row">
-					<Input id="employeeId" label="사번(ID)" onChange={handleInputChange} />
-					<Input id="ssn" label="주민번호" onChange={handleInputChange} />
-					<Dropdown label="성별" menuItems={genderOptions} onSelect={(val) => handleDropdownChange('gender', val)} />
+					<Input id="ssn" label="주민번호" onChange={handleInputChange} style={style} />
+					<Dropdown
+						label="성별"
+						menuItems={genderOptions}
+						onSelect={(val) => handleDropdownChange('gender', val)}
+						style={style}
+					/>
 				</div>
 				<div className="row">
 					<Dropdown
