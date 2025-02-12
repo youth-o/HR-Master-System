@@ -180,12 +180,15 @@ h2 {
     height: 14px;
 }
 
+/* 🔹 제목과 Sort 버튼을 같은 줄에서 좌우 정렬 */
 .header-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* 🔥 왼쪽 제목, 오른쪽 Sort 버튼 */
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    width: 100%;
 }
+
 
 /* 🔹 Sort 버튼 */
 .sort-button {
@@ -211,4 +214,26 @@ h2 {
 .sort-icon {
     width: 14px;
     height: 14px;
+}
+
+/* 🔹 채용 공고 그리드 */
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 🔥 한 줄에 3개 배치 */
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* 🔹 반응형 조정 */
+@media (max-width: 1024px) {
+    .job-grid {
+        grid-template-columns: repeat(2, 1fr); /* 📱 태블릿: 한 줄에 2개 */
+    }
+}
+
+@media (max-width: 768px) {
+    .job-grid {
+        grid-template-columns: repeat(1, 1fr); /* 📱 모바일: 한 줄에 1개 */
+    }
 }
