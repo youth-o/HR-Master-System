@@ -1,60 +1,77 @@
 .listContainer {
-	box-sizing: border-box;
-	width: 100wh;
-	height: 100%;
-	margin-left: 5.3rem;
-	margin-right: 5.3rem;
-	border-top-right-radius: 1.5528rem;
-	border-top-left-radius: 1.5528rem;
-	background: #4e69ad;
-	padding: 3rem 3rem 0 3rem;
+	background: rgba(2, 41, 138, 0.7);
+	padding: 20px;
+	border-radius: 15px;
+	width: 100%;
+	max-width: 1030px;
+	margin: auto;
 }
 
-.listContainer h3 {
-	margin: 0;
-	color: #fff;
-	font-family: Nunito;
-	font-size: 2rem;
-	font-style: normal;
-	font-weight: 700;
-	line-height: 2.4rem;
+/* 필터 탭 스타일 */
+.filterTabs {
+	display: flex;
+	gap: 20px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
+.filterTabs button {
+	background: transparent;
+	border: none;
+	color: white;
+	font-weight: 600;
+	font-size: 16px;
+	cursor: pointer;
+	padding: 10px 15px;
+	transition: 0.3s;
+}
+
+.filterTabs .active {
+	color: #ff9800;
+	border-bottom: 2px solid #ff9800;
+}
+
+/* 테이블 스타일 */
 .table {
 	width: 100%;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	border-bottom: 1px solid #000;
+	border-collapse: collapse;
+	text-align: left;
+	color: white;
+	margin-top: 15px;
 }
 
-.table p {
-	color: #fff;
-	font-family: Urbanist;
-	font-size: 1.5528rem;
-	font-style: normal;
-	font-weight: 500;
-	line-height: normal;
-	letter-spacing: 0.0776rem;
+/* 테이블 헤더 스타일 */
+.table thead tr {
+	background: rgba(2, 27, 121, 0.2);
 }
 
-.listBox {
-	width: 100%;
+.table th {
+	padding: 12px;
+	font-weight: bold;
+	text-align: left;
+}
+
+/* 테이블 셀 스타일 */
+.table td {
+	padding: 12px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 사원 정보 스타일 */
+.employee-info {
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
 	align-items: center;
+	gap: 10px;
+}
+
+/* 이메일 컬러 강조 */
+.table td:nth-child(4) {
+	font-weight: bold;
+	color: #ffcc00;
+}
+
+/* 테이블 행 hover 효과 및 클릭 가능 스타일 */
+.table tr:hover {
+	background-color: rgba(255, 255, 255, 0.1);
 	cursor: pointer;
-	border-bottom: 1px dotted #000;
-}
-
-.listBox p {
-	color: #fff;
-	font-family: Urbanist;
-	font-size: 1.5528rem;
-	font-style: normal;
-	font-weight: 500;
-	line-height: normal;
-	letter-spacing: 0.0776rem;
 }

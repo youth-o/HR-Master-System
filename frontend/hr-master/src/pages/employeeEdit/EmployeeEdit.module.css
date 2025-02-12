@@ -1,10 +1,9 @@
 .layout {
 	display: flex;
+	flex: 1;
 }
 
 .employeeEdit {
 	flex: 6.925;
 	min-width: 69.25%;
-	display: flex;
-	flex-direction: column;
 }

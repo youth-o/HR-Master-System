@@ -1,0 +1,29 @@
+.chat-list {
+  width: 300px;
+  background: #f8f9fa;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.chat-item {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+
+.chat-item:hover {
+  background: #e9ecef;
+}
+
+.chat-name {
+  font-weight: bold;
+}
+
+.chat-time {
+  font-size: 14px;
+  color: gray;
+}

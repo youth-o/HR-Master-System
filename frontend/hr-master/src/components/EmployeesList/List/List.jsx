@@ -1,47 +1,72 @@
 import { useNavigate } from 'react-router-dom';
-import { useEmployees } from '../../../apis/useEmployees';
+import { useGetEmployees } from '../../../apis/useEmployees';
 import styles from './List.module.css';
+import { useState } from 'react';
 
 export default function List({ searchTerm }) {
 	const navigate = useNavigate();
-	const { employees, loading, error } = useEmployees();
+	const { employees, loading, error } = useGetEmployees();
+	const [filterStatus, setFilterStatus] = useState('All');
 
 	const handleEmployeeClick = (employeeId) => {
 		navigate(`/employees/${employeeId}`);
 	};
 
 	const filteredEmployees = searchTerm
-		? employees.filter((employee) => employee.employeeId && employee.employeeId.toString().includes(searchTerm))
-		: employees;
+		? (employees || []).filter((employee) => employee?.employeeId?.toString().includes(searchTerm))
+		: employees || [];
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error fetching employees: {error.message}</p>;
 
 	return (
 		<div className={styles.listContainer}>
-			<h3>전체 사원 조회</h3>
-			<div className={styles.table}>
-				<p>사번</p>
-				<p>이름</p>
-				<p>부서</p>
-				<p>사내 메일</p>
+			{/* 필터 버튼 */}
+			<div className={styles.filterTabs}>
+				<button className={filterStatus === 'All' ? styles.active : ''} onClick={() => setFilterStatus('All')}>
+					All
+				</button>
+				<button
+					className={filterStatus === 'Accepted' ? styles.active : ''}
+					onClick={() => setFilterStatus('Accepted')}
+				>
+					Accepted
+				</button>
+				<button
+					className={filterStatus === 'Rejected' ? styles.active : ''}
+					onClick={() => setFilterStatus('Rejected')}
+				>
+					Rejected
+				</button>
 			</div>
-			{filteredEmployees.length > 0 ? (
-				filteredEmployees.map((employee) => (
-					<div
-						className={styles.listBox}
-						key={employee.employeeId}
-						onClick={() => handleEmployeeClick(employee.employeeId)}
-					>
-						<p>{employee.employeeId}</p>
-						<p>{employee.empName}</p>
-						<p>{employee.department}</p>
-						<p>{employee.companyEmail}</p>
-					</div>
-				))
-			) : (
-				<p>No employees found.</p>
-			)}
+
+			{/* 사원 조회 테이블 */}
+			<table className={styles.table}>
+				<thead>
+					<tr>
+						<th>사번</th>
+						<th>이름</th>
+						<th>부서</th>
+						<th>사내 메일</th>
+					</tr>
+				</thead>
+				<tbody>
+					{Array.isArray(filteredEmployees) && filteredEmployees.length > 0 ? (
+						filteredEmployees.map((employee) => (
+							<tr key={employee.employeeId} onClick={() => handleEmployeeClick(employee.employeeId)}>
+								<td>{employee.employeeId}</td>
+								<td>{employee.empName}</td>
+								<td>{employee.department}</td>
+								<td>{employee.companyEmail}</td>
+							</tr>
+						))
+					) : (
+						<tr>
+							<td colSpan="4">No employees found.</td>
+						</tr>
+					)}
+				</tbody>
+			</table>
 		</div>
 	);
 }

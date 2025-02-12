@@ -1,5 +1,6 @@
 package com.example.hr_master.employee.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -82,11 +83,17 @@ public class Employee {
 
     private LocalDate retireDate;
 
-//    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    // ✅ 한 명의 사원이 여러 개의 사내 경력을 가질 수 있음
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference  // 🔹 무한 루프 방지
+    private List<CompanyCareer> companyCareers = new ArrayList<>();
+
+
+    //    @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private HrAccount hrAccount;
 //
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CompanyCareer> companyCareers = new ArrayList<>();
+//    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<CompanyCareer> companyCareers = new ArrayList<>();
 //
 //    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<ExternalCareer> externalCareers;

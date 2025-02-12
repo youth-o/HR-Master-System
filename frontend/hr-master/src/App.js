@@ -1,9 +1,17 @@
 import { BrowserRouter, Routes, Navigate, Route } from 'react-router-dom';
 import './App.css';
 import Login from './pages/login/Login';
-import Main from './pages/main/Main';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Message from './pages/Message/Message';
+import Register from './pages/Register/Register';
 import EmployeesList from './pages/employeesList/EmployeesList';
 import EmployeeEdit from './pages/employeeEdit/EmployeeEdit';
+import PayManagement from './pages/PayManagement/PayManagement';
+import Jobposting from './pages/RecruitmentManagement/Jobposting';
+import Volunteer from './pages/RecruitmentManagement/Volunteer';
+import AnnualManage from './pages/AnnualManage/AnnualManage';
+import AttendanceManage from './pages/AttendanceManage/AttendanceManage';
+import PerformanceManage from './pages/PerformanceManage/PerformanceManage';
 
 // 로그인 여부 확인 함수
 const isAuthenticated = () => {
@@ -25,20 +33,19 @@ function App() {
 				{/* 로그인된 사용자만 접근 가능 */}
 				{/* 
         <Route path="/main" element={<PrivateRoute element={<Main />} />} /> */}
-				<Route path="/main" element={<Main />} />
+				<Route path="/main" element={<Dashboard />} />
+				<Route path="/message" element={<Message />} />
+				<Route path="/register" element={<Register />} />
 				<Route path="/employees" element={<EmployeesList />} />
 				<Route path="/employees/:employeeId" element={<EmployeeEdit />} />
-				{/* <Route path="/employee">
-					<Route index element={<PrivateRoute element={<Employee />} />} />
-					<Route path=":id">
-						<Route index element={<PrivateRoute element={<Attendance />} />} /> // 근태 관리
-            <Route index element={<PrivateRoute element={<Leave />} />} /> // 연차 관리
-            <Route index element={<PrivateRoute element={<Performance />} />} /> // 성과 관리
-					</Route>
-				</Route> */}
+				<Route path="/jobPosting" element={<Jobposting />} />
+				<Route path="/volunteer" element={<Volunteer />} />
+				<Route path="/pay" element={<PayManagement />} />
+				<Route path="/performance" element={<PerformanceManage />} />
+				<Route path="/leave" element={<AnnualManage />} />
+				<Route path="/attendance" element={<AttendanceManage />} />
 			</Routes>
 		</BrowserRouter>
 	);
 }
-
 export default App;

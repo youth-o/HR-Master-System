@@ -1,0 +1,91 @@
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* 메인 콘텐츠 */
+.content {
+    flex-grow: 1;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+}
+
+/* 지원자 관리 + Jan 2025 버튼 */
+.volunteer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    max-width: 1080px;
+    width: 100%;
+}
+
+/* 지원자 관리 타이틀 */
+.page-title {
+    font-size: 27px;
+    font-weight: 700;
+    color: #015EAA;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Jan 2025 버튼 */
+.date-button {
+    display: flex;
+    align-items: center;
+    background: #015EAA;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    gap: 5px;
+    cursor: pointer;
+}
+
+/* 화살표 아이콘 */
+.dropdown-icon {
+    width: 15px;
+    height: 15px;
+}
+
+/* 지원자 관리 + Jan 2025 버튼 */
+.volunteer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    max-width: 1080px;
+    width: 100%;
+    margin-bottom: 10px; /* 추가: 지원자 관리와 테이블 사이 간격 조정 */
+}
+
+.date-picker {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #015EAA;
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: white;
+}
+
+.month-select, .year-select {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+.month-select option, .year-select option {
+    color: black; /* 드롭다운에서 선택할 때 보이도록 */
+}
+
+.dropdown-icon {
+    width: 12px;
+    height: 12px;
+    margin-left: 4px;
+}

@@ -5,16 +5,17 @@ import profile from '../../../assets/Bg.svg';
 export default function CurrentInfo({ setSearchTerm, onSearch }) {
 	const style = {
 		width: '20rem',
-		backgroundColor: '#3981F7',
+		backgroundColor: '#fff',
 		padding: '1rem 1.6rem 1rem 4rem',
-		borderRadius: '10rem',
-		color: '#FFF',
+		borderRadius: '0.6rem',
 		fontFamily: 'Pretendard',
 		fontSize: '1.4rem',
 		fontStyle: 'normal',
 		fontWeight: 400,
 		lineHeight: '140%',
 		letterSpacing: '-0.014rem',
+		border: '1px solid #ddd',
+		outline: 'none',
 	};
 
 	const today = new Date();
@@ -31,7 +32,6 @@ export default function CurrentInfo({ setSearchTerm, onSearch }) {
 				<Search
 					placeholder="사원번호 검색"
 					style={style}
-					placeholderColor="#ffffff80"
 					containerStyle={{ width: '20rem' }}
 					onChange={handleSearchChange}
 					onSearch={onSearch}
