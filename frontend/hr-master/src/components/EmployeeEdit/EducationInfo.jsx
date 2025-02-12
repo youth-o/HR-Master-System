@@ -2,15 +2,18 @@ import { useState, useEffect } from 'react';
 import styles from './EducationInfo.module.css';
 import plus from '../../assets/btn_add.svg';
 import Input from '../common/Input/Input';
-import { useAddEducation, useGetEducations, useUpdateEducation } from '../../apis/useEducation';
+import { useAddEducation, useDeleteEducation, useGetEducations, useUpdateEducation } from '../../apis/useEducation';
 import { useParams } from 'react-router-dom';
+import x from '../../assets/btn_X.svg';
 
 export default function EducationInfo() {
 	const { employeeId } = useParams();
 	const { education, loading, error } = useGetEducations(employeeId);
 	const { addEducation } = useAddEducation();
 	const { updateEducation } = useUpdateEducation();
+	const { deleteEducation } = useDeleteEducation();
 	const [educationList, setEducationList] = useState([]);
+	const [deletedEducationIds, setDeletedEducationIds] = useState([]);
 
 	useEffect(() => {
 		if (education) {
@@ -39,6 +42,16 @@ export default function EducationInfo() {
 				notes: '',
 			},
 		]);
+	};
+
+	const handleRemoveEducation = (index) => {
+		const education = educationList[index];
+
+		if (education.educationId) {
+			setDeletedEducationIds((prev) => [...prev, education.educationId]);
+		}
+
+		setEducationList((prev) => prev.filter((_, i) => i !== index));
 	};
 
 	const handleSubmit = async (e) => {
@@ -76,9 +89,15 @@ export default function EducationInfo() {
 				});
 				education.educationId = addedEducation.educationId;
 			}
-			setEducationList([...updatedEducations, ...newEducations]);
 
-			alert(newEducations.length > 0 ? '새로운 교육이 추가되었습니다.' : '교육 이력이 수정되었습니다.');
+			for (const educationId of deletedEducationIds) {
+				await deleteEducation(employeeId, educationId);
+			}
+
+			setEducationList([...updatedEducations, ...newEducations]);
+			setDeletedEducationIds([]);
+
+			alert('교육 이력이 저장되었습니다.');
 		} catch (error) {
 			alert('교육 이력 저장 중 오류가 발생했습니다.');
 			console.error(error);
@@ -98,7 +117,7 @@ export default function EducationInfo() {
 			<form className={styles.infoForm} onSubmit={handleSubmit}>
 				{educationList.map((education, index) => (
 					<div className={styles.rowContainer} key={education.educationId}>
-						<div className={styles.row}>
+						<div className={`${styles.row} ${styles.educationRow}`}>
 							<Input
 								id={`educationType-${education.id}`}
 								label="교육 구분"
@@ -118,6 +137,12 @@ export default function EducationInfo() {
 								label="교육 종료일"
 								value={education.endDate}
 								onChange={(e) => handleEducationChange(index, 'endDate', e.target.value)}
+							/>
+							<img
+								src={x}
+								alt="삭제 버튼"
+								className={styles.deleteButton}
+								onClick={() => handleRemoveEducation(index)}
 							/>
 						</div>
 						<div className={styles.row}>
