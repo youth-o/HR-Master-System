@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../../components/common/Header/Header';
 import Nav from '../../components/common/Nav/Nav';
-import ApplicantsTable from '../../components/ApplicantsTable/ApplicantsTable';
+import ApplicantsTable from '../../components/Table/ApplicantsTable/ApplicantsTable';
 import './Volunteer.css';
 
 const Volunteer = () => {

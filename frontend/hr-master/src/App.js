@@ -8,7 +8,8 @@ import PayManagement from './pages/PayManagement/PayManagement'
 import Jobposting from './pages/RecruitmentManagement/Jobposting'
 import Volunteer from './pages/RecruitmentManagement/Volunteer'
 import AnnualManage from './pages/AnnualManage/AnnualManage'
-
+import AttendanceManage from './pages/AttendanceManage/AttendanceManage'
+import PerformanceManage from './pages/PerformanceManage/PerformanceManage';
 
 // 로그인 여부 확인 함수
 const isAuthenticated = () => {
@@ -25,7 +26,7 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				{/* 첫 화면을 로그인 페이지로 설정 */}
-				<Route path="/" element={<Volunteer />} />
+				<Route path="/" element={<PerformanceManage />} />
 
 				{/* 로그인된 사용자만 접근 가능 */}
 				{/* 

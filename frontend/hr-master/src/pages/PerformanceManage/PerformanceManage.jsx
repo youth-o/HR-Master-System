@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../../components/common/Header/Header';
 import Nav from '../../components/common/Nav/Nav';
 import EmployeeInfo from '../../components/\bPayManagement/EmployeePayInfo';
+import PerformanceTable from '../../components/Table/PerformanceTable/PerformanceTable'
 
 import './PerformanceManage.css';
 
@@ -13,7 +14,7 @@ const PayManagement = () => {
                 <Nav />
                 <div className="content">
                     <EmployeeInfo />
-
+                    <PerformanceTable />
                 </div>
             </div>
         </>

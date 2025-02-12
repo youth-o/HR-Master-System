@@ -20,48 +20,13 @@
 	overflow-y: auto;
 }
 
-/* 🔹 제목과 Sort 버튼을 같은 줄에 배치 */
-.header-row {
-    display: flex;
-    justify-content: space-between; /* 제목은 왼쪽, Sort 버튼은 오른쪽 */
-    align-items: center;
-    margin-bottom: 15px;
-    width: 100%;  /* 부모 크기를 초과하지 않도록 함 */
-}
-
-
 /* 🔹 페이지 제목 */
 h2 {
 	font-size: 27.174px;
 	color: #015eaa;
 	font-family: Pretendard;
 	font-weight: 700;
-}
-
-/* 🔹 Sort 버튼 */
-.sort-button {
-    background: #015EAA;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 31px;
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-}
-
-.sort-button:hover {
-    background: #014b88;
-}
-
-/* 🔹 Sort 아이콘 (화살표) */
-.sort-icon {
-    width: 14px;
-    height: 14px;
+	margin-bottom: 20px;
 }
 
 /* 🔹 채용 공고 그리드 */
@@ -73,7 +38,7 @@ h2 {
 
 /* 🔹 채용 카드 */
 .job-card {
-	position: relative;
+	position: relative; /* 🔥 화살표 아이콘 배치를 위해 relative 사용 */
 	background: rgba(2, 41, 138, 0.7);
 	color: white;
 	padding: 20px;
@@ -179,4 +144,96 @@ h2 {
 .arrow-icon {
 	width: 19.41px;
 	height: 19.41px;
+}
+
+/* 🔹 Sort 버튼 컨테이너 */
+.sort-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+}
+
+/* 🔹 Sort 버튼 */
+.sort-button {
+    background: #015EAA;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 31px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+/* 🔹 Sort 버튼 hover 효과 */
+.sort-button:hover {
+    background: #014b88;
+}
+
+/* 🔹 Sort 아이콘 (화살표) */
+.sort-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* 🔹 제목과 Sort 버튼을 같은 줄에서 좌우 정렬 */
+.header-row {
+    display: flex;
+    justify-content: space-between; /* 🔥 왼쪽 제목, 오른쪽 Sort 버튼 */
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+
+/* 🔹 Sort 버튼 */
+.sort-button {
+    background: #015EAA;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 31px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.sort-button:hover {
+    background: #014b88;
+}
+
+/* 🔹 Sort 아이콘 (화살표) */
+.sort-icon {
+    width: 14px;
+    height: 14px;
+}
+
+/* 🔹 채용 공고 그리드 */
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 🔥 한 줄에 3개 배치 */
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}
+
+/* 🔹 반응형 조정 */
+@media (max-width: 1024px) {
+    .job-grid {
+        grid-template-columns: repeat(2, 1fr); /* 📱 태블릿: 한 줄에 2개 */
+    }
+}
+
+@media (max-width: 768px) {
+    .job-grid {
+        grid-template-columns: repeat(1, 1fr); /* 📱 모바일: 한 줄에 1개 */
+    }
 }
