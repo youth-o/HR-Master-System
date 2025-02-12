@@ -63,7 +63,10 @@ export function useUpdateQualification() {
 		setLoading(true);
 		setError(null);
 		try {
-			const response = await axios.put(`/employees/${employeeId}/qualifications/${qualificationId}`, updatedData);
+			const response = await axios.put(
+				`/employees/${employeeId}/qualifications/${qualificationId}/update`,
+				updatedData
+			);
 			return response.data;
 		} catch (err) {
 			setError(err);

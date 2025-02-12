@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Input from '../common/Input/Input';
 import styles from './CareerInfo.module.css';
 import plus from '../../assets/btn_add.svg';
-import { useGetCompanyCareers } from '../../apis/useCareer';
+import { useGetCompanyCareers, useGetExternalCareers } from '../../apis/useCareer';
 import { useParams } from 'react-router-dom';
 import Dropdown from '../common/Dropdown/Dropdown';
 import { changeTypeOpntions, departmentOptions, positionOptions, workLocationOptions } from '../../constants/options';
@@ -10,6 +10,7 @@ import { changeTypeOpntions, departmentOptions, positionOptions, workLocationOpt
 export default function CareerInfo() {
 	const { employeeId } = useParams();
 	const { companyCareer, loading, error } = useGetCompanyCareers(employeeId);
+	const { externalCareer } = useGetExternalCareers(employeeId);
 	const [careerList, setCareerList] = useState([]);
 
 	useEffect(() => {
@@ -123,16 +124,39 @@ export default function CareerInfo() {
 				<button type="submit">Save</button>
 			</form>
 			<h3>사외 경력</h3>
-			<div className={styles.row}>
-				<Input id="companyName" label="회사명" readOnly={true} />
-				<Input id="jobTitle" label="직무" readOnly={true} />
-				<Input id="position" label="직급" readOnly={true} />
-			</div>
-			<div className={styles.row}>
-				<Input id="hireDate" label="입사일" readOnly={true} />
-				<Input id="resignationDate" label="퇴사일" readOnly={true} />
-				<Input id="annualSalary" label="연봉" readOnly={true} />
-			</div>
+			{externalCareer?.length > 0 ? (
+				externalCareer.map((career, index) => (
+					<div key={career.externalCareerId || index} className={styles.externalCareerContainer}>
+						<div className={styles.row}>
+							<Input
+								id={`companyName-${index}`}
+								label="회사명"
+								placeholder={career.companyName || ''}
+								readOnly={true}
+							/>
+							<Input id={`jobTitle-${index}`} label="직무" placeholder={career.jobTitle || ''} readOnly={true} />
+							<Input id={`position-${index}`} label="직급" placeholder={career.position || ''} readOnly={true} />
+						</div>
+						<div className={styles.row}>
+							<Input id={`hireDate-${index}`} label="입사일" placeholder={career.hireDate || ''} readOnly={true} />
+							<Input
+								id={`resignationDate-${index}`}
+								label="퇴사일"
+								placeholder={career.resignationDate || ''}
+								readOnly={true}
+							/>
+							<Input
+								id={`annualSalary-${index}`}
+								label="연봉"
+								placeholder={career.annualSalary || ''}
+								readOnly={true}
+							/>
+						</div>
+					</div>
+				))
+			) : (
+				<p>사외 경력 정보가 없습니다.</p>
+			)}
 		</div>
 	);
 }

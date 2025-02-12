@@ -27,6 +27,32 @@ export function useGetCompanyCareers(employeeId) {
 	return { companyCareer, loading, error };
 }
 
+// 사외 경력 조회 API
+export function useGetExternalCareers(employeeId) {
+	const [externalCareer, setExternalCareers] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+
+	useEffect(() => {
+		if (!employeeId) return;
+
+		const fetchExternalCareers = async () => {
+			try {
+				const response = await axios.get(`/employees/${employeeId}/external_career`);
+				setExternalCareers(response.data);
+			} catch (err) {
+				setError(err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchExternalCareers();
+	}, [employeeId]);
+
+	return { externalCareer, loading, error };
+}
+
 // 개별 사원의 사외 경력 추가 API
 export function useAddExternalCareers() {
 	const [loading, setLoading] = useState(false);

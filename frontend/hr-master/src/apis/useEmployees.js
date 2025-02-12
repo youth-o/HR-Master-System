@@ -61,11 +61,7 @@ export function useRegisterEmployee() {
 		setError(null);
 
 		try {
-			const response = await axios.post('/employees', employeeData, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
+			const response = await axios.post('/employees/add', employeeData);
 			return response.data;
 		} catch (err) {
 			setError(err);

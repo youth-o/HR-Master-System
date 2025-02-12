@@ -71,3 +71,15 @@
 .infoForm button:hover {
 	background-color: #004a87;
 }
+.externalCareerContainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding-bottom: 2.5rem;
+	border-bottom: 1px solid #ccc;
+}
+
+.externalCareerContainer:last-child {
+	border-bottom: none;
+}
