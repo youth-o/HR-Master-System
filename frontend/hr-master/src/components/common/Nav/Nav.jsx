@@ -33,12 +33,12 @@ export default function Nav() {
 			setActiveCategory('leave');
 		} else if (location.pathname.startsWith('/performance')) {
 			setActiveCategory('performance');
-		} else if (location.pathname.startsWith('/sound')) {
-			setActiveCategory('sound');
-		} else if (location.pathname.startsWith('/list')) {
-			setActiveCategory('list');
-		} else if (location.pathname.startsWith('/money')) {
-			setActiveCategory('money');
+		} else if (location.pathname.startsWith('/jobPosting')) {
+			setActiveCategory('jobPosting');
+		} else if (location.pathname.startsWith('/volunteer')) {
+			setActiveCategory('volunteer');
+		} else if (location.pathname.startsWith('/pay')) {
+			setActiveCategory('pay');
 		} else {
 			setActiveCategory('dashboard');
 		}
@@ -121,15 +121,15 @@ export default function Nav() {
 			<p>채용 관리</p>
 			<div className={styles.mainBox}>
 				<div
-					className={`${styles.category} ${activeCategory === 'sound' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('sound')}
+					className={`${styles.category} ${activeCategory === 'jobPosting' ? styles.active : ''}`}
+					onClick={() => handleCategoryClick('jobPosting', '/jobPosting')}
 				>
 					<img src={sound} alt="채용공고 아이콘" />
 					<p>채용 공고</p>
 				</div>
 				<div
-					className={`${styles.category} ${activeCategory === 'list' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('list')}
+					className={`${styles.category} ${activeCategory === 'volunteer' ? styles.active : ''}`}
+					onClick={() => handleCategoryClick('volunteer', '/volunteer')}
 				>
 					<img src={list} alt="채용관리 아이콘" />
 					<p>지원자 관리</p>
@@ -138,8 +138,8 @@ export default function Nav() {
 
 			<p>급여 관리</p>
 			<div
-				className={`${styles.category} ${activeCategory === 'money' ? styles.active : ''}`}
-				onClick={() => handleCategoryClick('money')}
+				className={`${styles.category} ${activeCategory === 'pay' ? styles.active : ''}`}
+				onClick={() => handleCategoryClick('pay', '/pay')}
 			>
 				<img src={money} alt="급여 아이콘" />
 				<p>급여 조회</p>
