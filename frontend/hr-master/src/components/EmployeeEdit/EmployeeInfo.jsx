@@ -43,7 +43,7 @@ export default function EmployeeInfo() {
 
 	const handleChange = (e) => {
 		const { id, value } = e.target;
-		if (id === 'ssn' || id === 'hireDate') return;
+		if (id === 'ssn' || id === 'hireDate') return; // 읽기 전용 필드 제외
 		setFormData((prevData) => ({
 			...prevData,
 			[id]: value,
@@ -96,27 +96,28 @@ export default function EmployeeInfo() {
 						id="employeeId"
 						label="사번(ID)"
 						searchTrue
-						placeholder={employee.employeeId}
+						value={inputEmployeeId}
+						placeholder="사번 입력"
 						onChange={handleInputChange}
 						onSearch={handleSearch}
 					/>
-					<Input id="ssn" label="주민번호" readOnly placeholder={employee.ssn} />
-					<Input id="phone" label="연락처" placeholder={employee.phone} onChange={handleChange} />
+					<Input id="ssn" label="주민번호" readOnly value={formData.ssn} />
+					<Input id="phone" label="연락처" value={formData.phone} onChange={handleChange} />
 				</div>
 				<div className={styles.row}>
-					<Input id="empName" label="이름" placeholder={employee.empName} onChange={handleChange} />
-					<Input id="empEngName" label="영문 이름" placeholder={employee.empEngName} onChange={handleChange} />
-					<Input id="hireDate" label="입사일" readOnly placeholder={employee.hireDate} />
+					<Input id="empName" label="이름" value={formData.empName} onChange={handleChange} />
+					<Input id="empEngName" label="영문 이름" value={formData.empEngName} onChange={handleChange} />
+					<Input id="hireDate" label="입사일" readOnly value={formData.hireDate} />
 				</div>
 				<div className={styles.row}>
-					<Input id="nationality" label="국적" placeholder={employee.nationality} onChange={handleChange} />
+					<Input id="nationality" label="국적" value={formData.nationality} onChange={handleChange} />
 					<Dropdown
 						label="군필 여부"
 						menuItems={militaryOptions}
-						defaultValue={employee.militaryService}
+						defaultValue={formData.militaryService}
 						onSelect={(val) => handleDropdownChange('militaryService', val)}
 					/>
-					<Input id="address" label="주소" placeholder={employee.address} onChange={handleChange} />
+					<Input id="address" label="주소" value={formData.address} onChange={handleChange} />
 				</div>
 				<button type="submit">Save</button>
 			</form>

@@ -12,18 +12,19 @@ export default function EducationInfo() {
 	const { addEducation } = useAddEducation();
 	const { updateEducation } = useUpdateEducation();
 	const { deleteEducation } = useDeleteEducation();
+
 	const [educationList, setEducationList] = useState([]);
 	const [deletedEducationIds, setDeletedEducationIds] = useState([]);
 
 	useEffect(() => {
-		if (education) {
-			setEducationList(education);
-		}
+		setEducationList(education ? education.map((edu) => ({ ...edu })) : []);
 	}, [education]);
 
 	const handleEducationChange = (index, field, value) => {
 		setEducationList((prevList) =>
-			prevList.map((education, i) => (i === index ? { ...education, [field]: value } : education))
+			prevList.map(
+				(edu, i) => (i === index ? { ...edu, [field]: value || '' } : edu) // undefined 방지
+			)
 		);
 	};
 
@@ -31,15 +32,12 @@ export default function EducationInfo() {
 		setEducationList([
 			...educationList,
 			{
-				id: Date.now(),
-				changeDate: '',
-				changeType: '',
-				workLocation: '',
-				department: '',
-				position: '',
+				educationId: null,
+				educationType: '',
 				startDate: '',
 				endDate: '',
-				notes: '',
+				courseName: '',
+				organizer: '',
 			},
 		]);
 	};
@@ -57,44 +55,37 @@ export default function EducationInfo() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		let newEducations = [];
-		let updatedEducations = [];
-
-		for (const education of educationList) {
-			if (education.educationId) {
-				updatedEducations.push(education);
-			} else {
-				newEducations.push(education);
-			}
-		}
+		const newEducations = educationList.filter((edu) => edu.educationId === null);
+		const updatedEducations = educationList.filter((edu) => edu.educationId !== null);
 
 		try {
 			for (const education of updatedEducations) {
 				await updateEducation(employeeId, education.educationId, {
-					educationType: education.educationType || null,
-					startDate: education.startDate || null,
-					endDate: education.endDate || null,
-					courseName: education.courseName || null,
-					organizer: education.organizer || null,
+					educationType: education.educationType || '',
+					startDate: education.startDate || '',
+					endDate: education.endDate || '',
+					courseName: education.courseName || '',
+					organizer: education.organizer || '',
 				});
 			}
 
+			let addedEducations = [];
 			for (const education of newEducations) {
 				const addedEducation = await addEducation(employeeId, {
-					educationType: education.educationType || null,
-					startDate: education.startDate || null,
-					endDate: education.endDate || null,
-					courseName: education.courseName || null,
-					organizer: education.organizer || null,
+					educationType: education.educationType || '',
+					startDate: education.startDate || '',
+					endDate: education.endDate || '',
+					courseName: education.courseName || '',
+					organizer: education.organizer || '',
 				});
-				education.educationId = addedEducation.educationId;
+				addedEducations.push({ ...education, educationId: addedEducation.educationId });
 			}
 
 			for (const educationId of deletedEducationIds) {
 				await deleteEducation(employeeId, educationId);
 			}
 
-			setEducationList([...updatedEducations, ...newEducations]);
+			setEducationList([...updatedEducations, ...addedEducations]);
 			setDeletedEducationIds([]);
 
 			alert('교육 이력이 저장되었습니다.');
@@ -116,26 +107,26 @@ export default function EducationInfo() {
 			<h3>교육 이력</h3>
 			<form className={styles.infoForm} onSubmit={handleSubmit}>
 				{educationList.map((education, index) => (
-					<div className={styles.rowContainer} key={education.educationId}>
+					<div className={styles.rowContainer} key={education.educationId || index}>
 						<div className={`${styles.row} ${styles.educationRow}`}>
 							<Input
-								id={`educationType-${education.id}`}
+								id={`educationType-${index}`}
 								label="교육 구분"
-								placeholder={education.educationType}
+								value={education.educationType || ''}
 								onChange={(e) => handleEducationChange(index, 'educationType', e.target.value)}
 							/>
 							<Input
-								id={`startDate-${education.id}`}
+								id={`startDate-${index}`}
 								type="date"
 								label="교육 시작일"
-								value={education.startDate}
+								value={education.startDate || ''}
 								onChange={(e) => handleEducationChange(index, 'startDate', e.target.value)}
 							/>
 							<Input
-								id={`endDate-${education.id}`}
+								id={`endDate-${index}`}
 								type="date"
 								label="교육 종료일"
-								value={education.endDate}
+								value={education.endDate || ''}
 								onChange={(e) => handleEducationChange(index, 'endDate', e.target.value)}
 							/>
 							<img
@@ -147,16 +138,16 @@ export default function EducationInfo() {
 						</div>
 						<div className={styles.row}>
 							<Input
-								id={`courseName-${education.id}`}
+								id={`courseName-${index}`}
 								label="교육명"
-								placeholder={education.courseName}
+								value={education.courseName || ''}
 								style={style}
 								onChange={(e) => handleEducationChange(index, 'courseName', e.target.value)}
 							/>
 							<Input
-								id={`organizer-${education.id}`}
+								id={`organizer-${index}`}
 								label="주관처"
-								placeholder={education.organizer}
+								value={education.organizer || ''}
 								style={style}
 								onChange={(e) => handleEducationChange(index, 'organizer', e.target.value)}
 							/>

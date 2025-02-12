@@ -16,7 +16,7 @@ export function useGetQualifications(employeeId) {
 				setQualification(response.data);
 			} catch (err) {
 				if (err.response && err.response.status === 404) {
-					setQualification([]); // 🔹 데이터 없을 경우 빈 배열 반환
+					setQualification([]);
 				} else {
 					setError(err);
 				}

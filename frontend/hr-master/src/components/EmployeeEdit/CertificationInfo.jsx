@@ -17,18 +17,19 @@ export default function CertificationInfo() {
 	const { addQualification } = useAddQualification();
 	const { updateQualification } = useUpdateQualification();
 	const { deleteQualification } = useDeleteQualification();
+
 	const [certificationList, setCertificationList] = useState([]);
 	const [deletedQualificationIds, setDeletedQualificationIds] = useState([]);
 
 	useEffect(() => {
-		if (qualification) {
-			setCertificationList(qualification);
-		}
+		setCertificationList(qualification ? qualification.map((cert) => ({ ...cert })) : []);
 	}, [qualification]);
 
 	const handleCertificationChange = (index, field, value) => {
 		setCertificationList((prevList) =>
-			prevList.map((certification, i) => (i === index ? { ...certification, [field]: value } : certification))
+			prevList.map(
+				(cert, i) => (i === index ? { ...cert, [field]: value || '' } : cert) // undefined 방지
+			)
 		);
 	};
 
@@ -66,22 +67,21 @@ export default function CertificationInfo() {
 		try {
 			for (const certification of updatedCertifications) {
 				await updateQualification(employeeId, certification.qualificationId, {
-					licenseName: certification.licenseName || null,
-					acquisitionDate: certification.acquisitionDate || null,
-					score: certification.score || null,
-					issuingAgency: certification.issuingAgency || null,
+					licenseName: certification.licenseName || '',
+					acquisitionDate: certification.acquisitionDate || '',
+					score: certification.score || '',
+					issuingAgency: certification.issuingAgency || '',
 				});
 			}
 
 			let addedQualifications = [];
 			for (const certification of newCertifications) {
 				const addedCertification = await addQualification(employeeId, {
-					licenseName: certification.licenseName || null,
-					acquisitionDate: certification.acquisitionDate || null,
-					score: certification.score || null,
-					issuingAgency: certification.issuingAgency || null,
+					licenseName: certification.licenseName || '',
+					acquisitionDate: certification.acquisitionDate || '',
+					score: certification.score || '',
+					issuingAgency: certification.issuingAgency || '',
 				});
-
 				addedQualifications.push({ ...certification, qualificationId: addedCertification.qualificationId });
 			}
 
@@ -99,9 +99,7 @@ export default function CertificationInfo() {
 		}
 	};
 
-	const style = {
-		width: '23rem',
-	};
+	const style = { width: '23rem' };
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error fetching certification info: {error.message}</p>;
@@ -115,7 +113,7 @@ export default function CertificationInfo() {
 						<Input
 							id={`licenseName-${index}`}
 							label="자격 면허명"
-							placeholder={certification.licenseName}
+							value={certification.licenseName || ''}
 							style={style}
 							onChange={(e) => handleCertificationChange(index, 'licenseName', e.target.value)}
 						/>
@@ -130,14 +128,14 @@ export default function CertificationInfo() {
 						<Input
 							id={`score-${index}`}
 							label="성적"
-							placeholder={certification.score}
+							value={certification.score || ''}
 							style={style}
 							onChange={(e) => handleCertificationChange(index, 'score', e.target.value)}
 						/>
 						<Input
 							id={`issuingAgency-${index}`}
 							label="주관처"
-							placeholder={certification.issuingAgency}
+							value={certification.issuingAgency || ''}
 							style={style}
 							onChange={(e) => handleCertificationChange(index, 'issuingAgency', e.target.value)}
 						/>

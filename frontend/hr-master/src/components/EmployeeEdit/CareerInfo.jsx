@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react';
 import Input from '../common/Input/Input';
 import styles from './CareerInfo.module.css';
 import plus from '../../assets/btn_add.svg';
-import { useGetCompanyCareers, useGetExternalCareers } from '../../apis/useCareer';
+import x from '../../assets/btn_X.svg';
+import { useDeleteCompanyCareer, useGetCompanyCareers, useGetExternalCareers } from '../../apis/useCareer';
 import { useParams } from 'react-router-dom';
 import Dropdown from '../common/Dropdown/Dropdown';
-import { changeTypeOpntions, departmentOptions, positionOptions, workLocationOptions } from '../../constants/options';
+import { changeTypeOptions, departmentOptions, positionOptions, workLocationOptions } from '../../constants/options';
 
 export default function CareerInfo() {
 	const { employeeId } = useParams();
 	const { companyCareer, loading, error } = useGetCompanyCareers(employeeId);
 	const { externalCareer } = useGetExternalCareers(employeeId);
 	const [careerList, setCareerList] = useState([]);
+	const [deletedCareerIds, setDeletedCareerIds] = useState([]);
 
 	useEffect(() => {
 		if (companyCareer) {
@@ -34,7 +36,7 @@ export default function CareerInfo() {
 				id: Date.now(),
 				changeDate: '',
 				changeType: '',
-				workLocation: '',
+				division: '',
 				department: '',
 				position: '',
 				startDate: '',
@@ -42,6 +44,14 @@ export default function CareerInfo() {
 				notes: '',
 			},
 		]);
+	};
+
+	const handleDeleteCareer = (index, careerId) => {
+		if (careerId) {
+			setDeletedCareerIds((prevIds) => [...prevIds, careerId]);
+			console.log(`Added to delete list: ${careerId}`);
+		}
+		setCareerList((prevList) => prevList.filter((_, i) => i !== index));
 	};
 
 	const style = {
@@ -56,10 +66,10 @@ export default function CareerInfo() {
 			<h3>사내 경력</h3>
 			<form className={styles.infoForm}>
 				{careerList.map((career, index) => (
-					<div className={styles.rowContainer} key={career.historyId}>
-						<div className={styles.row}>
+					<div className={styles.rowContainer} key={career.companyCareerId || index}>
+						<div className={`${styles.row} ${styles.careerRow}`}>
 							<Input
-								id={`changeDate-${career.id}`}
+								id={`changeDate-${index}`}
 								type="date"
 								label="변경일"
 								value={career.changeDate ? career.changeDate.split('T')[0] : ''}
@@ -68,10 +78,16 @@ export default function CareerInfo() {
 							/>
 							<Dropdown
 								label="변경 구분"
-								menuItems={changeTypeOpntions}
+								menuItems={changeTypeOptions}
 								defaultValue={career.changeType}
-								onSelect={(val) => handleDropdownChange('workLocation', val)}
+								onSelect={(val) => handleDropdownChange(index, 'changeType', val)}
 								style={style}
+							/>
+							<img
+								src={x}
+								alt="삭제 버튼"
+								className={styles.deleteButton}
+								onClick={() => handleDeleteCareer(index, career.id)}
 							/>
 						</div>
 						<div className={styles.row}>
@@ -79,40 +95,40 @@ export default function CareerInfo() {
 								label="근무지"
 								menuItems={workLocationOptions}
 								defaultValue={career.division}
-								onSelect={(val) => handleDropdownChange('division', val)}
+								onSelect={(val) => handleDropdownChange(index, 'division', val)}
 							/>
 							<Dropdown
 								label="부서"
 								menuItems={departmentOptions}
 								defaultValue={career.department}
-								onSelect={(val) => handleDropdownChange('department', val)}
+								onSelect={(val) => handleDropdownChange(index, 'department', val)}
 							/>
 							<Dropdown
 								label="직급"
 								menuItems={positionOptions}
 								defaultValue={career.position}
-								onSelect={(val) => handleDropdownChange('position', val)}
+								onSelect={(val) => handleDropdownChange(index, 'position', val)}
 							/>
 						</div>
 						<div className={styles.row}>
 							<Input
-								id={`startDate-${career.id}`}
+								id={`startDate-${index}`}
 								type="date"
 								label="근무 시작일"
-								value={career.startDate}
+								value={career.startDate ? career.startDate.split('T')[0] : ''}
 								onChange={(e) => handleCareerChange(index, 'startDate', e.target.value)}
 							/>
 							<Input
-								id={`endDate-${career.id}`}
+								id={`endDate-${index}`}
 								type="date"
 								label="근무 종료일"
-								value={career.endDate}
+								value={career.endDate ? career.endDate.split('T')[0] : ''}
 								onChange={(e) => handleCareerChange(index, 'endDate', e.target.value)}
 							/>
 							<Input
-								id={`notes-${career.id}`}
+								id={`notes-${index}`}
 								label="비고"
-								placeholder={career.notes}
+								value={career.notes}
 								onChange={(e) => handleCareerChange(index, 'notes', e.target.value)}
 							/>
 						</div>

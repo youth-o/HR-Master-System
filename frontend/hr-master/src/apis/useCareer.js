@@ -27,6 +27,67 @@ export function useGetCompanyCareers(employeeId) {
 	return { companyCareer, loading, error };
 }
 
+// 사내 경력 추가 API
+export function useAddCompanyCareer() {
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+
+	const addCompanyCareer = async (employeeId, companyCareerData) => {
+		setLoading(true);
+		setError(null);
+
+		try {
+			const response = await axios.post(`/employees/${employeeId}/company_career/add`, companyCareerData);
+			return response.data;
+		} catch (err) {
+			setError(err);
+			console.log('Error adding company career:', err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	return { addCompanyCareer, loading, error };
+}
+
+// 사내 경력 수정 API
+export function useUpdateCompanyCareer() {
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
+
+	const updateCompanyCareer = async (employeeId, companyCareerId, updatedData) => {
+		setLoading(true);
+		setError(null);
+		try {
+			const response = await axios.put(
+				`/employees/${employeeId}/company_career/${companyCareerId}/update`,
+				updatedData
+			);
+			return response.data;
+		} catch (err) {
+			setError(err);
+			console.error('Error updating company career:', err);
+		} finally {
+			setLoading(false);
+		}
+	};
+
+	return { updateCompanyCareer, loading, error };
+}
+
+// 사내 경력 삭제 API
+export function useDeleteCompanyCareer() {
+	const deleteComapnyCareer = async (employeeId, companyCareerId) => {
+		try {
+			await axios.delete(`/employees/${employeeId}/comapny_career/${companyCareerId}/delete`);
+		} catch (err) {
+			console.error('Error deleting comapny career:', err);
+		}
+	};
+
+	return { deleteComapnyCareer };
+}
+
 // 사외 경력 조회 API
 export function useGetExternalCareers(employeeId) {
 	const [externalCareer, setExternalCareers] = useState(null);

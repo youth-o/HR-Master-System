@@ -21,13 +21,15 @@ export default function FamilyInfo() {
 	const [deletedFamilyIds, setDeletedFamilyIds] = useState([]);
 
 	useEffect(() => {
-		if (familyInfo && familyInfo.length > 0) {
-			setFamilyMembers(familyInfo);
-		}
+		setFamilyMembers(familyInfo ? familyInfo.map((member) => ({ ...member })) : []);
 	}, [familyInfo]);
 
 	const handleChange = (index, field, value) => {
-		setFamilyMembers((prev) => prev.map((member, i) => (i === index ? { ...member, [field]: value } : member)));
+		setFamilyMembers((prevList) =>
+			prevList.map(
+				(member, i) => (i === index ? { ...member, [field]: value || '' } : member) // undefined 방지
+			)
+		);
 	};
 
 	const handleAddFamilyMember = () => {
@@ -56,25 +58,25 @@ export default function FamilyInfo() {
 		for (const member of familyMembers) {
 			if (member.familyId) {
 				await updateFamilyInfo(employeeId, member.familyId, {
-					familyName: member.familyName,
-					birthDate: member.birthDate,
-					contact: member.contact,
-					relationship: member.relationship,
+					familyName: member.familyName || '',
+					birthDate: member.birthDate || '',
+					contact: member.contact || '',
+					relationship: member.relationship || '',
 				});
 				updatedFamily = true;
 			} else {
 				await postFamilyInfo(employeeId, {
-					familyName: member.familyName,
-					birthDate: member.birthDate,
-					contact: member.contact,
-					relationship: member.relationship,
+					familyName: member.familyName || '',
+					birthDate: member.birthDate || '',
+					contact: member.contact || '',
+					relationship: member.relationship || '',
 				});
 				newFamilyAdded = true;
 			}
 		}
 
 		for (const familyId of deletedFamilyIds) {
-			await deleteFamilyInfo(employeeId, familyId); // 삭제 요청
+			await deleteFamilyInfo(employeeId, familyId);
 			deletedFamily = true;
 		}
 
@@ -101,7 +103,7 @@ export default function FamilyInfo() {
 						<Input
 							id={`familyName-${index}`}
 							label="이름"
-							placeholder={member.familyName}
+							value={member.familyName || ''}
 							style={style}
 							onChange={(e) => handleChange(index, 'familyName', e.target.value)}
 						/>
@@ -109,21 +111,21 @@ export default function FamilyInfo() {
 							id={`birthDate-${index}`}
 							type="date"
 							label="생년월일"
-							value={member.birthDate}
+							value={member.birthDate || ''}
 							style={style}
 							onChange={(e) => handleChange(index, 'birthDate', e.target.value)}
 						/>
 						<Input
 							id={`contact-${index}`}
 							label="연락처"
-							placeholder={member.contact}
+							value={member.contact || ''}
 							style={style}
 							onChange={(e) => handleChange(index, 'contact', e.target.value)}
 						/>
 						<Input
 							id={`relationship-${index}`}
 							label="관계"
-							placeholder={member.relationship}
+							value={member.relationship || ''}
 							style={style}
 							onChange={(e) => handleChange(index, 'relationship', e.target.value)}
 						/>
