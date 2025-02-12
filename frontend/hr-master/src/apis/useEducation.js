@@ -77,7 +77,7 @@ export function useDeleteEducation() {
 		try {
 			await axios.delete(`/employees/${employeeId}/education/${educationId}/delete`);
 		} catch (err) {
-			console.error('Error deleting family member:', err);
+			console.error('Error deleting education:', err);
 		}
 	};
 

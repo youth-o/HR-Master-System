@@ -78,3 +78,16 @@ export function useUpdateQualification() {
 
 	return { updateQualification, loading, error };
 }
+
+// 자격 사항 삭제 API
+export function useDeleteQualification() {
+	const deleteQualification = async (employeeId, qualificationId) => {
+		try {
+			await axios.delete(`/employees/${employeeId}/qualifications/${qualificationId}/delete`);
+		} catch (err) {
+			console.error('Error deleting qualification:', err);
+		}
+	};
+
+	return { deleteQualification };
+}
