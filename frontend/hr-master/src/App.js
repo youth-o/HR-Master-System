@@ -42,6 +42,8 @@ function App() {
 				<Route path="/volunteer" element={<Volunteer />} />
 				<Route path="/pay" element={<PayManagement />} />
 				<Route path="/performance" element={<PerformanceManage />} />
+				<Route path="/leave" element={<AnnualManage />} />
+				<Route path="/attendance" element={<AttendanceManage />} />
 			</Routes>
 		</BrowserRouter>
 	);

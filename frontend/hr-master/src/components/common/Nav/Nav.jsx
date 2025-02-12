@@ -97,21 +97,21 @@ export default function Nav() {
 				</div>
 				<div
 					className={`${styles.category} ${activeCategory === 'attendance' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('attendance')}
+					onClick={() => handleCategoryClick('attendance', '/attendance')}
 				>
 					<img src={attendance} alt="시계 아이콘" />
 					<p>근태 조회</p>
 				</div>
 				<div
 					className={`${styles.category} ${activeCategory === 'leave' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('leave')}
+					onClick={() => handleCategoryClick('leave', '/leave')}
 				>
 					<img src={leave} alt="연차 아이콘" />
 					<p>연차 조회</p>
 				</div>
 				<div
 					className={`${styles.category} ${activeCategory === 'performance' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('performance')}
+					onClick={() => handleCategoryClick('performance', '/performance')}
 				>
 					<img src={performance} alt="성과 아이콘" />
 					<p>성과 조회</p>
