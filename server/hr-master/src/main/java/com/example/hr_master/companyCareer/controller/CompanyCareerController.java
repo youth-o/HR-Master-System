@@ -30,9 +30,13 @@ public class CompanyCareerController {
 
     // 특정 employeeId의 사내 경력 추가
     @PostMapping("/{employeeId}/company_career/add")
-    public ResponseEntity<CompanyCareer> addCompanyCareer(@RequestBody CompanyCareer companyCareer) {
-        return ResponseEntity.ok(companyCareerService.addCompanyCareer(companyCareer));
+    public ResponseEntity<CompanyCareer> addCompanyCareer(
+            @PathVariable Long employeeId,
+            @RequestBody CompanyCareer companyCareer) {
+
+        return ResponseEntity.ok(companyCareerService.addCompanyCareer(employeeId, companyCareer));
     }
+
 
     // 특정 employeeId의 사내 경력 수정
     @PutMapping("/{employeeId}/company_career/{historyId}")

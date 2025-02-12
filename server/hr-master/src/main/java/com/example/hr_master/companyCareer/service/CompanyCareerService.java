@@ -2,6 +2,8 @@ package com.example.hr_master.companyCareer.service;
 
 import com.example.hr_master.companyCareer.entity.CompanyCareer;
 import com.example.hr_master.companyCareer.repository.CompanyCareerRepository;
+import com.example.hr_master.employee.entity.Employee;
+import com.example.hr_master.employee.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,9 +12,11 @@ import java.util.Optional;
 @Service
 public class CompanyCareerService {
     private final CompanyCareerRepository companyCareerRepository;
+    private final EmployeeRepository employeeRepository; // EmployeeRepository 추가
 
-    public CompanyCareerService(CompanyCareerRepository companyCareerRepository) {
+    public CompanyCareerService(CompanyCareerRepository companyCareerRepository, EmployeeRepository employeeRepository) {
         this.companyCareerRepository = companyCareerRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     // 전체 사내 경력 조회
@@ -26,7 +30,12 @@ public class CompanyCareerService {
     }
 
     // 특정 employeeId의 사내 경력 추가
-    public CompanyCareer addCompanyCareer(CompanyCareer companyCareer) {
+    public CompanyCareer addCompanyCareer(Long employeeId, CompanyCareer companyCareer) {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new RuntimeException("Employee not found with id: " + employeeId));
+
+        companyCareer.setEmployee(employee); // 🔹 employee 설정
+
         return companyCareerRepository.save(companyCareer);
     }
 
