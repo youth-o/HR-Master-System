@@ -74,3 +74,16 @@ export function useUpdateFamilyInfo() {
 
 	return { updateFamilyInfo, loading, error };
 }
+
+// 가족 정보 삭제 API
+export function useDeleteFamilyInfo() {
+	const deleteFamilyInfo = async (employeeId, familyId) => {
+		try {
+			await axios.delete(`/employees/${employeeId}/familyInfo/${familyId}/delete`);
+		} catch (err) {
+			console.error('Error deleting family member:', err);
+		}
+	};
+
+	return { deleteFamilyInfo };
+}

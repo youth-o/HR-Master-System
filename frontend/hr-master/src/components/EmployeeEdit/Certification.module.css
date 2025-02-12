@@ -65,3 +65,28 @@
 .infoForm button:hover {
 	background-color: #004a87;
 }
+
+.qualificationRow {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.deleteButton {
+	cursor: pointer;
+	position: absolute;
+	right: -1rem;
+	top: -2rem;
+	width: 2.4rem;
+	height: 2.4rem;
+	margin-left: 10px;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+	transform: scale(0.8);
+}
+
+.qualificationRow:hover .deleteButton {
+	opacity: 1;
+	transform: scale(1);
+}

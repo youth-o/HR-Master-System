@@ -3,24 +3,33 @@ import { useParams } from 'react-router-dom';
 import Input from '../common/Input/Input';
 import styles from './Certification.module.css';
 import plus from '../../assets/btn_add.svg';
-import { useAddQualification, useGetQualifications, useUpdateQualification } from '../../apis/useQualification';
+import x from '../../assets/btn_X.svg';
+import {
+	useAddQualification,
+	useDeleteQualification,
+	useGetQualifications,
+	useUpdateQualification,
+} from '../../apis/useQualification';
 
 export default function CertificationInfo() {
 	const { employeeId } = useParams();
 	const { qualification, loading, error } = useGetQualifications(employeeId);
 	const { addQualification } = useAddQualification();
 	const { updateQualification } = useUpdateQualification();
+	const { deleteQualification } = useDeleteQualification();
+
 	const [certificationList, setCertificationList] = useState([]);
+	const [deletedQualificationIds, setDeletedQualificationIds] = useState([]);
 
 	useEffect(() => {
-		if (qualification) {
-			setCertificationList(qualification);
-		}
+		setCertificationList(qualification ? qualification.map((cert) => ({ ...cert })) : []);
 	}, [qualification]);
 
 	const handleCertificationChange = (index, field, value) => {
 		setCertificationList((prevList) =>
-			prevList.map((certification, i) => (i === index ? { ...certification, [field]: value } : certification))
+			prevList.map(
+				(cert, i) => (i === index ? { ...cert, [field]: value || '' } : cert) // undefined 방지
+			)
 		);
 	};
 
@@ -29,6 +38,16 @@ export default function CertificationInfo() {
 			...certificationList,
 			{ qualificationId: null, licenseName: '', acquisitionDate: '', score: '', issuingAgency: '' },
 		]);
+	};
+
+	const handleRemoveQualification = (index) => {
+		const certification = certificationList[index];
+
+		if (certification.qualificationId) {
+			setDeletedQualificationIds((prev) => [...prev, certification.qualificationId]);
+		}
+
+		setCertificationList((prev) => prev.filter((_, i) => i !== index));
 	};
 
 	const handleSubmit = async (e) => {
@@ -48,36 +67,39 @@ export default function CertificationInfo() {
 		try {
 			for (const certification of updatedCertifications) {
 				await updateQualification(employeeId, certification.qualificationId, {
-					licenseName: certification.licenseName || null,
-					acquisitionDate: certification.acquisitionDate || null,
-					score: certification.score || null,
-					issuingAgency: certification.issuingAgency || null,
+					licenseName: certification.licenseName || '',
+					acquisitionDate: certification.acquisitionDate || '',
+					score: certification.score || '',
+					issuingAgency: certification.issuingAgency || '',
 				});
 			}
 
 			let addedQualifications = [];
 			for (const certification of newCertifications) {
 				const addedCertification = await addQualification(employeeId, {
-					licenseName: certification.licenseName || null,
-					acquisitionDate: certification.acquisitionDate || null,
-					score: certification.score || null,
-					issuingAgency: certification.issuingAgency || null,
+					licenseName: certification.licenseName || '',
+					acquisitionDate: certification.acquisitionDate || '',
+					score: certification.score || '',
+					issuingAgency: certification.issuingAgency || '',
 				});
-
 				addedQualifications.push({ ...certification, qualificationId: addedCertification.qualificationId });
 			}
-			setCertificationList([...updatedCertifications, ...addedQualifications]);
 
-			alert(newCertifications.length > 0 ? '새로운 자격이 추가되었습니다.' : '자격 이력이 수정되었습니다.');
+			for (const qualificationId of deletedQualificationIds) {
+				await deleteQualification(employeeId, qualificationId);
+			}
+
+			setCertificationList([...updatedCertifications, ...addedQualifications]);
+			setDeletedQualificationIds([]);
+
+			alert('자격 사항이 저장되었습니다.');
 		} catch (error) {
-			alert('자격 이력 저장 중 오류가 발생했습니다.');
+			alert('자격 사항 저장 중 오류가 발생했습니다.');
 			console.error(error);
 		}
 	};
 
-	const style = {
-		width: '23rem',
-	};
+	const style = { width: '23rem' };
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error fetching certification info: {error.message}</p>;
@@ -87,11 +109,11 @@ export default function CertificationInfo() {
 			<h3>자격 인증 사항</h3>
 			<form className={styles.infoForm} onSubmit={handleSubmit}>
 				{certificationList.map((certification, index) => (
-					<div className={styles.row} key={certification.qualificationId || index}>
+					<div className={`${styles.row} ${styles.qualificationRow}`} key={certification.qualificationId || index}>
 						<Input
 							id={`licenseName-${index}`}
 							label="자격 면허명"
-							placeholder={certification.licenseName}
+							value={certification.licenseName || ''}
 							style={style}
 							onChange={(e) => handleCertificationChange(index, 'licenseName', e.target.value)}
 						/>
@@ -106,16 +128,22 @@ export default function CertificationInfo() {
 						<Input
 							id={`score-${index}`}
 							label="성적"
-							placeholder={certification.score}
+							value={certification.score || ''}
 							style={style}
 							onChange={(e) => handleCertificationChange(index, 'score', e.target.value)}
 						/>
 						<Input
 							id={`issuingAgency-${index}`}
 							label="주관처"
-							placeholder={certification.issuingAgency}
+							value={certification.issuingAgency || ''}
 							style={style}
 							onChange={(e) => handleCertificationChange(index, 'issuingAgency', e.target.value)}
+						/>
+						<img
+							src={x}
+							alt="삭제 버튼"
+							className={styles.deleteButton}
+							onClick={() => handleRemoveQualification(index)}
 						/>
 					</div>
 				))}

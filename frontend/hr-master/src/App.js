@@ -6,11 +6,11 @@ import Message from './pages/Message/Message';
 import Register from './pages/Register/Register';
 import EmployeesList from './pages/employeesList/EmployeesList';
 import EmployeeEdit from './pages/employeeEdit/EmployeeEdit';
-import PayManagement from './pages/PayManagement/PayManagement'
-import Jobposting from './pages/RecruitmentManagement/Jobposting'
-import Volunteer from './pages/RecruitmentManagement/Volunteer'
-import AnnualManage from './pages/AnnualManage/AnnualManage'
-import AttendanceManage from './pages/AttendanceManage/AttendanceManage'
+import PayManagement from './pages/PayManagement/PayManagement';
+import Jobposting from './pages/RecruitmentManagement/Jobposting';
+import Volunteer from './pages/RecruitmentManagement/Volunteer';
+import AnnualManage from './pages/AnnualManage/AnnualManage';
+import AttendanceManage from './pages/AttendanceManage/AttendanceManage';
 import PerformanceManage from './pages/PerformanceManage/PerformanceManage';
 
 // 로그인 여부 확인 함수
@@ -28,7 +28,7 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				{/* 첫 화면을 로그인 페이지로 설정 */}
-				<Route path="/" element={<PerformanceManage />} />
+				<Route path="/" element={<Login />} />
 
 				{/* 로그인된 사용자만 접근 가능 */}
 				{/* 
@@ -38,6 +38,12 @@ function App() {
 				<Route path="/register" element={<Register />} />
 				<Route path="/employees" element={<EmployeesList />} />
 				<Route path="/employees/:employeeId" element={<EmployeeEdit />} />
+				<Route path="/jobPosting" element={<Jobposting />} />
+				<Route path="/volunteer" element={<Volunteer />} />
+				<Route path="/pay" element={<PayManagement />} />
+				<Route path="/performance" element={<PerformanceManage />} />
+				<Route path="/leave" element={<AnnualManage />} />
+				<Route path="/attendance" element={<AttendanceManage />} />
 			</Routes>
 		</BrowserRouter>
 	);

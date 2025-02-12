@@ -1,25 +1,35 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Input from '../common/Input/Input';
+import {
+	useDeleteFamilyInfo,
+	useGetFamilyInfo,
+	usePostFamilyInfo,
+	useUpdateFamilyInfo,
+} from '../../apis/useFamilyInfo';
 import styles from './FamilyInfo.module.css';
 import plus from '../../assets/btn_add.svg';
-import { useGetFamilyInfo, usePostFamilyInfo, useUpdateFamilyInfo } from '../../apis/useFamilyInfo';
+import x from '../../assets/btn_X.svg';
 
 export default function FamilyInfo() {
 	const { employeeId } = useParams();
 	const { familyInfo, loading, error } = useGetFamilyInfo(employeeId);
-	const { updateFamilyInfo } = useUpdateFamilyInfo();
 	const { postFamilyInfo } = usePostFamilyInfo();
+	const { updateFamilyInfo } = useUpdateFamilyInfo();
+	const { deleteFamilyInfo } = useDeleteFamilyInfo();
 	const [familyMembers, setFamilyMembers] = useState([]);
+	const [deletedFamilyIds, setDeletedFamilyIds] = useState([]);
 
 	useEffect(() => {
-		if (familyInfo && familyInfo.length > 0) {
-			setFamilyMembers(familyInfo);
-		}
+		setFamilyMembers(familyInfo ? familyInfo.map((member) => ({ ...member })) : []);
 	}, [familyInfo]);
 
 	const handleChange = (index, field, value) => {
-		setFamilyMembers((prev) => prev.map((member, i) => (i === index ? { ...member, [field]: value } : member)));
+		setFamilyMembers((prevList) =>
+			prevList.map(
+				(member, i) => (i === index ? { ...member, [field]: value || '' } : member) // undefined 방지
+			)
+		);
 	};
 
 	const handleAddFamilyMember = () => {
@@ -29,33 +39,53 @@ export default function FamilyInfo() {
 		]);
 	};
 
+	const handleRemoveFamilyMember = (index) => {
+		const member = familyMembers[index];
+
+		if (member.familyId) {
+			setDeletedFamilyIds((prev) => [...prev, member.familyId]);
+		}
+
+		setFamilyMembers((prev) => prev.filter((_, i) => i !== index));
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		let newFamilyAdded = false;
+		let updatedFamily = false;
+		let deletedFamily = false;
 
 		for (const member of familyMembers) {
 			if (member.familyId) {
 				await updateFamilyInfo(employeeId, member.familyId, {
-					familyName: member.familyName,
-					birthDate: member.birthDate,
-					contact: member.contact,
-					relationship: member.relationship,
+					familyName: member.familyName || '',
+					birthDate: member.birthDate || '',
+					contact: member.contact || '',
+					relationship: member.relationship || '',
 				});
+				updatedFamily = true;
 			} else {
 				await postFamilyInfo(employeeId, {
-					familyName: member.familyName,
-					birthDate: member.birthDate,
-					contact: member.contact,
-					relationship: member.relationship,
+					familyName: member.familyName || '',
+					birthDate: member.birthDate || '',
+					contact: member.contact || '',
+					relationship: member.relationship || '',
 				});
 				newFamilyAdded = true;
 			}
 		}
 
-		if (newFamilyAdded) {
-			alert('가족 정보가 추가되었습니다.');
+		for (const familyId of deletedFamilyIds) {
+			await deleteFamilyInfo(employeeId, familyId);
+			deletedFamily = true;
+		}
+
+		setDeletedFamilyIds([]);
+
+		if (newFamilyAdded || updatedFamily || deletedFamily) {
+			alert('가족 정보가 저장되었습니다.');
 		} else {
-			alert('가족 정보가 수정되었습니다.');
+			alert('변경된 내용이 없습니다.');
 		}
 	};
 
@@ -69,11 +99,11 @@ export default function FamilyInfo() {
 			<h3>가족 정보</h3>
 			<form className={styles.infoForm} onSubmit={handleSubmit}>
 				{familyMembers.map((member, index) => (
-					<div className={styles.row} key={member.familyId || index}>
+					<div className={`${styles.row} ${styles.familyRow}`} key={member.familyId || index}>
 						<Input
 							id={`familyName-${index}`}
 							label="이름"
-							placeholder={member.familyName}
+							value={member.familyName || ''}
 							style={style}
 							onChange={(e) => handleChange(index, 'familyName', e.target.value)}
 						/>
@@ -81,23 +111,29 @@ export default function FamilyInfo() {
 							id={`birthDate-${index}`}
 							type="date"
 							label="생년월일"
-							value={member.birthDate}
+							value={member.birthDate || ''}
 							style={style}
 							onChange={(e) => handleChange(index, 'birthDate', e.target.value)}
 						/>
 						<Input
 							id={`contact-${index}`}
 							label="연락처"
-							placeholder={member.contact}
+							value={member.contact || ''}
 							style={style}
 							onChange={(e) => handleChange(index, 'contact', e.target.value)}
 						/>
 						<Input
 							id={`relationship-${index}`}
 							label="관계"
-							placeholder={member.relationship}
+							value={member.relationship || ''}
 							style={style}
 							onChange={(e) => handleChange(index, 'relationship', e.target.value)}
+						/>
+						<img
+							src={x}
+							alt="삭제 버튼"
+							className={styles.deleteButton}
+							onClick={() => handleRemoveFamilyMember(index)}
 						/>
 					</div>
 				))}

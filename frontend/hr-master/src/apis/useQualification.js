@@ -16,7 +16,7 @@ export function useGetQualifications(employeeId) {
 				setQualification(response.data);
 			} catch (err) {
 				if (err.response && err.response.status === 404) {
-					setQualification([]); // 🔹 데이터 없을 경우 빈 배열 반환
+					setQualification([]);
 				} else {
 					setError(err);
 				}
@@ -63,7 +63,10 @@ export function useUpdateQualification() {
 		setLoading(true);
 		setError(null);
 		try {
-			const response = await axios.put(`/employees/${employeeId}/qualifications/${qualificationId}`, updatedData);
+			const response = await axios.put(
+				`/employees/${employeeId}/qualifications/${qualificationId}/update`,
+				updatedData
+			);
 			return response.data;
 		} catch (err) {
 			setError(err);
@@ -74,4 +77,17 @@ export function useUpdateQualification() {
 	};
 
 	return { updateQualification, loading, error };
+}
+
+// 자격 사항 삭제 API
+export function useDeleteQualification() {
+	const deleteQualification = async (employeeId, qualificationId) => {
+		try {
+			await axios.delete(`/employees/${employeeId}/qualifications/${qualificationId}/delete`);
+		} catch (err) {
+			console.error('Error deleting qualification:', err);
+		}
+	};
+
+	return { deleteQualification };
 }

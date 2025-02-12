@@ -70,3 +70,16 @@ export function useUpdateEducation() {
 
 	return { updateEducation, loading, error };
 }
+
+// 교육 이력 삭제 API
+export function useDeleteEducation() {
+	const deleteEducation = async (employeeId, educationId) => {
+		try {
+			await axios.delete(`/employees/${employeeId}/education/${educationId}/delete`);
+		} catch (err) {
+			console.error('Error deleting education:', err);
+		}
+	};
+
+	return { deleteEducation };
+}

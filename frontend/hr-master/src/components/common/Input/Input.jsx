@@ -16,7 +16,14 @@ export default function Input({
 	return (
 		<div className={styles.inputContainer} style={style}>
 			<label htmlFor={id}>{label}</label>
-			<input type={type} value={value} id={id} placeholder={placeholder} readOnly={readOnly} onChange={onChange} />
+			<input
+				type={type}
+				value={value ?? ''}
+				id={id}
+				placeholder={placeholder}
+				readOnly={readOnly}
+				onChange={onChange}
+			/>
 			{searchTrue && <img src={search} alt="검색 아이콘" onClick={onSearch} />}
 		</div>
 	);
