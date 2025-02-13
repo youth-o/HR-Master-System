@@ -34,6 +34,7 @@ const AnnualTable = () => {
 			<table className="annual-table">
 				<thead>
 					<tr>
+						<th>사번</th>
 						<th>직원명</th>
 						<th>총 연차</th>
 						<th>신청 날짜</th>
@@ -46,6 +47,7 @@ const AnnualTable = () => {
 					{filteredLeaves.length > 0 ? (
 						filteredLeaves.map((leave) => (
 							<tr key={leave.id}>
+								<td>{leave.employee.employeeId}</td>
 								<td>
 									<div className="user-info">{leave.employee.empName}</div>
 								</td>
