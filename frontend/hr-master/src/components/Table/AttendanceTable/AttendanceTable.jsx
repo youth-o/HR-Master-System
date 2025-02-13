@@ -31,19 +31,25 @@ const isToday = (dateString) => {
 	return dateString === today;
 };
 
-const AttendanceTable = () => {
+const AttendanceTable = ({ searchTerm }) => {
 	const [filterStatus, setFilterStatus] = useState('All');
 	const { attendance, loading, error } = useGetAllAttendance();
 
 	// 오늘 날짜의 데이터만 필터링
 	const todayAttendance = attendance.filter((record) => isToday(record.attendanceDate));
 
-	// 근태 상태 필터링
 	const filteredAttendance = todayAttendance.filter((record) => {
-		if (filterStatus === 'All') return true;
-		if (filterStatus === '출근') return ['정상', '조퇴', '지각'].includes(record.attendanceStatus);
-		if (filterStatus === '결근') return record.attendanceStatus === '결근';
-		return record.attendanceStatus === filterStatus;
+		const matchesStatus =
+			filterStatus === 'All' ||
+			(filterStatus === '출근' && ['정상', '조퇴', '지각'].includes(record.attendanceStatus)) ||
+			(filterStatus === '결근' && record.attendanceStatus === '결근');
+
+		const matchesSearch =
+			!searchTerm ||
+			record?.employee?.employeeId?.toString().includes(searchTerm) ||
+			record?.employee?.empName?.toLowerCase().includes(searchTerm.toLowerCase());
+
+		return matchesStatus && matchesSearch;
 	});
 
 	if (loading) return <p>Loading...</p>;
@@ -92,7 +98,7 @@ const AttendanceTable = () => {
 						))
 					) : (
 						<tr>
-							<td colSpan="5" style={{ textAlign: 'center' }}>
+							<td colSpan="6" style={{ textAlign: 'center' }}>
 								데이터가 없습니다.
 							</td>
 						</tr>

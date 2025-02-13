@@ -13,7 +13,11 @@ export default function List({ searchTerm }) {
 	};
 
 	const filteredEmployees = searchTerm
-		? (employees || []).filter((employee) => employee?.employeeId?.toString().includes(searchTerm))
+		? (employees || []).filter(
+				(employee) =>
+					employee?.employeeId?.toString().includes(searchTerm) ||
+					employee?.empName?.toLowerCase().includes(searchTerm.toLowerCase())
+		  )
 		: employees || [];
 
 	if (loading) return <p>Loading...</p>;
@@ -24,13 +28,13 @@ export default function List({ searchTerm }) {
 			{/* 필터 버튼 */}
 			<div className={styles.filterTabs}>
 				<button className={filterStatus === 'All' ? styles.active : ''} onClick={() => setFilterStatus('All')}>
-					All
+					전체
 				</button>
 				<button
 					className={filterStatus === 'Accepted' ? styles.active : ''}
 					onClick={() => setFilterStatus('Accepted')}
 				>
-					Accepted
+					부서별
 				</button>
 				<button
 					className={filterStatus === 'Rejected' ? styles.active : ''}
@@ -64,7 +68,7 @@ export default function List({ searchTerm }) {
 						))
 					) : (
 						<tr>
-							<td colSpan="4">No employees found.</td>
+							<td colSpan="5">No employees found.</td>
 						</tr>
 					)}
 				</tbody>

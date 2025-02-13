@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import './AnnualTable.css';
 import { useGetAllLeaves } from '../../../apis/useLeave';
 
-const AnnualTable = () => {
+const AnnualTable = ({ searchTerm }) => {
 	const [filterStatus, setFilterStatus] = useState('All');
 	const { leaves, loading, error } = useGetAllLeaves();
 
-	// 필터링된 연차 데이터
-	const filteredLeaves = leaves.filter((leave) => filterStatus === 'All' || leave.approvalStatus === filterStatus);
+	// 필터링된 연차 데이터 (검색어 + 승인 상태 적용)
+	const filteredLeaves = leaves.filter((leave) => {
+		const matchesStatus = filterStatus === 'All' || leave.approvalStatus === filterStatus;
+		const matchesSearch =
+			!searchTerm ||
+			leave?.employee?.employeeId?.toString().includes(searchTerm) ||
+			leave?.employee?.empName?.toLowerCase().includes(searchTerm.toLowerCase());
+
+		return matchesStatus && matchesSearch;
+	});
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error.message}</p>;
@@ -44,7 +52,7 @@ const AnnualTable = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{filteredLeaves.length > 0 ? (
+					{Array.isArray(filteredLeaves) && filteredLeaves.length > 0 ? (
 						filteredLeaves.map((leave) => (
 							<tr key={leave.id}>
 								<td>{leave.employee.employeeId}</td>
@@ -60,7 +68,7 @@ const AnnualTable = () => {
 						))
 					) : (
 						<tr>
-							<td colSpan="6" style={{ textAlign: 'center' }}>
+							<td colSpan="7" style={{ textAlign: 'center' }}>
 								데이터가 없습니다.
 							</td>
 						</tr>
