@@ -12,6 +12,7 @@ import Volunteer from './pages/RecruitmentManagement/Volunteer';
 import AnnualManage from './pages/AnnualManage/AnnualManage';
 import AttendanceManage from './pages/AttendanceManage/AttendanceManage';
 import PerformanceManage from './pages/PerformanceManage/PerformanceManage';
+import Calendar from './pages/Calendar/Calendar';
 
 // 로그인 여부 확인 함수
 const isAuthenticated = () => {
@@ -35,15 +36,16 @@ function App() {
         <Route path="/main" element={<PrivateRoute element={<Main />} />} /> */}
 				<Route path="/main" element={<Dashboard />} />
 				<Route path="/message" element={<Message />} />
+				<Route path="/calendar" element={<Calendar />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/employees" element={<EmployeesList />} />
 				<Route path="/employees/:employeeId" element={<EmployeeEdit />} />
+				<Route path="/attendance" element={<AttendanceManage />} />
+				<Route path="/leave" element={<AnnualManage />} />
+				<Route path="/performance" element={<PerformanceManage />} />
 				<Route path="/jobPosting" element={<Jobposting />} />
 				<Route path="/volunteer" element={<Volunteer />} />
 				<Route path="/pay" element={<PayManagement />} />
-				<Route path="/performance" element={<PerformanceManage />} />
-				<Route path="/leave" element={<AnnualManage />} />
-				<Route path="/attendance" element={<AttendanceManage />} />
 			</Routes>
 		</BrowserRouter>
 	);
