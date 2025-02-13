@@ -3,7 +3,13 @@ import Input from '../common/Input/Input';
 import styles from './CareerInfo.module.css';
 import plus from '../../assets/btn_add.svg';
 import x from '../../assets/btn_X.svg';
-import { useDeleteCompanyCareer, useGetCompanyCareers, useGetExternalCareers } from '../../apis/useCareer';
+import {
+	useAddCompanyCareer,
+	useDeleteCompanyCareer,
+	useGetCompanyCareers,
+	useGetExternalCareers,
+	useUpdateCompanyCareer,
+} from '../../apis/useCareer';
 import { useParams } from 'react-router-dom';
 import Dropdown from '../common/Dropdown/Dropdown';
 import { changeTypeOptions, departmentOptions, positionOptions, workLocationOptions } from '../../constants/options';
@@ -12,8 +18,13 @@ export default function CareerInfo() {
 	const { employeeId } = useParams();
 	const { companyCareer, loading, error } = useGetCompanyCareers(employeeId);
 	const { externalCareer } = useGetExternalCareers(employeeId);
+	const { addCompanyCareer } = useAddCompanyCareer();
+	const { updateCompanyCareer } = useUpdateCompanyCareer();
+	const { deleteComapnyCareer } = useDeleteCompanyCareer();
+
 	const [careerList, setCareerList] = useState([]);
-	const [deletedCareerIds, setDeletedCareerIds] = useState([]);
+	const [newCareers, setNewCareers] = useState([]);
+	const [deletedCareers, setDeletedCareers] = useState([]);
 
 	useEffect(() => {
 		if (companyCareer) {
@@ -23,35 +34,96 @@ export default function CareerInfo() {
 
 	const handleCareerChange = (index, field, value) => {
 		setCareerList((prevList) => prevList.map((career, i) => (i === index ? { ...career, [field]: value } : career)));
+		setNewCareers((prevList) =>
+			prevList.map((career, i) =>
+				career.historyId === newCareers[i]?.historyId ? { ...career, [field]: value } : career
+			)
+		);
 	};
 
 	const handleDropdownChange = (index, field, selected) => {
 		setCareerList((prevList) => prevList.map((career, i) => (i === index ? { ...career, [field]: selected } : career)));
+		setNewCareers((prevList) =>
+			prevList.map((career, i) =>
+				career.historyId === newCareers[i]?.historyId ? { ...career, [field]: selected } : career
+			)
+		);
 	};
 
 	const handleAddCareer = () => {
-		setCareerList([
-			...careerList,
-			{
-				id: Date.now(),
-				changeDate: '',
-				changeType: '',
-				division: '',
-				department: '',
-				position: '',
-				startDate: '',
-				endDate: '',
-				notes: '',
-			},
-		]);
+		const newCareer = {
+			historyId: Date.now().toString,
+			changeDate: '',
+			changeType: '',
+			division: '',
+			department: '',
+			position: '',
+			startDate: '',
+			endDate: '',
+			notes: '',
+			isNew: true,
+		};
+		setNewCareers([...newCareers, newCareer]);
 	};
 
-	const handleDeleteCareer = (index, careerId) => {
-		if (careerId) {
-			setDeletedCareerIds((prevIds) => [...prevIds, careerId]);
-			console.log(`Added to delete list: ${careerId}`);
+	const handleDeleteCareer = (index, career) => {
+		if (!career.isNew) {
+			setDeletedCareers([...deletedCareers, career]);
 		}
 		setCareerList((prevList) => prevList.filter((_, i) => i !== index));
+		setNewCareers((prevList) => prevList.filter((_, i) => i !== index));
+	};
+
+	const formatDateTime = (dateString) => {
+		return dateString ? `${dateString}T00:00:00` : null;
+	};
+
+	const handleSave = async (event) => {
+		event.preventDefault();
+		try {
+			// 기존 경력 수정 처리
+			await Promise.all(
+				careerList.map(async (career) => {
+					if (!career.isNew && career.historyId) {
+						await updateCompanyCareer(employeeId, career.historyId, {
+							...career,
+							changeDate: formatDateTime(career.changeDate),
+							startDate: formatDateTime(career.startDate),
+							endDate: formatDateTime(career.endDate),
+						});
+					}
+				})
+			);
+
+			// 새로운 경력 추가 처리
+			await Promise.all(
+				newCareers.map(async (newCareer) => {
+					const response = await addCompanyCareer(employeeId, {
+						...newCareer,
+						changeDate: formatDateTime(newCareer.changeDate),
+						startDate: formatDateTime(newCareer.startDate),
+						endDate: formatDateTime(newCareer.endDate),
+					});
+					if (response && response.historyId) {
+						setCareerList((prevList) => [...prevList, { ...newCareer, historyId: response.historyId, isNew: false }]);
+					}
+				})
+			);
+
+			// 삭제된 경력 처리
+			await Promise.all(
+				deletedCareers.map(async (career) => {
+					await deleteComapnyCareer(employeeId, career.historyId);
+				})
+			);
+
+			setNewCareers([]);
+			setDeletedCareers([]);
+
+			alert('사내 경력 정보가 수정되었습니다.');
+		} catch (err) {
+			console.error('Error saving careers:', err);
+		}
 	};
 
 	const style = {
@@ -65,7 +137,7 @@ export default function CareerInfo() {
 		<div className={styles.infoContainer}>
 			<h3>사내 경력</h3>
 			<form className={styles.infoForm}>
-				{careerList.map((career, index) => (
+				{[...careerList, ...newCareers].map((career, index) => (
 					<div className={styles.rowContainer} key={career.companyCareerId || index}>
 						<div className={`${styles.row} ${styles.careerRow}`}>
 							<Input
@@ -87,7 +159,7 @@ export default function CareerInfo() {
 								src={x}
 								alt="삭제 버튼"
 								className={styles.deleteButton}
-								onClick={() => handleDeleteCareer(index, career.id)}
+								onClick={() => handleDeleteCareer(index, career)}
 							/>
 						</div>
 						<div className={styles.row}>
@@ -137,7 +209,9 @@ export default function CareerInfo() {
 				<div className={styles.row}>
 					<img src={plus} alt="추가 버튼" onClick={handleAddCareer} />
 				</div>
-				<button type="submit">Save</button>
+				<button type="button" onClick={handleSave}>
+					Save
+				</button>
 			</form>
 			<h3>사외 경력</h3>
 			{externalCareer?.length > 0 ? (
