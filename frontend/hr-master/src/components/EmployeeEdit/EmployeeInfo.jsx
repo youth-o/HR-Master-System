@@ -8,10 +8,11 @@ import { useGetEmployee, useUpdateEmployee } from '../../apis/useEmployees';
 
 export default function EmployeeInfo() {
 	const { employeeId } = useParams();
+	const navigate = useNavigate();
 	const { employee, loading, error } = useGetEmployee(employeeId);
 	const { updateEmployee } = useUpdateEmployee();
-	const navigate = useNavigate();
-	const [inputEmployeeId, setInputEmployeeId] = useState('');
+
+	const [searchTerm, setSearchTerm] = useState('');
 
 	const [formData, setFormData] = useState({
 		employeeId: '',
@@ -38,6 +39,8 @@ export default function EmployeeInfo() {
 				militaryService: employee.militaryService || '',
 				address: employee.address || '',
 			});
+			// 검색창 초기화 (현재 조회 중인 사번으로 설정)
+			setSearchTerm(employee.employeeId || '');
 		}
 	}, [employee]);
 
@@ -69,17 +72,17 @@ export default function EmployeeInfo() {
 
 		if (Object.keys(updatedFields).length > 0) {
 			await updateEmployee(employeeId, updatedFields);
-			alert('개인 정보가 수정되었습니다.');
+			alert('개인 정보가 저장되었습니다.');
 		}
 	};
 
-	const handleInputChange = (e) => {
-		setInputEmployeeId(e.target.value);
+	const handleSearchChange = (e) => {
+		setSearchTerm(e.target.value);
 	};
 
 	const handleSearch = () => {
-		if (inputEmployeeId) {
-			navigate(`/employees/${inputEmployeeId}`);
+		if (searchTerm) {
+			navigate(`/employees/${searchTerm}`);
 		}
 	};
 
@@ -92,13 +95,14 @@ export default function EmployeeInfo() {
 			<h3>개인 정보</h3>
 			<form className={styles.infoForm} onSubmit={handleSubmit}>
 				<div className={styles.row}>
+					{/* 검색어 입력 시 별도의 상태 사용하여 이동 가능 */}
 					<Input
 						id="employeeId"
 						label="사번(ID)"
 						searchTrue
-						value={inputEmployeeId}
+						value={searchTerm}
 						placeholder="사번 입력"
-						onChange={handleInputChange}
+						onChange={handleSearchChange}
 						onSearch={handleSearch}
 					/>
 					<Input id="ssn" label="주민번호" readOnly value={formData.ssn} />
