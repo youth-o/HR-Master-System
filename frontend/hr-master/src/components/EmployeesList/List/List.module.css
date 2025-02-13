@@ -1,0 +1,85 @@
+.listContainer {
+	background: rgba(2, 41, 138, 0.7);
+	padding: 20px;
+	border-radius: 15px;
+	width: 100%;
+	max-width: 1030px;
+	margin: auto;
+}
+
+/* 필터 탭 스타일 */
+.filterTabs {
+	display: flex;
+	gap: 20px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.filterTabs button {
+	background: transparent;
+	border: none;
+	color: white;
+	font-weight: 600;
+	font-size: 16px;
+	cursor: pointer;
+	padding: 10px 15px;
+	transition: 0.3s;
+}
+
+.filterTabs .active {
+	color: #ff9800;
+	border-bottom: 2px solid #ff9800;
+}
+
+.departmentFilter {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+/* 테이블 스타일 */
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: left;
+	color: white;
+	margin-top: 15px;
+}
+
+/* 테이블 헤더 스타일 */
+.table thead tr {
+	background: rgba(2, 27, 121, 0.2);
+}
+
+.table th {
+	padding: 12px;
+	font-weight: bold;
+	text-align: left;
+}
+
+/* 테이블 셀 스타일 */
+.table td {
+	padding: 12px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 사원 정보 스타일 */
+.employee-info {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+/* 이메일 컬러 강조 */
+.table td:nth-child(4) {
+	font-weight: bold;
+	color: #ffcc00;
+}
+
+/* 테이블 행 hover 효과 및 클릭 가능 스타일 */
+.table tr:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+	cursor: pointer;
+}

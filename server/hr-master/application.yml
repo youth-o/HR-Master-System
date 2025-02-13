@@ -1,0 +1,22 @@
+## JPA
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: admin
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true            #SQL 출력(터미널)
+        format_sql: true          #SQL 가독성 향상
+    logging:
+      level:
+        org.hibernate.SQL: DEBUG  # Hibernate가 실행하는 SQL을 로그에 출력
+        org.hibernate.type.descriptor.sql.BasicBinder: TRACE # SQL 파라미터 값을 출력
+

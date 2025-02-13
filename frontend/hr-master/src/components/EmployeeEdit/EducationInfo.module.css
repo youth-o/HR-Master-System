@@ -1,0 +1,100 @@
+.infoContainer {
+	box-sizing: border-box;
+	width: 100%;
+	margin-left: 3rem;
+	margin-right: 2.3rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+}
+
+.infoContainer h3 {
+	width: 100%;
+	margin: 0;
+	color: var(--Neutral-100, #0a0a0a);
+	font-family: Inter;
+	font-size: 1.6rem;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 2.4rem; /* 150% */
+	letter-spacing: -0.0176rem;
+}
+
+.infoForm {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.rowContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding-bottom: 3rem;
+	border-bottom: 1px solid #c4c4c4;
+}
+
+.row {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.row img {
+	width: 4.5rem;
+	height: 4.5rem;
+	cursor: pointer;
+}
+
+.infoForm button {
+	width: 31rem;
+	margin-left: 35rem;
+	margin-top: 12rem;
+	margin-bottom: 5rem;
+	padding: 1rem;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1rem;
+	background: #015eaa;
+	border: none;
+	cursor: pointer;
+
+	color: #fff;
+	font-family: Nunito;
+	font-size: 1.4rem;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 2.4rem; /* 171.429% */
+}
+
+.infoForm button:hover {
+	background-color: #004a87;
+}
+
+.educationRow {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.deleteButton {
+	cursor: pointer;
+	position: absolute;
+	right: -1rem;
+	top: -2rem;
+	width: 2.4rem;
+	height: 2.4rem;
+	margin-left: 10px;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+	transform: scale(0.8);
+}
+
+.educationRow:hover .deleteButton {
+	opacity: 1;
+	transform: scale(1);
+}

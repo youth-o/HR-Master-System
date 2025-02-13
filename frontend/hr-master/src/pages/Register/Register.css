@@ -1,0 +1,11 @@
+.register-container {
+	display: flex;
+	flex: 1;
+}
+
+/* 🔹 전체 컨텐츠 레이아웃 (헤더 아래) */
+.register-content {
+	flex: 6.925;
+	min-width: 69.25%;
+	padding: 2.5rem 2.3rem 0 3rem;
+}

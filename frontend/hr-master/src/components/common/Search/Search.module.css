@@ -1,0 +1,29 @@
+.searchContainer {
+	width: 34rem;
+	height: auto;
+	position: relative;
+}
+
+.searchContainer input {
+	box-sizing: border-box;
+	background-color: #e6e6e6;
+	width: 100%;
+	border-radius: 3.1056rem;
+	padding: 1rem 5.6rem;
+	border: none;
+}
+
+.searchIcon {
+	position: absolute;
+	top: 0.9rem;
+	left: 1.2rem;
+	cursor: pointer;
+}
+
+.searchContainer input:focus {
+	outline: none;
+}
+
+.searchContainer input[placeholderColor='#ffffff80']::placeholder {
+	color: #ffffff80;
+}
