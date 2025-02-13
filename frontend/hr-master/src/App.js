@@ -29,7 +29,7 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				{/* 첫 화면을 로그인 페이지로 설정 */}
-				<Route path="/" element={<Dashboard />} />
+				<Route path="/" element={<Login />} />
 
 				{/* 로그인된 사용자만 접근 가능 */}
 				{/* 

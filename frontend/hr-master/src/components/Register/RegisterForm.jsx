@@ -35,8 +35,6 @@ export default function RegisterForm() {
 		workLocation: '',
 		department: '',
 		position: '',
-		companyWork: '',
-		evaluationFlag: '',
 		companyEmail: '',
 		companyPhone: '',
 		retireCls: '',
@@ -120,8 +118,6 @@ export default function RegisterForm() {
 				workLocation: '',
 				department: '',
 				position: '',
-				companyWork: '',
-				evaluationFlag: '',
 				companyEmail: '',
 				companyPhone: '',
 				retireCls: '',
@@ -149,7 +145,7 @@ export default function RegisterForm() {
 	return (
 		<div className="infoContainer">
 			<form className="infoForm" onSubmit={handleSubmit}>
-				<h3>개인정보</h3>
+				<h3>개인 정보</h3>
 				<div className="row">
 					<Input id="ssn" label="주민번호" value={formData.ssn} onChange={handleInputChange} style={style} />
 					<Dropdown
@@ -184,7 +180,7 @@ export default function RegisterForm() {
 				</div>
 
 				{/* 근무 정보 */}
-				<h3>근무정보</h3>
+				<h3>근무 정보</h3>
 				<div className="row">
 					<Dropdown
 						label="입사 구분"
@@ -208,26 +204,16 @@ export default function RegisterForm() {
 						menuItems={positionOptions}
 						onSelect={(val) => handleDropdownChange('position', val)}
 					/>
-					<Input id="companyWork" label="회사 근무 사항" value={formData.companyWork} onChange={handleInputChange} />
-					<Input id="evaluationFlag" label="고과 여부" value={formData.evaluationFlag} onChange={handleInputChange} />
-				</div>
-				<div className="row">
 					<Input
 						id="companyEmail"
 						type="email"
 						label="사내 메일"
 						value={formData.companyEmail}
-						style={style}
 						onChange={handleInputChange}
 					/>
-					<Input
-						id="companyPhone"
-						label="사내 전화"
-						style={style}
-						value={formData.companyPhone}
-						onChange={handleInputChange}
-					/>
+					<Input id="companyPhone" label="사내 전화" value={formData.companyPhone} onChange={handleInputChange} />
 				</div>
+				<div className="row"></div>
 
 				{/* 사외 경력 정보 */}
 				{formData.hireType === '경력' && (
