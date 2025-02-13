@@ -1,60 +1,82 @@
 import React, { useState } from 'react';
 import './AnnualTable.css';
+import { useGetAllLeaves } from '../../../apis/useLeave';
 
-const employees = [
-    { id: 1, name: "Charlie Kristen", totalLeave: "15일", usedLeave: "5일", approval: "승인 대기", requestDate: "12/02/23", remainingLeave: "📎 10일", image: "https://randomuser.me/api/portraits/women/44.jpg" },
-    { id: 2, name: "Malaika Brown", totalLeave: "15일", usedLeave: "5일", approval: "승인 대기", requestDate: "12/02/23", remainingLeave: "📎 10일", image: "https://randomuser.me/api/portraits/women/68.jpg" },
-    { id: 3, name: "Simon Minter", totalLeave: "15일", usedLeave: "5일", approval: "승인 대기", requestDate: "12/02/23", remainingLeave: "📎 10일", image: "https://randomuser.me/api/portraits/men/48.jpg" },
-    { id: 4, name: "Nishant Talwar", totalLeave: "15일", usedLeave: "5일", approval: "승인 대기", requestDate: "12/02/23", remainingLeave: "📎 10일", image: "https://randomuser.me/api/portraits/men/51.jpg" },
-    { id: 5, name: "Mark Jacobs", totalLeave: "15일", usedLeave: "5일", approval: "승인됨", requestDate: "12/02/23", remainingLeave: "📎 10일", image: "https://randomuser.me/api/portraits/men/60.jpg" },
-    { id: 6, name: "Nishant Talwar", totalLeave: "15일", usedLeave: "5일", approval: "승인됨", requestDate: "12/02/23", remainingLeave: "📎 10일", image: "https://randomuser.me/api/portraits/men/51.jpg" },
-    { id: 7, name: "Mark Jacobs", totalLeave: "15일", usedLeave: "5일", approval: "거절됨", requestDate: "12/02/23", remainingLeave: "📎 10일", image: "https://randomuser.me/api/portraits/men/60.jpg" },
-];
+const AnnualTable = ({ searchTerm }) => {
+	const [filterStatus, setFilterStatus] = useState('All');
+	const { leaves, loading, error } = useGetAllLeaves();
 
-const AnnualTable = () => {
-    const [filterStatus, setFilterStatus] = useState("All");
+	// 필터링된 연차 데이터 (검색어 + 승인 상태 적용)
+	const filteredLeaves = leaves.filter((leave) => {
+		const matchesStatus = filterStatus === 'All' || leave.approvalStatus === filterStatus;
+		const matchesSearch =
+			!searchTerm ||
+			leave?.employee?.employeeId?.toString().includes(searchTerm) ||
+			leave?.employee?.empName?.toLowerCase().includes(searchTerm.toLowerCase());
 
-    return (
-        <div className="annual-container">
-            {/* 필터 버튼 */}
-            <div className="filter-tabs">
-                <button className={filterStatus === "All" ? "active" : ""} onClick={() => setFilterStatus("All")}>All</button>
-                <button className={filterStatus === "Accepted" ? "active" : ""} onClick={() => setFilterStatus("Accepted")}>Accepted</button>
-                <button className={filterStatus === "Rejected" ? "active" : ""} onClick={() => setFilterStatus("Rejected")}>Rejected</button>
-            </div>
+		return matchesStatus && matchesSearch;
+	});
 
-            {/* 연차 관리 테이블 */}
-            <table className="annual-table">
-                <thead>
-                    <tr>
-                        <th>직원명</th>
-                        <th>총 연차</th>
-                        <th>사용 연차</th>
-                        <th>승인 여부</th>
-                        <th>신청 날짜</th>
-                        <th>잔여 연차</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {employees.map((employee) => (
-                        <tr key={employee.id}>
-                            <td>
-                                <div className="user-info">
-                                    <img src={employee.image} alt={employee.name} />
-                                    {employee.name}
-                                </div>
-                            </td>
-                            <td>⭐ {employee.totalLeave}</td>
-                            <td>{employee.usedLeave}</td>
-                            <td>{employee.approval}</td>
-                            <td>{employee.requestDate}</td>
-                            <td>{employee.remainingLeave}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error: {error.message}</p>;
+
+	return (
+		<div className="annual-container">
+			{/* 필터 버튼 */}
+			<div className="filter-tabs">
+				<button className={filterStatus === 'All' ? 'active' : ''} onClick={() => setFilterStatus('All')}>
+					전체
+				</button>
+				<button className={filterStatus === '승인' ? 'active' : ''} onClick={() => setFilterStatus('승인')}>
+					승인
+				</button>
+				<button className={filterStatus === '반려' ? 'active' : ''} onClick={() => setFilterStatus('반려')}>
+					반려
+				</button>
+				<button className={filterStatus === '대기' ? 'active' : ''} onClick={() => setFilterStatus('대기')}>
+					대기
+				</button>
+			</div>
+
+			{/* 연차 관리 테이블 */}
+			<table className="annual-table">
+				<thead>
+					<tr>
+						<th>사번</th>
+						<th>직원명</th>
+						<th>총 연차</th>
+						<th>신청 날짜</th>
+						<th>승인 여부</th>
+						<th>신청 기간</th>
+						<th>연차 유형</th>
+					</tr>
+				</thead>
+				<tbody>
+					{Array.isArray(filteredLeaves) && filteredLeaves.length > 0 ? (
+						filteredLeaves.map((leave) => (
+							<tr key={leave.id}>
+								<td>{leave.employee.employeeId}</td>
+								<td>
+									<div className="user-info">{leave.employee.empName}</div>
+								</td>
+								<td>⭐ 15일</td>
+								<td>{leave.applicationDate}</td>
+								<td>{leave.approvalStatus}</td>
+								<td>{leave.period}</td>
+								<td>{leave.leaveType}</td>
+							</tr>
+						))
+					) : (
+						<tr>
+							<td colSpan="7" style={{ textAlign: 'center' }}>
+								데이터가 없습니다.
+							</td>
+						</tr>
+					)}
+				</tbody>
+			</table>
+		</div>
+	);
 };
 
 export default AnnualTable;

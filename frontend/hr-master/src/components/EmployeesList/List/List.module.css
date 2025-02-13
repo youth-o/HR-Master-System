@@ -31,6 +31,14 @@
 	border-bottom: 2px solid #ff9800;
 }
 
+.departmentFilter {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
 /* 테이블 스타일 */
 .table {
 	width: 100%;
