@@ -3,6 +3,8 @@
 }
 
 .employee {
+	padding: 2rem 0 0 1rem;
+	background-color: #f8f9fa;
 	flex: 6.925;
 	min-width: 69.25%;
 	display: flex;

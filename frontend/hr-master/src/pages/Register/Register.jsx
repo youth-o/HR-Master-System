@@ -12,7 +12,7 @@ const Register = () => {
 			<div className="register-container">
 				{/* 🔹 왼쪽 사이드바 (Nav) */}
 				<Nav />
-				<div className="content">
+				<div className="register-content">
 					{/* 🔹 오른쪽 컨텐츠 영역 */}
 					<RegisterForm />
 				</div>

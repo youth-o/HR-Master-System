@@ -51,7 +51,7 @@ const EmployeePayInfo = ({ setSearchTerm, onSearch }) => {
 				<h3>사원 번호 : {employee.employeeId}</h3>
 				<div className="employee-search">
 					<Search
-						placeholder="사원번호 검색"
+						placeholder="사번 또는 이름 검색"
 						style={style}
 						containerStyle={{ width: '20rem' }}
 						onChange={handleSearchChange}

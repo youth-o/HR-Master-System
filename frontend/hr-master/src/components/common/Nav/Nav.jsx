@@ -72,7 +72,7 @@ export default function Nav() {
 				</div>
 				<div
 					className={`${styles.category} ${activeCategory === 'calendar' ? styles.active : ''}`}
-					onClick={() => handleCategoryClick('calendar')}
+					onClick={() => handleCategoryClick('calendar', '/calendar')}
 				>
 					<img src={calendar} alt="달력 아이콘" />
 					<p>캘린더</p>
