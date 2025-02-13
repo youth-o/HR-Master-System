@@ -48,6 +48,7 @@ export default function List({ searchTerm }) {
 						<th>이름</th>
 						<th>부서</th>
 						<th>사내 메일</th>
+						<th>사내 전화</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -58,6 +59,7 @@ export default function List({ searchTerm }) {
 								<td>{employee.empName}</td>
 								<td>{employee.department}</td>
 								<td>{employee.companyEmail}</td>
+								<td>{employee.companyPhone}</td>
 							</tr>
 						))
 					) : (
