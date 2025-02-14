@@ -15,13 +15,16 @@ export default function List({ searchTerm }) {
 		navigate(`/employees/${employeeId}`);
 	};
 
+	// 필터링 로직
 	const filteredEmployees =
 		employees?.filter((employee) => {
+			// 검색어 필터링 (사번 또는 이름 포함)
 			const matchesSearch =
 				!searchTerm ||
 				employee?.employeeId?.toString().includes(searchTerm) ||
 				employee?.empName?.toLowerCase().includes(searchTerm.toLowerCase());
 
+			// 부서 필터링 (선택한 부서와 일치해야 함)
 			const matchesDepartment =
 				filterStatus !== 'Accepted' || !selectedDepartment || employee.department === selectedDepartment;
 
@@ -44,8 +47,15 @@ export default function List({ searchTerm }) {
 				>
 					부서별
 				</button>
+				<button
+					className={filterStatus === 'Rejected' ? styles.active : ''}
+					onClick={() => setFilterStatus('Rejected')}
+				>
+					Rejected
+				</button>
 			</div>
 
+			{/* 부서 선택 Dropdown (부서별 보기일 때만 표시) */}
 			{filterStatus === 'Accepted' && (
 				<div className={styles.departmentFilter}>
 					<Dropdown menuItems={departmentOptions} onSelect={setSelectedDepartment} defaultValue={selectedDepartment} />
