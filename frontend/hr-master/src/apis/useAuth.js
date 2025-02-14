@@ -12,6 +12,7 @@ export const login = async (employeeId, password) => {
 		}
 
 		const redirectUrl = await response.text();
+		alert('로그인 성공!');
 		return { success: true, redirectUrl };
 	} catch (error) {
 		return { success: false, error: error.message || '서버 연결 오류' };
