@@ -29,7 +29,7 @@
 >
 > ```근태 관리```: 근태 정보 조회 (R)<br>
 >
-> ```연차 관리```: 연차 정보 조회 (R)<br>
+> ```연차 관리```: 연차 정보 조회(R)<br>
 >
 > ```성과 관리```: 성과 정보 조회 (R)<br>
 >
@@ -51,10 +51,10 @@
       <sub><b>[FE] 김주현</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/soojeonglim">
       <img width=200px src="" alt=""/><br />
-      <sub><b>[FE] 임수정</b></sub></a><br /></td>
+      <sub><b>[BE] 임수정</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/youth-o">
       <img width=200px src="https://github.com/user-attachments/assets/8caa072b-4bde-44f6-ba4c-dff10d6572f6-b1d7-028491e5912b" alt=""/><br />
-      <sub><b>[BE] 이유승</b></sub></a><br /></td>
+      <sub><b>[FE] 이유승</b></sub></a><br /></td>
     </tr>
   </tbody>
 </table>
@@ -62,6 +62,8 @@
 
 
 ## ERD
+
+![ERD](https://github.com/youth-o/HR-Master-System/blob/main/frontend/hr-master/src/assets/ERD.png?raw=true)
 
 ## 패키지 구조
 
