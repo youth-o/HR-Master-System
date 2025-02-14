@@ -56,7 +56,7 @@
       <img width=200px src="https://github.com/user-attachments/assets/8caa072b-4bde-44f6-ba4c-dff10d6572f6-b1d7-028491e5912b" alt=""/><br />
       <sub><b>[FE] 이유승</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/kiyuniii">
-      <img width=200px src="" alt=""/><br />
+      <img width=200px src="https://github.com/user-attachments/assets/5190f597-4935-4ca4-b427-bfd64dd3e855" alt=""/><br />
       <sub><b>[BE] 신기윤</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/soojeonglim">
       <img width=200px src="" alt=""/><br />
