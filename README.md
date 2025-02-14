@@ -69,4 +69,62 @@
 
 ## 패키지 구조
 
+📂 프로젝트 루트 (HR-Master-System-dev/)
+
+<pre><code>
+HR-Master-System-/
+│── f1.txt
+│── README.md
+│── 📂 frontend
+│── 📂 server
+</code></pre>
+
+📂 프론트엔드 (frontend/)
+
+<pre><code>
+frontend/
+└── 📂 hr-master
+    │── node_modules/
+    │── package-lock.json
+    │── package.json
+    │── README.md
+    │── 📂 public
+    └── 📂 src
+        │── App.css
+        │── App.js
+        │── index.css
+        │── index.js
+        │── 📂 apis
+        │── 📂 assets
+        │── 📂 components
+        │── 📂 constants
+        └── 📂 pages
+</code></pre>
+
+📂 백엔드 (server/)
+
+<pre><code>
+server/
+└── 📂 hr-master
+    └── 📂 src
+        └── 📂 main
+            └── 📂 java
+                └── 📂 com
+                    └── 📂 example
+                        └── 📂 hr_master
+                            │── HrMasterApplication.java
+                            │── 📂 attendance
+                            │── 📂 companyCareer
+                            │── 📂 educationInfo
+                            │── 📂 employee
+                            │── 📂 enumList
+                            │── 📂 externalCareer
+                            │── 📂 familyInfo
+                            │── 📂 leaveManagement
+                            │── 📂 management
+                            │── 📂 pay
+                            └── 📂 qualification
+
+</code></pre>
+
 ## 실행 화면
