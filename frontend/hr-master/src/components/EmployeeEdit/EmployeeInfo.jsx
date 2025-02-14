@@ -5,6 +5,7 @@ import Dropdown from '../common/Dropdown/Dropdown';
 import { militaryOptions } from '../../constants/options';
 import styles from './EmployeeInfo.module.css';
 import { useGetEmployee, useUpdateEmployee } from '../../apis/useEmployees';
+import AddressInput from '../common/AddressInput/AddressInput';
 
 export default function EmployeeInfo() {
 	const { employeeId } = useParams();
@@ -121,7 +122,7 @@ export default function EmployeeInfo() {
 						defaultValue={formData.militaryService}
 						onSelect={(val) => handleDropdownChange('militaryService', val)}
 					/>
-					<Input id="address" label="주소" value={formData.address} onChange={handleChange} />
+					<AddressInput id="address" label="주소" value={formData.address} onChange={handleChange} />
 				</div>
 				<button type="submit">Save</button>
 			</form>
