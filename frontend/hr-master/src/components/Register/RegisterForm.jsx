@@ -35,8 +35,6 @@ export default function RegisterForm() {
 		workLocation: '',
 		department: '',
 		position: '',
-		companyWork: '',
-		evaluationFlag: '',
 		companyEmail: '',
 		companyPhone: '',
 		retireCls: '',
@@ -120,8 +118,6 @@ export default function RegisterForm() {
 				workLocation: '',
 				department: '',
 				position: '',
-				companyWork: '',
-				evaluationFlag: '',
 				companyEmail: '',
 				companyPhone: '',
 				retireCls: '',
@@ -208,25 +204,14 @@ export default function RegisterForm() {
 						menuItems={positionOptions}
 						onSelect={(val) => handleDropdownChange('position', val)}
 					/>
-					<Input id="companyWork" label="회사 근무 사항" value={formData.companyWork} onChange={handleInputChange} />
-					<Input id="evaluationFlag" label="고과 여부" value={formData.evaluationFlag} onChange={handleInputChange} />
-				</div>
-				<div className="row">
 					<Input
 						id="companyEmail"
 						type="email"
 						label="사내 메일"
 						value={formData.companyEmail}
-						style={style}
 						onChange={handleInputChange}
 					/>
-					<Input
-						id="companyPhone"
-						label="사내 전화"
-						style={style}
-						value={formData.companyPhone}
-						onChange={handleInputChange}
-					/>
+					<Input id="companyPhone" label="사내 전화" value={formData.companyPhone} onChange={handleInputChange} />
 				</div>
 
 				{/* 사외 경력 정보 */}

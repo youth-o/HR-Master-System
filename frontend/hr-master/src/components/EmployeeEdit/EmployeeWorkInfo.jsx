@@ -11,7 +11,6 @@ export default function EmployeeWorkInfo() {
 	const { employee, loading, error } = useGetEmployee(employeeId);
 	const { updateEmployee } = useUpdateEmployee();
 
-	// ✅ 초기 상태값 설정 (비어 있는 경우 빈 문자열로 초기화)
 	const [formData, setFormData] = useState({
 		hireType: '',
 		workLocation: '',
@@ -19,12 +18,9 @@ export default function EmployeeWorkInfo() {
 		position: '',
 		companyEmail: '',
 		companyPhone: '',
-		companyWork: '', // 🔹 추가
-		evaluationFlag: '', // 🔹 추가
 		retireDate: '',
 	});
 
-	// ✅ employee 데이터를 불러오면 상태 업데이트
 	useEffect(() => {
 		if (employee) {
 			setFormData({
@@ -34,8 +30,6 @@ export default function EmployeeWorkInfo() {
 				position: employee.position || '',
 				companyEmail: employee.companyEmail || '',
 				companyPhone: employee.companyPhone || '',
-				companyWork: employee.companyWork || '', // 🔹 추가
-				evaluationFlag: employee.evaluationFlag || '', // 🔹 추가
 				retireDate: employee.retireDate || '',
 			});
 		}
@@ -51,7 +45,6 @@ export default function EmployeeWorkInfo() {
 		}));
 	};
 
-	// ✅ 드롭다운 변경 핸들러
 	const handleDropdownChange = (field, selected) => {
 		setFormData((prev) => ({
 			...prev,
@@ -59,7 +52,6 @@ export default function EmployeeWorkInfo() {
 		}));
 	};
 
-	// ✅ 폼 제출 핸들러 (변경된 데이터만 전송)
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -108,10 +100,6 @@ export default function EmployeeWorkInfo() {
 						defaultValue={formData.position}
 						onSelect={(val) => handleDropdownChange('position', val)}
 					/>
-					<Input id="companyWork" label="회사 근무 사항" value={formData.companyWork} onChange={handleChange} />
-					<Input id="evaluationFlag" label="고과 여부" value={formData.evaluationFlag} onChange={handleChange} />
-				</div>
-				<div className={styles.row}>
 					<Input
 						id="companyEmail"
 						type="email"
@@ -120,6 +108,8 @@ export default function EmployeeWorkInfo() {
 						onChange={handleChange}
 					/>
 					<Input id="companyPhone" label="사내 전화" value={formData.companyPhone} onChange={handleChange} />
+				</div>
+				<div className={styles.row}>
 					<Input id="retireDate" label="퇴사 일자" readOnly value={formData.retireDate} />
 				</div>
 				<button type="submit">Save</button>
