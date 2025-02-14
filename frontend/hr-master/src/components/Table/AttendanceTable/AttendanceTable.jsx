@@ -26,19 +26,21 @@ const calculateWorkHours = (clockIn, clockOut) => {
 	return `${diff.toFixed(1)}시간`;
 };
 
-const isToday = (dateString) => {
-	const today = new Date().toISOString().split('T')[0];
-	return dateString === today;
+// 특정 날짜와 비교하여 해당 날짜의 데이터인지 확인
+const isSelectedDate = (dateString, selectedDate) => {
+	return dateString === selectedDate;
 };
 
 const AttendanceTable = ({ searchTerm }) => {
 	const [filterStatus, setFilterStatus] = useState('All');
+	const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // 기본값: 오늘 날짜
 	const { attendance, loading, error } = useGetAllAttendance();
 
-	// 오늘 날짜의 데이터만 필터링
-	const todayAttendance = attendance.filter((record) => isToday(record.attendanceDate));
+	// 선택한 날짜의 근태 데이터 필터링
+	const selectedDateAttendance = attendance.filter((record) => isSelectedDate(record.attendanceDate, selectedDate));
 
-	const filteredAttendance = todayAttendance.filter((record) => {
+	// 필터링된 데이터
+	const filteredAttendance = selectedDateAttendance.filter((record) => {
 		const matchesStatus =
 			filterStatus === 'All' ||
 			(filterStatus === '출근' && ['정상', '조퇴', '지각'].includes(record.attendanceStatus)) ||
@@ -57,6 +59,12 @@ const AttendanceTable = ({ searchTerm }) => {
 
 	return (
 		<div className="attendance-container">
+			{/* 날짜 선택 필터 */}
+			<div className="date-filter">
+				<label htmlFor="attendanceDate">날짜 선택</label>
+				<input type="date" id="attendanceDate" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+			</div>
+
 			{/* 필터 버튼 */}
 			<div className="filter-tabs">
 				<button className={filterStatus === 'All' ? 'active' : ''} onClick={() => setFilterStatus('All')}>
