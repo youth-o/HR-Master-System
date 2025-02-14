@@ -1,60 +1,34 @@
 .chart-container {
-    width: 725px; /* 변경된 너비 */
-    height: 303px; /* 변경된 높이 */
-    background: #ffffff;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .chart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .chart-controls {
-    display: flex;
-    align-items: center;
-  }
-  
-  .chart-filters span {
-    margin-left: 15px;
-    cursor: pointer;
-    color: gray;
-  }
-  
-  .chart-filters .active {
-    color: #0043ff;
-    font-weight: bold;
-  }
-  
-  .settings-icon {
-    width: 20px;
-    height: 20px;
-    margin-left: 15px;
-    cursor: pointer;
-  }
-  
-  .chart-wrapper {
-    height: 250px; /* 차트가 너무 크지 않도록 조정 */
-  }
+	width: 100%; /* ✅ 부모 요소 크기만큼 꽉 채움 */
+	min-width: 480px; /* ✅ 최소 크기 유지 */
+	max-width: 100%; /* ✅ 너무 커지는 걸 방지 */
+	height: auto;
+	background: #ffffff;
+	border-radius: 5px;
+	padding: 20px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+}
 
-  .attendance-chart {
-    flex: 2;
-    min-width: 600px;  /* ✅ 최소 크기 설정 */
-    min-height: 300px; /* ✅ 최소 크기 설정 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-  
-  .chart-container canvas {
-    width: 100% !important;  /* ✅ 캔버스 크기 강제 조정 */
-    height: auto !important;
-  }
+.chart-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: nowrap; /* ✅ 줄 바꿈 방지 */
+}
+
+.chart-wrapper {
+	flex-grow: 1;
+	width: 100%; /* ✅ 컨테이너 전체를 차지하도록 설정 */
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.chart-container canvas {
+	width: 100% !important; /* ✅ 차트가 컨테이너를 꽉 채우도록 설정 */
+	height: auto !important;
+	max-height: 300px;
+}

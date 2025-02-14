@@ -75,7 +75,8 @@ export default function CareerInfo() {
 	};
 
 	const formatDateTime = (dateString) => {
-		return dateString ? `${dateString}T00:00:00` : null;
+		if (!dateString) return null;
+		return dateString.includes('T') ? dateString.split('T')[0] + 'T00:00:00' : dateString + 'T00:00:00';
 	};
 
 	const handleSave = async (event) => {

@@ -47,12 +47,6 @@ export default function List({ searchTerm }) {
 				>
 					부서별
 				</button>
-				<button
-					className={filterStatus === 'Rejected' ? styles.active : ''}
-					onClick={() => setFilterStatus('Rejected')}
-				>
-					Rejected
-				</button>
 			</div>
 
 			{/* 부서 선택 Dropdown (부서별 보기일 때만 표시) */}
