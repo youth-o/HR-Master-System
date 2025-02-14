@@ -132,3 +132,8 @@ server/
 </code></pre>
 
 ## 실행 화면
+
+### 🎬 **주요 화면**
+![](https://github.com/youth-o/HR-Master-System/blob/main/frontend/hr-master/src/assets/%E1%84%89%E1%85%B5%E1%84%92%E1%85%A7%E1%86%AB1.gif?raw=true)
+
+![](https://github.com/youth-o/HR-Master-System/blob/main/frontend/hr-master/src/assets/%E1%84%89%E1%85%B5%E1%84%92%E1%85%A7%E1%86%AB2.gif?raw=true)
