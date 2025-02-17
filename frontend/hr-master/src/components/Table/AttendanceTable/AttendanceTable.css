@@ -79,6 +79,10 @@
 	object-fit: cover;
 }
 
+.attendance-table td {
+	cursor: pointer;
+}
+
 /* 출근시간 아이콘 강조 */
 .attendance-table td:nth-child(2) {
 	font-weight: bold;

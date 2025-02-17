@@ -9,6 +9,7 @@ import './AnnualManage.css';
 const PayManagement = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [searchQuery, setSearchQuery] = useState('');
+	const [selectedEmployee, setSelectedEmployee] = useState(null);
 
 	const handleSearch = () => {
 		setSearchQuery(searchTerm);
@@ -20,8 +21,8 @@ const PayManagement = () => {
 			<div className="layout">
 				<Nav />
 				<div className="content">
-					<EmployeeInfo setSearchTerm={setSearchTerm} onSearch={handleSearch} />
-					<AnnualTable searchTerm={searchQuery} />
+					<EmployeeInfo setSearchTerm={setSearchTerm} onSearch={handleSearch} employee={selectedEmployee} />
+					<AnnualTable searchTerm={searchQuery} setSelectedEmployee={setSelectedEmployee} />
 				</div>
 			</div>
 		</>
