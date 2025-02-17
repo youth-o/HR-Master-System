@@ -73,7 +73,7 @@
 
 ## 패키지 구조
 
-📂 프로젝트 루트 (HR-Master-System-dev/)
+📂 프로젝트 루트 (HR-Master-System/)
 
 <pre><code>
 HR-Master-System-/
