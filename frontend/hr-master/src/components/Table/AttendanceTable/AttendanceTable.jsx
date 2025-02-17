@@ -31,7 +31,7 @@ const isSelectedDate = (dateString, selectedDate) => {
 	return dateString === selectedDate;
 };
 
-const AttendanceTable = ({ searchTerm }) => {
+const AttendanceTable = ({ searchTerm, setSelectedEmployee }) => {
 	const [filterStatus, setFilterStatus] = useState('All');
 	const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]); // 기본값: 오늘 날짜
 	const { attendance, loading, error } = useGetAllAttendance();
@@ -53,6 +53,10 @@ const AttendanceTable = ({ searchTerm }) => {
 
 		return matchesStatus && matchesSearch;
 	});
+
+	const handleRowClick = (employee) => {
+		setSelectedEmployee(employee);
+	};
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error.message}</p>;
@@ -93,7 +97,7 @@ const AttendanceTable = ({ searchTerm }) => {
 				<tbody>
 					{filteredAttendance.length > 0 ? (
 						filteredAttendance.map((record) => (
-							<tr key={record.id}>
+							<tr key={record.id} onClick={() => handleRowClick(record.employee)}>
 								<td>{record.employee.employeeId}</td>
 								<td>
 									<div className="user-info">{record.employee.empName}</div>

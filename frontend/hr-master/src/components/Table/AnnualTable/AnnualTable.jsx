@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './AnnualTable.css';
 import { useGetAllLeaves } from '../../../apis/useLeave';
 
-const AnnualTable = ({ searchTerm }) => {
+const AnnualTable = ({ searchTerm, setSelectedEmployee }) => {
 	const [filterStatus, setFilterStatus] = useState('All');
 	const { leaves, loading, error } = useGetAllLeaves();
 
@@ -16,6 +16,10 @@ const AnnualTable = ({ searchTerm }) => {
 
 		return matchesStatus && matchesSearch;
 	});
+
+	const handleRowClick = (employee) => {
+		setSelectedEmployee(employee);
+	};
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error: {error.message}</p>;
@@ -54,7 +58,7 @@ const AnnualTable = ({ searchTerm }) => {
 				<tbody>
 					{Array.isArray(filteredLeaves) && filteredLeaves.length > 0 ? (
 						filteredLeaves.map((leave) => (
-							<tr key={leave.id}>
+							<tr key={leave.id} onClick={() => handleRowClick(leave.employee)}>
 								<td>{leave.employee.employeeId}</td>
 								<td>
 									<div className="user-info">{leave.employee.empName}</div>

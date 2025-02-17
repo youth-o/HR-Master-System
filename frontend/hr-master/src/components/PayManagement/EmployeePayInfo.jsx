@@ -3,13 +3,14 @@ import './EmployeePayInfo.css';
 import employeeImg from '../../assets/PayManagementImgs/employeeimg.png';
 import Search from '../common/Search/Search';
 
-const EmployeePayInfo = ({ setSearchTerm, onSearch }) => {
-	const employee = {
+const EmployeePayInfo = ({ setSearchTerm, onSearch, employee }) => {
+	const defaultEmployee = {
 		name: '곽두팔',
-		department: '서한본부 IT 기획 인턴',
+		department: '',
 		employeeId: '25-158305830',
 		salary: '₩1,546.12',
 	};
+	const selectedEmployee = employee || defaultEmployee;
 
 	const [currentDate, setCurrentDate] = useState('');
 	const [currentTime, setCurrentTime] = useState('');
@@ -48,7 +49,7 @@ const EmployeePayInfo = ({ setSearchTerm, onSearch }) => {
 	return (
 		<div className="employee-pay-info">
 			<div className="employee-header">
-				<h3>사원 번호 : {employee.employeeId}</h3>
+				<h3>사원 번호 : {selectedEmployee.employeeId}</h3>
 				<div className="employee-search">
 					<Search
 						placeholder="사번 또는 이름 검색"
@@ -66,8 +67,8 @@ const EmployeePayInfo = ({ setSearchTerm, onSearch }) => {
 
 				{/* 직원 이름 & 부서 */}
 				<div className="employee-text">
-					<p className="employee-name">{employee.name}</p>
-					<p className="employee-department">{employee.department}</p>
+					<p className="employee-name">{selectedEmployee.empName}</p>
+					<p className="employee-department">{selectedEmployee.department}</p>
 				</div>
 
 				{/* 현재 날짜 & 시간 */}
@@ -77,7 +78,7 @@ const EmployeePayInfo = ({ setSearchTerm, onSearch }) => {
 				</div>
 
 				{/* 급여 */}
-				<p className="employee-salary">{employee.salary}</p>
+				<p className="employee-salary">{defaultEmployee.salary}</p>
 
 				{/* 송장 버튼 */}
 				<button className="invoice-btn">💰 Send Invoice</button>
