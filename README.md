@@ -77,7 +77,6 @@
 
 <pre><code>
 HR-Master-System-/
-│── f1.txt
 │── README.md
 │── 📂 frontend
 │── 📂 server
