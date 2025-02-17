@@ -11,7 +11,7 @@
 > 수행 기간: 2025-02-05 ~ 2025-02-18 (총 10일, 5시간 근무)<br>
 <br>
 
-## 기술 스택
+## 🛠️ 기술 스택
 <div align=center>
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
