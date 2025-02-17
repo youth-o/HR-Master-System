@@ -11,7 +11,7 @@
 > 수행 기간: 2025-02-05 ~ 2025-02-18 (총 10일, 5시간 근무)<br>
 <br>
 
-## 기술 스택
+## 🛠️ 기술 스택
 <div align=center>
   <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
@@ -56,10 +56,10 @@
       <img width=200px src="https://github.com/user-attachments/assets/8caa072b-4bde-44f6-ba4c-dff10d6572f6-b1d7-028491e5912b" alt=""/><br />
       <sub><b>[FE] 이유승</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/kiyuniii">
-      <img width=200px src="" alt=""/><br />
+      <img width=200px src="https://github.com/user-attachments/assets/5190f597-4935-4ca4-b427-bfd64dd3e855" alt=""/><br />
       <sub><b>[BE] 신기윤</b></sub></a><br /></td>
       <td align="center"><a href="https://github.com/soojeonglim">
-      <img width=200px src="" alt=""/><br />
+      <img width=200px src="https://github.com/youth-o/HR-Master-System/blob/main/frontend/hr-master/src/assets/soojeonglim_prof.png" alt=""/><br />
       <sub><b>[BE] 임수정</b></sub></a><br /></td>
     </tr>
   </tbody>
@@ -73,7 +73,7 @@
 
 ## 패키지 구조
 
-📂 프로젝트 루트 (HR-Master-System-dev/)
+📂 프로젝트 루트 (HR-Master-System/)
 
 <pre><code>
 HR-Master-System-/
@@ -134,6 +134,5 @@ server/
 ## 실행 화면
 
 ### 🎬 **주요 화면**
-![](https://github.com/youth-o/HR-Master-System/blob/main/frontend/hr-master/src/assets/%E1%84%89%E1%85%B5%E1%84%92%E1%85%A7%E1%86%AB1.gif?raw=true)
+![](https://github.com/youth-o/HR-Master-System/blob/main/frontend/hr-master/src/assets/%E1%84%89%E1%85%B5%E1%84%92%E1%85%A7%E1%86%AB3.gif)
 
-![](https://github.com/youth-o/HR-Master-System/blob/main/frontend/hr-master/src/assets/%E1%84%89%E1%85%B5%E1%84%92%E1%85%A7%E1%86%AB2.gif?raw=true)
