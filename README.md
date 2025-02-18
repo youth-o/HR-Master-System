@@ -1,7 +1,3 @@
-<div align=center>
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=4F66AD&height=300&text=Hi%20there,%20I'm%20Kimzooci!%20👋&fontSize=50&fontColor=ffffff&section=header" />
-</div>
-<br>
 
 
 ## 📌 프로젝트 소개
