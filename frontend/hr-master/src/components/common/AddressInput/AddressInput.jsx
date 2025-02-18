@@ -58,7 +58,7 @@ export default function AddressInput({ label, id, value, onChange }) {
 			</div>
 
 			{/* 주소 검색 모달 */}
-			<Modal isOpen={isOpen} style={customStyles}>
+			<Modal isOpen={isOpen} style={customStyles} parentSelector={() => document.body}>
 				<div ref={modalRef}>
 					<DaumPostcode onComplete={completeHandler} />
 				</div>

@@ -14,6 +14,7 @@ import {
 } from '../../constants/options';
 import plus from '../../assets/btn_add.svg';
 import './RegisterForm.css';
+import AddressInput from '../common/AddressInput/AddressInput';
 
 export default function RegisterForm() {
 	const { registerEmployee, loading: employeeLoading, error: employeeError } = useRegisterEmployee();
@@ -175,7 +176,7 @@ export default function RegisterForm() {
 						menuItems={militaryOptions}
 						onSelect={(val) => handleDropdownChange('militaryService', val)}
 					/>
-					<Input id="address" label="주소" value={formData.address} onChange={handleInputChange} />
+					<AddressInput id="address" label="주소" value={formData.address} onChange={handleInputChange} />
 					<Input id="detailAddress" label="상세 주소" value={formData.detailAddress} onChange={handleInputChange} />
 				</div>
 
