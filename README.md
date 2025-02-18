@@ -1,8 +1,8 @@
 <div align=center>
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=4F66AD&height=300&text=Seohan%20HR%20Master%20System&fontSize=50&fontColor=ffffff&section=header" />
-
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=4F66AD&height=300&text=Hi%20there,%20I'm%20Kimzooci!%20👋&fontSize=50&fontColor=ffffff&section=header" />
 </div>
 <br>
+
 
 ## 📌 프로젝트 소개
 인사 담당자가 보다 간편하게 사원 정보를 조회할 수 있으며, 연차와 급여 관리도 가능한 인사 마스터 시스템
